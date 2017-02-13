@@ -418,12 +418,10 @@ body.modal-open{
 }
 
 .span-range-container {
-    border: 1px solid black;
-    border-radius: 4px;
     padding: 0px 14px;
     position: relative;
     display: inline-flex;
-    width: 100%;
+    min-width: 200px;
     box-sizing: border-box;
     cursor: pointer;
     height: 30px;
@@ -438,13 +436,14 @@ body.modal-open{
 
 .span-range:before {
     position: absolute;
-    background-color: lightgray;
+    background-color: #FAFAFA;
     top: 7px;
     bottom: 7px;
     right: 0;
     left: 0;
     content: "";
     border-radius: 10px;
+    border: 1px solid black;
 }
 
 .span-range-bar {
@@ -460,15 +459,16 @@ body.modal-open{
     position: absolute;
     border: 1px solid black;
     border-radius: 50px;
-    height: 26px;
-    width: 26px;
-    transform: translateX(-14px);
+    height: 28px;
+    width: 28px;
+    transform: translateX(-15px);
     background-color: white;
+    transition: box-shadow .25s ease;
 }
 
 .span-range-dot:hover,
 .span-range-bar:hover + .span-range-dot {
-    box-shadow: 0px 0px 4px rgba(0,0,0, .75);
+    box-shadow: 0px 0px 10px rgba(0,0,0, .75);
 }
 
 .span-range-dot:active,
