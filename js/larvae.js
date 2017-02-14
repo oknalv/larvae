@@ -163,6 +163,7 @@ larvae.directive("select", ["$compile", function($compile){
                         spanSelectOptions.removeClass("show");
                     });
                 }
+                spanSelectValue.css({width: spanSelectOptions[0].offsetWidth});
                 var variable = scope[scopeVariableName];
                 if(
                     (variable == undefined || optionValues.indexOf(variable) == -1)
@@ -229,7 +230,14 @@ larvae.directive("translate", ["$compile", function($compile){
                     translate.texts = scope[element.attr("data-texts")];
                     var defaultLang = scope[element.attr("data-default-lang")];
                     translate.defaultLanguage = defaultLang == undefined ? Object.keys(translate.texts)[0] : defaultLang;
-                    translate.language = scope[scopeSelectedLangVarName];
+                    translate.language = window.localStorage.getItem("lang");
+                    if(translate.language == undefined){
+                        scope[scopeSelectedLangVarName] = scope[scopeSelectedLangVarName] == undefined ? translate.defaultLanguage : scope[scopeSelectedLangVarName];
+                        window.localStorage.setItem("lang", scope[scopeSelectedLangVarName]);
+                        translate.language = scope[scopeSelectedLangVarName];
+                    }
+                    else
+                        scope[scopeSelectedLangVarName] = translate.language;
                     var init = true;
                     scope.$watch(scopeSelectedLangVarName, function(){
                         if(init){

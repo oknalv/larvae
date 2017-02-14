@@ -1,13 +1,33 @@
 <html data-ng-app="larvaeApp" data-ng-controller="larvaeController">
     <head>
+        <meta charset="UTF-8"/>
         <link rel="stylesheet" type="text/css" href="css/larvae.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
         <script src="js/larvae.js"></script>
     </head>
-    <body>
-        <button class="btn"><span data-text="button">Button</span></button>
+    <body class="translate" data-langs="langs" data-texts="texts" data-selected-lang="selectedLang" data-default-lang="defaultLang">
+        <div class="header-bar w-full">
+            <div class="w-quarter"></div>
+            <div class="w-half t-center">larvae</div>
+            <div class="w-quarter vh-right-container">
+                <label for="langSelector" class="text" data-text="language"></label>:&nbsp;
+                <select id="langSelector" class="select" data-variable="selectedLang" data-options="langs"></select>
+            </div>
+        </div>
         <script>
             var app = angular.module("larvaeApp", ["larvae-directive"]);
+            app.controller("larvaeController", ["$scope", function($scope){
+                $scope.texts = {
+                    "English": {
+                        "language": "language"
+                    },
+                    "español": {
+                        "language": "idioma"
+                    }
+                }
+                $scope.langs = Object.keys($scope.texts);
+                $scope.defaultLang = "English";
+            }]);
         </script>
     </body>
 </html>

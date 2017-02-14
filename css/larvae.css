@@ -29,8 +29,9 @@
 /* header section */
 
 .header-bar {
-    padding: 10px 0px;
+    padding: 10px;
     height: 50px;
+    box-sizing: border-box;
 }
 
 /* button section */
@@ -374,10 +375,11 @@ body.modal-open{
 .span-select-value {
     border: 1px solid black;
     border-radius: 4px;
-    padding: 5px;
+    padding: 5px 0;
     transition: box-shadow .25s ease;
     display: inline-block;
     height: 20px;
+    text-align: center;
 }
 
 .span-select-value:hover{
@@ -385,21 +387,25 @@ body.modal-open{
 }
 
 .span-select-value:focus{
-    box-shadow: inset 0px 3px 10px rgba(0, 0, 0, .75);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .75);
 }
 
 .span-select-options {
     position: absolute;
-    display: none;
+    display: block;
     border: 1px solid black;
     background-color: white;
-    max-height: 200px;
+    max-height: 0;
     overflow-y: auto;
     z-index: 2;
+    visibility: hidden;
+    text-align: center;
+    left: 1px;
 }
 
 .span-select-options.show {
-    display: block;
+    visibility: visible;
+    max-height: 200px;
 }
 
 .span-select-options > span {
