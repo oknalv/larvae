@@ -163,7 +163,7 @@ larvae.directive("select", ["$compile", function($compile){
                         spanSelectOptions.removeClass("show");
                     });
                 }
-                spanSelectValue.css({width: spanSelectOptions[0].offsetWidth});
+                spanSelectValue.css({width: spanSelectOptions[0].offsetWidth + 2 + "px"});
                 var variable = scope[scopeVariableName];
                 if(
                     (variable == undefined || optionValues.indexOf(variable) == -1)
@@ -219,7 +219,7 @@ larvae.directive("select", ["$compile", function($compile){
     }
 }]);
 
-larvae.directive("translate", ["$compile", function($compile){
+larvae.directive("translate", ["$compile", "$http", function($compile, $http){
     return {
         restrict: "C",
         controller: function(){
@@ -247,17 +247,21 @@ larvae.directive("translate", ["$compile", function($compile){
                     }
                     else
                         scope[scopeSelectedLangVarName] = translate.language;
-                    var init = true;
                     scope.$watch(scopeSelectedLangVarName, function(){
-                        if(init){
-                            init = false;
-                        }
-                        else{
                             window.localStorage.setItem("lang", scope[scopeSelectedLangVarName]);
                             translate.language = scope[scopeSelectedLangVarName];
-                            $compile(angular.element(element[0].getElementsByClassName("text")))(scope);
-                        }
+                            if(typeof translate.texts[translate.language] == "string"){
+                                $http.get(translate.texts[translate.language]).then(function(response){
+                                    translate.texts[translate.language] = response.data;
+                                    $compile(angular.element(element[0].getElementsByClassName("text")))(scope);
+                                });
+                            }
+                            else
+                                $compile(angular.element(element[0].getElementsByClassName("text")))(scope);
                     });
+                },
+                pos: function(scope, element, attributes, translate){
+
                 }
             }
         }

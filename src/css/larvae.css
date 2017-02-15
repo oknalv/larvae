@@ -394,13 +394,15 @@ body.modal-open{
     position: absolute;
     display: block;
     border: 1px solid black;
+    border-top: none;
     background-color: white;
     max-height: 0;
     overflow-y: auto;
     z-index: 2;
     visibility: hidden;
     text-align: center;
-    left: 1px;
+    left: 2px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, .75);
 }
 
 .span-select-options.show {
@@ -479,11 +481,11 @@ body.modal-open{
 
 .span-range-dot:hover,
 .span-range-bar:hover + .span-range-dot {
-    box-shadow: 0px 0px 10px rgba(0,0,0, .75);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .75);
 }
 
 .span-range-dot:active,
 .span-range-bar:hover + .span-range-dot:active,
 .span-range-bar:active + .span-range-dot {
-    box-shadow: inset 0px 0px 4px rgba(0,0,0, .75);
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, .75);
 }
