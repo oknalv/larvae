@@ -179,6 +179,15 @@ larvae.directive("select", ["$compile", function($compile){
             });
 
             scope.$watch(scopeVariableName, function(){
+                spanOptionElements = angular.element(spanSelectOptions.children());
+                spanOptionElements.removeClass("selected");
+                for(var i = 0; i < spanOptionElements.length; i++){
+                    spanOptionElement = angular.element(spanOptionElements[i]);
+                    if(spanOptionElement.attr("data-value") == scope[scopeVariableName]){
+                        spanOptionElement.addClass("selected");
+                        break;
+                    }
+                }
                 element.val(scope[scopeVariableName]);
                 var options = scope[scopeOptionsVariableName];
                 var text = null;

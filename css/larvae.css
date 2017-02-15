@@ -417,6 +417,11 @@ body.modal-open{
     background-color: #F0F0F0;
 }
 
+.span-select-options > span.selected,
+.span-select-options > span.selected:hover {
+    background-color: #E0E0E0;
+}
+
 /* range section */
 
 .range {
