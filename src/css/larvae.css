@@ -431,10 +431,10 @@ body.modal-open{
 }
 
 .span-range-container {
-    padding: 0px 14px;
+    padding: 0px 25px;
     position: relative;
     display: inline-flex;
-    min-width: 200px;
+    width: 100%;
     box-sizing: border-box;
     cursor: pointer;
     height: 30px;
@@ -474,18 +474,52 @@ body.modal-open{
     border-radius: 50px;
     height: 28px;
     width: 28px;
-    transform: translateX(-15px);
+    transform: translateX(-50%);
     background-color: white;
     transition: box-shadow .25s ease;
-}
-
-.span-range-dot:hover,
-.span-range-bar:hover + .span-range-dot {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .75);
+    margin-left: 50%;
 }
 
 .span-range-dot:active,
-.span-range-bar:hover + .span-range-dot:active,
 .span-range-bar:active + .span-range-dot {
     box-shadow: inset 0px 0px 4px rgba(0, 0, 0, .75);
+}
+
+.span-range-value {
+    position: absolute;
+    z-index: 1;
+    border: 1px solid black;
+    padding: 5px;
+    top: -42px;
+    transform: translateX(-50%);
+    background-color: white;
+    display: none;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, .75);
+    border-radius: 4px;
+}
+
+.span-range-bar:hover ~ .span-range-value,
+.span-range-dot:active ~ .span-range-value,
+.span-range-bar:active ~ .span-range-value {
+    display: block;
+}
+
+.span-range-value:before,
+.span-range-value:after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-style: solid;
+}
+
+.span-range-value:after {
+    border-width: 5px;
+    border-color: white transparent transparent transparent;
+}
+
+.span-range-value:before {
+    border-width: 6px;
+    border-color: black transparent transparent transparent;
 }

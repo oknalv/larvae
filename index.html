@@ -20,28 +20,35 @@
             <div id="buttons" class="w-full">
                 <div class="w-quarter"></div>
                 <div class="w-half">
-                    <div class="w-full text" data-text="buttons"></div>
                     <div class="w-full">
-                        <button class="btn text" data-text="button"></button>
+                        <div class="w-full text" data-text="buttons"></div>
+                        <div class="w-full">
+                            <button class="btn text" data-text="button"></button>
+                        </div>
+                        <div class="w-full">
+                            <button class="btn round text" data-text="button"></button>
+                        </div>
+                        <div class="w-full">
+                            <button class="btn icon"><i class="fa fa-question-circle-o"></i></button>
+                        </div>
+                        <div class="w-full">
+                            <button class="btn icon round"><i class="fa fa-question-circle-o"></i></button>
+                        </div>
+                        <div class="w-full grouped">
+                            <button class="btn text" data-text="button"></button>
+                            <button class="btn text" data-text="button"></button>
+                            <button class="btn text" data-text="button"></button>
+                            <button class="btn text" data-text="button"></button>
+                            <button class="btn text" data-text="button"></button>
+                            <button class="btn text" data-text="button"></button>
+                        </div>
                     </div>
+                    <div class="w-full text" data-text="range"></div>
                     <div class="w-full">
-                        <button class="btn round text" data-text="button"></button>
-                    </div>
-                    <div class="w-full">
-                        <button class="btn icon"><i class="fa fa-question-circle-o"></i></button>
-                    </div>
-                    <div class="w-full">
-                        <button class="btn icon round"><i class="fa fa-question-circle-o"></i></button>
-                    </div>
-                    <div class="w-full grouped">
-                        <button class="btn text" data-text="button"></button>
-                        <button class="btn text" data-text="button"></button>
-                        <button class="btn text" data-text="button"></button>
-                        <button class="btn text" data-text="button"></button>
-                        <button class="btn text" data-text="button"></button>
-                        <button class="btn text" data-text="button"></button>
+                        <input id="range" type="range" class="range" max="100" min="0" data-ng-model="rangeValue"/>
                     </div>
                 </div>
+                <div class="w-quarter"></div>
             </div>
         </div>
         <script src="js/app.js"></script>

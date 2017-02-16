@@ -278,10 +278,11 @@ larvae.directive("text", function(){
     }
 });
 
-larvae.directive("range", function(){
+larvae.directive("range", ["$compile", function($compile){
     return {
         restrict: "C",
         link: function(scope, element, attributes){
+            var spanRangeModelVariableName = element.attr("data-ng-model");
             var spanRangeContainer = angular.element("<span class='span-range-container'></span>");
             element.after(spanRangeContainer);
             var spanRange = angular.element("<span class='span-range'></span>");
@@ -290,6 +291,9 @@ larvae.directive("range", function(){
             spanRange.append(spanRangeBar);
             var spanRangeDot = angular.element("<span class='span-range-dot'></span>");
             spanRange.append(spanRangeDot);
+            var spanRangeValue = angular.element("<span class='span-range-value'>{{" + spanRangeModelVariableName + "}}</span>");
+            $compile(spanRangeValue)(scope);
+            spanRange.append(spanRangeValue);
             var clicking = false;
 
             spanRangeBar.bind("mousemove", function(event){
@@ -309,22 +313,37 @@ larvae.directive("range", function(){
                     clicking = false;
             });
 
+            /*spanRangeBar.bind("mouseover", function(event){
+                console.log("hello");
+            });
+
+            spanRangeBar.bind("mouseleave", function(event){
+                console.log("bye");
+            });*/
+
             element.bind("change", function(){
                 var percentage = 100 * (element.val() - element.attr("min")) / (element.attr("max") - element.attr("min"));
                 spanRangeDot.css("margin-left", percentage + "%");
+                spanRangeValue.css("margin-left", percentage + "%");
+                scope[spanRangeModelVariableName] = element.val();
+            });
+
+            scope.$watch(spanRangeModelVariableName, function(){
+                element.val(scope[spanRangeModelVariableName]);
+                var percentage = 100 * (element.val() - element.attr("min")) / (element.attr("max") - element.attr("min"));
+                spanRangeDot.css("margin-left", percentage + "%");
+                spanRangeValue.css("margin-left", percentage + "%");
             });
 
             function moveDot(event){
                 var percentage = 100 * event.layerX / spanRangeBar[0].offsetWidth;
-                //if(percentage <= 100){
-                    var min = parseInt(element.attr("min"));
-                    var max = parseInt(element.attr("max"));
-                    var onePercent = (max - min) / 100;
-                    var value = percentage * (max - min + onePercent) / 100 + min;
-                    element.val(value);
-                    element.triggerHandler("change");
-                //}
+                var min = parseInt(element.attr("min"));
+                var max = parseInt(element.attr("max"));
+                var onePercent = (max - min) / 100;
+                var value = percentage * (max - min + onePercent) / 100 + min;
+                element.val(value);
+                element.triggerHandler("change");
             }
         }
     }
-});
+}]);

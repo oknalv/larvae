@@ -1,5 +1,6 @@
 {
   "language-selector": "idioma",
   "buttons": "Botones",
-  "button": "botón"
+  "button": "botón",
+  "range": "Input de rango"
 }
