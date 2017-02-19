@@ -3,32 +3,35 @@ larvae.directive("tabs", function(){
     return {
         restrict: "C",
         link: function(scope, element, attributes){
-            children = element.children();
+            var children = element.children();
             children.addClass("tab");
-            for(i = 0; i < children.length; i++){
+            for(var i = 0; i < children.length; i++){
                 child = angular.element(children[i]);
                 if(!child.hasClass("selected")){
-                    el = document.getElementById(child.attr("data-reference"));
-                    angular.element(el).addClass("hidden");
+                    ids = child.attr("data-reference").split(" ");
+                    for(var j = 0; j < ids.length; j++)
+                        angular.element(document.getElementById(ids[j])).addClass("hidden");
                 }
             }
             children.bind("click", function(){
-                chldrn = element.children();
+                var chldrn = element.children();
                 chldrn.removeClass("selected");
-                self = angular.element(this);
+                var self = angular.element(this);
                 self.addClass("selected");
                 for(i = 0; i < chldrn.length; i++){
-                    child = angular.element(chldrn[i]);
-                    content_id = child.attr("data-reference");
-                    if(content_id !== undefined && content_id != ""){
-                        el = document.getElementById(content_id);
-                        angular.element(el).addClass("hidden");
+                    var child = angular.element(chldrn[i]);
+                    var content_ids = child.attr("data-reference");
+                    if(content_ids !== undefined && content_ids != ""){
+                        var ids = content_ids.split(" ");
+                        for(var j = 0; j < ids.length; j++){
+                            angular.element(document.getElementById(ids[j])).addClass("hidden");}
                     }
                 }
-                content_id = self.attr("data-reference");
-                if(content_id !== undefined && content_id != ""){
-                    el = document.getElementById(self.attr("data-reference"));
-                    angular.element(el).removeClass("hidden");
+                var content_ids = self.attr("data-reference");
+                if(content_ids !== undefined && content_ids != ""){
+                    var ids = content_ids.split(" ");
+                    for(var j = 0; j < ids.length; j++)
+                        angular.element(document.getElementById(ids[j])).removeClass("hidden");
                 }
             });
         }
@@ -229,7 +232,8 @@ larvae.directive("translate", ["$compile", "$http", function($compile, $http){
             this.get = function (textKey, language){
                 var language = language == undefined ? this.language : language;
                 var langTexts = this.texts[language] == undefined ? this.texts[this.defaultLanguage] : this.texts[language];
-                return langTexts[textKey] == undefined ? textKey : langTexts[textKey];
+                var returnText = langTexts[textKey] == undefined ? textKey : langTexts[textKey];
+                return returnText;
             };
         },
         compile: function(tElement, tAttributes){
@@ -312,14 +316,6 @@ larvae.directive("range", ["$compile", function($compile){
                 if(event.buttons == 1)
                     clicking = false;
             });
-
-            /*spanRangeBar.bind("mouseover", function(event){
-                console.log("hello");
-            });
-
-            spanRangeBar.bind("mouseleave", function(event){
-                console.log("bye");
-            });*/
 
             element.bind("change", function(){
                 var percentage = 100 * (element.val() - element.attr("min")) / (element.attr("max") - element.attr("min"));

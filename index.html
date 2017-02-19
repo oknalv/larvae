@@ -3,49 +3,128 @@
         <meta charset="UTF-8"/>
         <title>larvae</title>
         <link rel="stylesheet" type="text/css" href="src/css/larvae.css"/>
+        <link rel="stylesheet" type="text/css" href="css/custom.css"/>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+        <script src="https://pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script>
         <script src="src/js/larvae.js"></script>
     </head>
     <body class="translate" data-langs="langs" data-texts="texts" data-selected-lang="selectedLang" data-default-lang="defaultLang">
         <div class="header-bar w-full">
             <div class="w-quarter"></div>
-            <div class="w-half t-center">larvae</div>
+            <h1 class="w-half t-center">larvae</h1>
             <div class="w-quarter vh-right-container">
                 <label for="langSelector" class="text" data-text="language-selector"></label>:&nbsp;
                 <select id="langSelector" class="select" data-variable="selectedLang" data-options="langs"></select>
             </div>
         </div>
         <div class="w-full">
-            <div id="buttons" class="w-full">
+            <div class="w-full">
                 <div class="w-quarter"></div>
+                <div class="w-half tabs">
+                    <div class="selected text" data-reference="about-tab" data-text="about-tab"></div>
+                    <div class="text" data-reference="components-tab main-index" data-text="components-tab"></div>
+                </div>
+                <div class="w-quarter"></div>
+            </div>
+            <div class="w-full">
+                <div class="w-quarter custom-index">
+                    <div class="tabs w-full vertical" id="main-index">
+                        <div class="selected text" data-reference="buttons-tab" data-text="buttons"></div>
+                    </div>
+                </div>
                 <div class="w-half">
-                    <div class="w-full">
-                        <div class="w-full text" data-text="buttons"></div>
-                        <div class="w-full">
-                            <button class="btn text" data-text="button"></button>
-                        </div>
-                        <div class="w-full">
-                            <button class="btn round text" data-text="button"></button>
-                        </div>
-                        <div class="w-full">
-                            <button class="btn icon"><i class="fa fa-question-circle-o"></i></button>
-                        </div>
-                        <div class="w-full">
-                            <button class="btn icon round"><i class="fa fa-question-circle-o"></i></button>
-                        </div>
-                        <div class="w-full grouped">
-                            <button class="btn text" data-text="button"></button>
-                            <button class="btn text" data-text="button"></button>
-                            <button class="btn text" data-text="button"></button>
-                            <button class="btn text" data-text="button"></button>
-                            <button class="btn text" data-text="button"></button>
-                            <button class="btn text" data-text="button"></button>
+                    <div class="w-full" id="about-tab">
+                        <p class="text paragraph indent" data-text="about-text"></p>
+                        <p class="text paragraph indent" data-text="about-name"></p>
+                        <p class="text paragraph indent" data-text="under-construction"></p>
+                        <h2 class="text paragraph" data-text="installation"></h2>
+                        <p class="text paragraph indent" data-text="include-it"></p>
+                        <div class="custom-code paragraph" id="sources">
+                            <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="sources"></div>
                         </div>
                     </div>
-                    <div class="w-full text" data-text="range"></div>
-                    <div class="w-full">
-                        <input id="range" type="range" class="range" max="100" min="0" data-ng-model="rangeValue"/>
+                    <div class="w-full" id="components-tab">
+                        <div class="w-full" id="buttons-tab">
+                            <div class="w-full paragraph">
+                                <h1 class="text" data-text="buttons"></h1>
+                                <span class="text" data-text="only-css"></span>
+                            </div>
+                            <div class="w-full">
+                                <p class="paragraph text" data-text="button-introduction"></p>
+                                <div class="custom-code paragraph" id="buttons1">
+                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
+                                        <button class="btn">button</button>
+                                    </div>
+                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <h2 class="w-full paragraph text" data-text="modifiers"></h2>
+                                <div class="w-full">
+                                    <p class="paragraph text" data-text="button-modifiers"></p>
+                                    <div class="w-full">
+                                        <p class="paragraph text" data-text="button-modifiers-round"></p>
+                                        <div class="custom-code paragraph" id="buttons2">
+                                            <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
+                                                <button class="btn round">button</button>
+                                            </div>
+                                            <div data-custom-type="result" data-custom-reference="HTML"></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="paragraph text" data-text="button-modifiers-icon"></p>
+                                        <div class="custom-code paragraph" id="buttons3">
+                                            <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
+                                                <button class="btn icon"><i class="fa fa-question-circle-o"></i></button>
+                                            </div>
+                                            <div data-custom-type="result" data-custom-reference="HTML"></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="paragraph text" data-text="button-modifiers-both"></p>
+                                        <div class="custom-code paragraph" id="buttons4">
+                                            <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
+                                                <button class="btn icon round"><i class="fa fa-question-circle-o"></i></button>
+                                            </div>
+                                            <div data-custom-type="result" data-custom-reference="HTML"></div>
+                                        </div>
+                                    </div>
+                                    <div class="w-full">
+                                        <p class="paragraph text" data-text="button-modifiers-custom"></p>
+                                        <div class="custom-code paragraph" id="buttons5">
+                                            <div data-custom-type="code" data-custom-name="CSS" data-custom-language="css" data-custom-variable="buttonModifiersCss"></div>
+                                            <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="buttonModifiersHtml"></div>
+                                            <div data-custom-type="result" data-custom-reference="HTML"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <h2 class="w-full paragraph text" data-text="grouping"></h2>
+                                <div class="w-full">
+                                    <p class="paragraph text" data-text="button-grouping"></p>
+                                    <div class="custom-code paragraph" id="buttons6">
+                                        <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="groupedButtons"></div>
+                                        <div data-custom-type="result" data-custom-reference="HTML"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="w-full grouped">
+                            <button class="btn text" data-text="button"></button>
+                            <button class="btn text" data-text="button"></button>
+                            <button class="btn text" data-text="button"></button>
+                            <button class="btn text" data-text="button"></button>
+                            <button class="btn text" data-text="button"></button>
+                            <button class="btn text" data-text="button"></button>
+                        </div>
+                        <div class="w-full text" data-text="range"></div>
+                        <div class="w-full">
+                            <input id="range" type="range" class="range" max="100" min="0" data-ng-model="rangeValue"/>
+                        </div>-->
                     </div>
                 </div>
                 <div class="w-quarter"></div>
