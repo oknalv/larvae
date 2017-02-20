@@ -9,7 +9,6 @@ larvae.directive("tabs", function(){
                 var child = angular.element(children[i]);
                 if(!child.hasClass("selected")){
                     var ids = child.attr("data-reference").split(" ");
-                    console.log(ids);
                     for(var j = 0; j < ids.length; j++)
                         angular.element(document.getElementById(ids[j])).addClass("hidden");
                 }
