@@ -27,6 +27,18 @@ app.controller("larvaeController", ["$scope", function($scope){
     $scope.groupedButtons += '</div>';
 
     $scope.sources = '<link rel="stylesheet" type="text/css" href="larvae.css"/>\n<script src="larvae.js"></script>';
+
+    $scope.leftCheckbox = '<input type="checkbox" class="checkbox-left" id="check1"/>\n<label for="check1">checkbox</label>';
+
+    $scope.rightCheckbox = '<input type="checkbox" class="checkbox-right" id="check2"/>\n<label for="check2">checkbox</label>';
+
+    $scope.btnCheckbox = '<input type="checkbox" class="checkbox-btn" id="check3"/>\n<label for="check3">checkbox</label>';
+
+    $scope.groupedCheckboxes = '<div class="grouped">\n';
+    $scope.groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check4"/>\n    <label for="check4">checkbox</label>\n';
+    $scope.groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check5"/>\n    <label for="check5">checkbox</label>\n';
+    $scope.groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check6"/>\n    <label for="check6">checkbox</label>\n';
+    $scope.groupedCheckboxes += '</div>';
 }]);
 
 app.directive("customCode", ["$compile", function($compile){

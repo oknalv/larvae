@@ -9,7 +9,7 @@
   "buttons": "Buttons",
   "button-introduction": "Buttons have to be declared with the <code>btn</code> class.",
   "modifiers": "Modifiers",
-  "button-modifiers": "There is some classes that you can add to elements with <code>btn</code> class to change their appearance.",
+  "button-modifiers": "There are some classes that you can add to elements with <code>btn</code> class to change their appearance.",
   "button-modifiers-round": "One of them is the <code>round</code> class. It makes the button corners to be more rounded.",
   "button-modifiers-icon": "Another class is <code>icon</code>. It is designed for buttons with only an icon inside. Its width is the same than its height, it's thicker than a normal button and it has no border.",
   "button-modifiers-both": "You can use <code>icon</code> and <code>round</code> classes together.",
@@ -17,5 +17,11 @@
   "grouping": "Grouping",
   "button-grouping": "You can group buttons wrapping them in an element which has to have the <code>grouped</code> class.",
   "installation": "Installation",
-  "include-it": "You only have to include the CSS and JavaScript sources from the <code>/src</code> folder of the project."
+  "include-it": "You only have to include the CSS and JavaScript sources from the <code>/src</code> folder of the project.",
+  "checkboxes": "Checkboxes",
+  "checkboxes-introduction": "Checkboxes have to be declared with their labels just after each one. There are three different classes:",
+  "checkbox-left": "The first one is the <code>checkbox-left</code> class. It hides the original checkbox and adds a <code>before</code> pseudo-element to de label that displays a tiny box.",
+  "checkbox-right": "Another class is <code>checkbox-right</code>. It works like the previous one but display an <code>after</code> peudo-element instead.",
+  "checkbox-btn": "The last available class is <code>checkbox-btn</code>. It doesn't use pseudo-elements, it changes its label style to look like a button instead.",
+  "checkbox-grouping": "You can group checkboxes wrapping them in an element which has to have the <code>grouped</code> class. It only works with checkboxes that has the <code>checkbox-btn</code> class."
 }

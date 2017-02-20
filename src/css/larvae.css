@@ -1,3 +1,8 @@
+html {
+    font-size: 100%;
+
+}
+
 * {
     font-family: sans-serif;
     margin: 0;
@@ -5,33 +10,33 @@
     text-decoration: none;
     font-weight: normal;
     outline: 0;
-    font-size: 100%;
+    font-size: 1rem;
 }
 
 /* heading section */
 
 h1 {
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 h2 {
-    font-size: 1.7em;
+    font-size: 1.7rem;
 }
 
 h3 {
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 
 h4 {
-    font-size: 1.3em;
+    font-size: 1.3rem;
 }
 
 h5 {
-    font-size: 1.2em;
+    font-size: 1.2rem;
 }
 
 h6 {
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
 /* table section */
@@ -112,7 +117,7 @@ button::-moz-focus-inner {
 /* helper section*/
 
 .icon {
-    font-size: 1.25em;
+    font-size: 1.25rem;
 }
 
 .hidden {
@@ -248,32 +253,6 @@ button::-moz-focus-inner {
     padding-top: 5px;
 }
 
-/*.tabs.vertical > .tab:after,
-.tabs.vertical > .tab:before {
-    content: "";
-    box-shadow: inset 0px -3px lightgray;
-    display: inline-block;
-    width: 10px;
-    margin: 5px;
-    padding-top: 10px;
-    transition: transform .25s ease;
-    transform: scaleX(0);
-}
-
-.tabs.vertical > .tab:hover:after,
-.tabs.vertical > .tab:hover:before {
-    transform: scaleX(1);
-}
-
-.tabs.vertical > .tab.selected:after,
-.tabs.vertical > .tab.selected:hover:after,
-.tabs.vertical > .tab.selected:before,
-.tabs.vertical > .tab.selected:hover:before{
-    transform: scaleX(1);
-    box-shadow: inset 0px -3px black;
-    cursor: inherit;
-}*/
-
 /* modal section */
 
 body.modal-open{
@@ -311,7 +290,7 @@ body.modal-open{
 }
 
 .modal > .modal-container > .modal-header {
-    font-size: 1.5em;
+    font-size: 1.5rem;
 }
 
 .modal > .modal-container > .modal-header,
@@ -341,7 +320,7 @@ body.modal-open{
     height: 30px;
     width: 30px;
     padding: 0;
-    font-size: .5em;
+    font-size: .5rem;
     text-align: center;
 }
 

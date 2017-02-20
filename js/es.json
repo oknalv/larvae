@@ -15,7 +15,7 @@
   "button-modifiers-both": "Puedes usar las clases <code>icon</code> y <code>round</code> juntas.",
   "button-modifiers-custom": "Puedes utilizar tus propias clases modificadoras para cambiarle el color a los botones.",
   "grouping": "Agrupamiento",
-  "button-grouping": "Puedes agrupar botones envolviéndolos en un elemento que tenga la clase <code>grouped</code>.",
+  "button-grouping": "Puedes agrupar varios botones dentro en un elemento que tenga la clase <code>grouped</code>.",
   "installation": "Instalación",
   "include-it": "Solamente tienes que incluir los ficheros CSS y JavaScript de la carpeta <code>/src</code> del proyecto."
 
