@@ -53,6 +53,14 @@ app.controller("larvaeController", ["$scope", function($scope){
     $scope.tabsVertical += '<div id="tab2-1" style="background-color: lightgray">Hello World!!</div>\n';
     $scope.tabsVertical += '<div id="tab2-2" style="background-color: lightgray">¡¡Hola mundo!!</div>\n';
     $scope.tabsVertical += '<div id="tab2-3" style="background-color: lightgray">Ola mundo!!</div>';
+
+    $scope.simpleModal = '<div class="modal" id="modal1">\n';
+    $scope.simpleModal += '    <div class="modal-container">\n';
+    $scope.simpleModal += '        <div class="modal-body">\n';
+    $scope.simpleModal += '            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n';
+    $scope.simpleModal += '        </div>\n';
+    $scope.simpleModal += '    </div>\n';
+    $scope.simpleModal += '</div>';
 }]);
 
 app.directive("customCode", ["$compile", function($compile){

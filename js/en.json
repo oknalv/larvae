@@ -29,7 +29,8 @@
   "hidden-checkbox": "Hidden checkbox",
   "displayed-element": "Displayed element",
   "tabs": "Tabs",
-  "angular-directive": "(AngularJS directive and CSS)",
+  "angular-directive-css": "(AngularJS directive and CSS)",
   "tabs-introduction": "You can add tabs to show or hide different parts of your page. You have to add the <code>tabs</code> directive class to the tab container element and, in each element, a <code>data-reference</code> attribute referencing the id of the element which that tab is going to show (you can specify more than one id using spaces between them). Use the <code>selected</code> class if you want a tab to be shown by default.",
-  "tabs-modifiers": "If you want to use tabs vertically, you have to add the <code>vertical</code> class to the tab container element."
+  "tabs-modifiers": "If you want to use tabs vertically, you have to add the <code>vertical</code> class to the tab container element.",
+  "modals": "Modals"
 }
