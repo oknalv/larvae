@@ -6,20 +6,20 @@ larvae.directive("tabs", function(){
             var children = element.children();
             children.addClass("tab");
             for(var i = 0; i < children.length; i++){
-                child = angular.element(children[i]);
+                var child = angular.element(children[i]);
                 if(!child.hasClass("selected")){
-                    ids = child.attr("data-reference").split(" ");
+                    var ids = child.attr("data-reference").split(" ");
+                    console.log(ids);
                     for(var j = 0; j < ids.length; j++)
                         angular.element(document.getElementById(ids[j])).addClass("hidden");
                 }
             }
             children.bind("click", function(){
-                var chldrn = element.children();
-                chldrn.removeClass("selected");
+                children.removeClass("selected");
                 var self = angular.element(this);
                 self.addClass("selected");
-                for(i = 0; i < chldrn.length; i++){
-                    var child = angular.element(chldrn[i]);
+                for(i = 0; i < children.length; i++){
+                    var child = angular.element(children[i]);
                     var content_ids = child.attr("data-reference");
                     if(content_ids !== undefined && content_ids != ""){
                         var ids = content_ids.split(" ");

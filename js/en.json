@@ -23,5 +23,13 @@
   "checkbox-left": "The first one is the <code>checkbox-left</code> class. It hides the original checkbox and adds a <code>before</code> pseudo-element to de label that displays a tiny box.",
   "checkbox-right": "Another class is <code>checkbox-right</code>. It works like the previous one but display an <code>after</code> peudo-element instead.",
   "checkbox-btn": "The last available class is <code>checkbox-btn</code>. It doesn't use pseudo-elements, it changes its label style to look like a button instead.",
-  "checkbox-grouping": "You can group checkboxes wrapping them in an element which has to have the <code>grouped</code> class. It only works with checkboxes that has the <code>checkbox-btn</code> class."
+  "checkbox-grouping": "You can group checkboxes wrapping them in an element which has to have the <code>grouped</code> class. It only works with checkboxes that has the <code>checkbox-btn</code> class.",
+  "real-element": "Real element",
+  "real-element-information": "As the real element is hidden, this is an example with it displayed.",
+  "hidden-checkbox": "Hidden checkbox",
+  "displayed-element": "Displayed element",
+  "tabs": "Tabs",
+  "angular-directive": "(AngularJS directive and CSS)",
+  "tabs-introduction": "You can add tabs to show or hide different parts of your page. You have to add the <code>tabs</code> directive class to the tab container element and, in each element, a <code>data-reference</code> attribute referencing the id of the element which that tab is going to show (you can specify more than one id using spaces between them). Use the <code>selected</code> class if you want a tab to be shown by default.",
+  "tabs-modifiers": "If you want to use tabs vertically, you have to add the <code>vertical</code> class to the tab container element."
 }

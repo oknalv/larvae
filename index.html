@@ -34,6 +34,7 @@
                     <div class="tabs w-full vertical" id="main-index">
                         <div class="selected text" data-reference="buttons-tab" data-text="buttons"></div>
                         <div class="text" data-reference="checkboxes-tab" data-text="checkboxes"></div>
+                        <div class="text" data-reference="tabs-tab" data-text="tabs"></div>
                     </div>
                 </div>
                 <div class="w-half">
@@ -114,7 +115,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="checkboxes-tab">
+                        <div id="checkboxes-tab">
                             <div class="w-full paragraph">
                                 <h1 class="text" data-text="checkboxes"></h1>
                                 <span class="text" data-text="only-css"></span>
@@ -147,19 +148,41 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="w-full">
+                                <h2 class="w-full paragraph text" data-text="real-element"></h2>
+                                <div class="w-full">
+                                    <p class="paragraph text" data-text="real-element-information"></p>
+                                    <div class="paragraph">
+                                        <label for="checkbox-real" class="text" data-text="hidden-checkbox"></label>
+                                        <input type="checkbox" class="checkbox-right" id="checkbox-real" style="display: initial; margin-right: 20px;"/>
+                                        <label for="checkbox-real" class="text" data-text="displayed-element"></label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!--<div class="w-full grouped">
-                            <button class="btn text" data-text="button"></button>
-                            <button class="btn text" data-text="button"></button>
-                            <button class="btn text" data-text="button"></button>
-                            <button class="btn text" data-text="button"></button>
-                            <button class="btn text" data-text="button"></button>
-                            <button class="btn text" data-text="button"></button>
+                        <div id="tabs-tab">
+                            <div class="w-full paragraph">
+                                <h1 class="text" data-text="tabs"></h1>
+                                <span class="text" data-text="angular-directive"></span>
+                            </div>
+                            <div class="w-full">
+                                <p class="paragraph text" data-text="tabs-introduction"></p>
+                                <div class="custom-code paragraph" id="tabs1">
+                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="tabsHorizontal"></div>
+                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <h2 class="w-full paragraph text" data-text="modifiers"></h2>
+                                <div class="w-full">
+                                    <p class="paragraph text" data-text="tabs-modifiers"></p>
+                                    <div class="custom-code paragraph" id="tabs2">
+                                        <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="tabsVertical"></div>
+                                        <div data-custom-type="result" data-custom-reference="HTML"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="w-full text" data-text="range"></div>
-                        <div class="w-full">
-                            <input id="range" type="range" class="range" max="100" min="0" data-ng-model="rangeValue"/>
-                        </div>-->
                     </div>
                 </div>
                 <div class="w-quarter"></div>

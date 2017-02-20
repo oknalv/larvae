@@ -39,6 +39,20 @@ app.controller("larvaeController", ["$scope", function($scope){
     $scope.groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check5"/>\n    <label for="check5">checkbox</label>\n';
     $scope.groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check6"/>\n    <label for="check6">checkbox</label>\n';
     $scope.groupedCheckboxes += '</div>';
+
+    $scope.tabsHorizontal = '<div class="tabs">\n';
+    $scope.tabsHorizontal += '    <div class="selected" data-reference="tab1-1">eng</div>\n    <div data-reference="tab1-2">esp</div>\n    <div data-reference="tab1-3">gal</div>\n'
+    $scope.tabsHorizontal += '</div>\n';
+    $scope.tabsHorizontal += '<div id="tab1-1" style="background-color: lightgray">Hello World!!</div>\n';
+    $scope.tabsHorizontal += '<div id="tab1-2" style="background-color: lightgray">¡¡Hola mundo!!</div>\n';
+    $scope.tabsHorizontal += '<div id="tab1-3" style="background-color: lightgray">Ola mundo!!</div>\n';
+
+    $scope.tabsVertical = '<div class="tabs vertical">\n';
+    $scope.tabsVertical += '    <div class="selected" data-reference="tab2-1">eng</div>\n    <div data-reference="tab2-2">esp</div>\n    <div data-reference="tab2-3">gal</div>\n'
+    $scope.tabsVertical += '</div>\n';
+    $scope.tabsVertical += '<div id="tab2-1" style="background-color: lightgray">Hello World!!</div>\n';
+    $scope.tabsVertical += '<div id="tab2-2" style="background-color: lightgray">¡¡Hola mundo!!</div>\n';
+    $scope.tabsVertical += '<div id="tab2-3" style="background-color: lightgray">Ola mundo!!</div>';
 }]);
 
 app.directive("customCode", ["$compile", function($compile){
@@ -53,6 +67,7 @@ app.directive("customCode", ["$compile", function($compile){
             var tabContainer = angular.element("<span class='tabs w-full'></span>");
             var showOnlyOneTab = element.attr("data-custom-only-one-tab") != undefined ? element.attr("data-custom-only-one-tab") == "true" : false;
             var container = angular.element("<div class='custom-code-element w-full'></div>");
+            element.replaceWith(container);
             container.append(tabContainer);
             for(var i = 0; i < contents.length; i++){
                 var el = angular.element(contents[i]);
@@ -105,8 +120,8 @@ app.directive("customCode", ["$compile", function($compile){
                 }
                 resultContainer.append(result);
                 container.prepend(resultContainer);
+                $compile(resultContainer)(scope);
             }
-            element.replaceWith(container);
             $compile(tabContainer)(scope);
         }
     }
