@@ -78,80 +78,135 @@ app.controller("larvaeController", ["$scope", function($scope){
     $scope.closeModal += '    </div>\n';
     $scope.closeModal += '</div>';
 
+    $scope.opts1 = ['opt1', 'opt2', 'opt3'];
+
+    $scope.jsonSyntax = '{\n';
+    $scope.jsonSyntax += '    "value": "opt",\n';
+    $scope.jsonSyntax += '    "text": "opt",\n';
+    $scope.jsonSyntax += '    "translation": "opt",\n';
+    $scope.jsonSyntax += '    "selected": false\n';
+    $scope.jsonSyntax += '}';
+
+    $scope.opts2 = [
+        "opt1",
+        {
+            value: "opt2"
+        },
+        {
+            value: "opt3",
+            text: "Opt3"
+        },
+        {
+            value: "opt4",
+            translation: "option",
+            selected: true
+        }
+    ];
+
+    $scope.complexOptions = '$scope.opts2 = [\n';
+    $scope.complexOptions += '    "opt1",\n';
+    $scope.complexOptions += '    {\n';
+    $scope.complexOptions += '        value: "opt2"\n';
+    $scope.complexOptions += '    },\n';
+    $scope.complexOptions += '    {\n';
+    $scope.complexOptions += '        value: "opt3",\n';
+    $scope.complexOptions += '        text: "Opt3",\n';
+    $scope.complexOptions += '    },\n';
+    $scope.complexOptions += '    {\n';
+    $scope.complexOptions += '        value: "opt4",\n';
+    $scope.complexOptions += '        translation: "option",\n';
+    $scope.complexOptions += '        selected: true\n';
+    $scope.complexOptions += '    }\n';
+    $scope.complexOptions += '};';
+
+    $scope.dynamicOptions = $scope.opts1;
+
+    var changeOpts = false
+    $scope.switchOptions = function(){
+        if(!changeOpts)
+            $scope.dynamicOptions = $scope.opts2;
+        else
+            $scope.dynamicOptions = $scope.opts1;
+        changeOpts = !changeOpts;
+    }
+
 }]);
 
 app.directive("customCode", ["$compile", function($compile){
     return {
         restrict: "C",
-        link: function(scope, element, attributes){
-            var id = element.attr("id");
-            var contents = element.contents();
-            var codes = [];
-            var result = null;
-            var hasResult = false;
-            var tabContainer = angular.element("<span class='tabs w-full'></span>");
-            var showOnlyOneTab = element.attr("data-custom-only-one-tab") != undefined ? element.attr("data-custom-only-one-tab") == "true" : false;
-            var container = angular.element("<div class='custom-code-element w-full'></div>");
-            element.replaceWith(container);
-            container.append(tabContainer);
-            for(var i = 0; i < contents.length; i++){
-                var el = angular.element(contents[i]);
-                var type = el.attr("data-custom-type");
-                if(type == "code"){
-                    var reference = el.attr("data-custom-name");
-                    var variable = el.attr("data-custom-variable");
-                    if(variable == undefined)
-                        variable = el.html();
-                    else
-                        variable = scope[variable];
-                    codes.push({"name": el.attr("data-custom-name"), "contents": variable});
-                    var selected = "";
-                    if(tabContainer.children().length == 0)
-                        selected = " class='selected'";
-                    tabContainer.append(angular.element("<span data-reference='" + id + "-" + reference + "'" + selected + ">" + reference + "</span>"));
-                    var language = el.attr("data-custom-language");
-                    var hl = angular.element("<div class='w-full custom-entry-code' id='" + id + "-" + reference + "' hljs></div>");
-                    if(language != undefined)
-                        hl.attr("hljs-language", language);
-                    hl.append(variable);
-                    container.append(hl);
-                    $compile(hl)(scope);
-                }
-                else if(type == "result" && !hasResult){
-                    var variable = el.attr("data-custom-variable");
-                    if(variable == undefined)
-                        variable = el.html();
-                    else
-                        variable = scope[variable];
-                    result = {"contents": variable, "reference": el.attr("data-custom-reference"), "options": el.attr("data-custom-options")};
-                    hasResult = true;
-                }
-            }
-            if(codes.length == 1 && !showOnlyOneTab)
-                tabContainer.remove();
-            if(hasResult){
-                var resultContainer = angular.element("<div class='w-full'></div>");
-                if(result == null){
-                    result = codes[0];
-                }
-                var codeId = result["reference"];
-                console.log(result["options"]);
-                var options = result["options"] != undefined ? result["options"].split(" ") : [];
-                if(codeId == undefined)
-                    result = result["contents"];
-                else {
-                    for(var i = 0; i < codes.length; i++){
-                        if(codeId == codes[i]["name"])
-                            result = codes[i]["contents"];
+        compile: function(tElement, tAttributes){
+            return {
+                pre: function(scope, element, attributes){
+                    var id = element.attr("id");
+                    var contents = element.contents();
+                    var codes = [];
+                    var result = null;
+                    var hasResult = false;
+                    var tabContainer = angular.element("<span class='tabs w-full'></span>");
+                    var showOnlyOneTab = element.attr("data-custom-only-one-tab") != undefined ? element.attr("data-custom-only-one-tab") == "true" : false;
+                    var container = angular.element("<div class='custom-code-element w-full'></div>");
+                    element.replaceWith(container);
+                    container.append(tabContainer);
+                    for(var i = 0; i < contents.length; i++){
+                        var el = angular.element(contents[i]);
+                        var type = el.attr("data-custom-type");
+                        if(type == "code"){
+                            var reference = el.attr("data-custom-name");
+                            var variable = el.attr("data-custom-variable");
+                            if(variable == undefined)
+                                variable = el.html();
+                            else
+                                variable = scope[variable];
+                            codes.push({"name": el.attr("data-custom-name"), "contents": variable});
+                            var selected = "";
+                            if(tabContainer.children().length == 0)
+                                selected = " class='selected'";
+                            tabContainer.append(angular.element("<span data-reference='" + id + "-" + reference + "'" + selected + ">" + reference + "</span>"));
+                            var language = el.attr("data-custom-language");
+                            var hl = angular.element("<div class='w-full custom-entry-code' id='" + id + "-" + reference + "' hljs></div>");
+                            if(language != undefined)
+                                hl.attr("hljs-language", language);
+                            hl.append(variable);
+                            container.append(hl);
+                            $compile(hl)(scope);
+                        }
+                        else if(type == "result" && !hasResult){
+                            var variable = el.attr("data-custom-variable");
+                            if(variable == undefined)
+                                variable = el.html();
+                            else
+                                variable = scope[variable];
+                            result = {"contents": variable, "reference": el.attr("data-custom-reference"), "options": el.attr("data-custom-options")};
+                            hasResult = true;
+                        }
                     }
+                    if(codes.length == 1 && !showOnlyOneTab)
+                        tabContainer.remove();
+                    if(hasResult){
+                        var resultContainer = angular.element("<div class='w-full'></div>");
+                        if(result == null){
+                            result = codes[0];
+                        }
+                        var codeId = result["reference"];
+                        var options = result["options"] != undefined ? result["options"].split(" ") : [];
+                        if(codeId == undefined)
+                            result = result["contents"];
+                        else {
+                            for(var i = 0; i < codes.length; i++){
+                                if(codeId == codes[i]["name"])
+                                    result = codes[i]["contents"];
+                            }
+                        }
+                        resultContainer.append(result);
+                        container.prepend(resultContainer);
+                        $compile(resultContainer)(scope);
+                        if(options.indexOf("no-padding") != -1)
+                            resultContainer.addClass("custom-no-padding");
+                    }
+                    $compile(tabContainer)(scope);
                 }
-                resultContainer.append(result);
-                container.prepend(resultContainer);
-                $compile(resultContainer)(scope);
-                if(options.indexOf("no-padding") != -1)
-                    resultContainer.addClass("custom-no-padding");
             }
-            $compile(tabContainer)(scope);
         }
     }
 }])

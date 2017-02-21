@@ -24,18 +24,19 @@
             <div class="w-full">
                 <div class="w-quarter"></div>
                 <div class="w-half tabs">
-                    <div class="selected text" data-reference="about-tab" data-text="about-tab"></div>
-                    <div class="text" data-reference="components-tab main-index" data-text="components-tab"></div>
+                    <div class="text" data-reference="about-tab" data-text="about-tab"></div>
+                    <div class="selected text" data-reference="components-tab main-index" data-text="components-tab"></div>
                 </div>
                 <div class="w-quarter"></div>
             </div>
             <div class="w-full">
                 <div class="w-quarter custom-index">
                     <div class="tabs w-full vertical" id="main-index">
-                        <div class="selected text" data-reference="buttons-tab" data-text="buttons"></div>
+                        <div class="text" data-reference="buttons-tab" data-text="buttons"></div>
                         <div class="text" data-reference="checkboxes-tab" data-text="checkboxes"></div>
                         <div class="text" data-reference="tabs-tab" data-text="tabs"></div>
                         <div class="text" data-reference="modals-tab" data-text="modals"></div>
+                        <div class="selected text" data-reference="selects-tab" data-text="selects"></div>
                     </div>
                 </div>
                 <div class="w-half">
@@ -219,6 +220,54 @@
                                 <p class="paragraph">
                                     <button class="btn text modal-launcher" data-reference="close-modal" data-text="launch-example"></button>
                                 </p>
+                            </div>
+                        </div>
+                        <div is="selects-tab">
+                            <div class="w-full paragraph">
+                                <h1 class="text" data-text="selects"></h1>
+                                <span class="text" data-text="angular-directive-css"></span>
+                            </div>
+                            <div class="w-full">
+                                <p class="paragraph text" data-text="selects-introduction"></p>
+                                <div class="custom-code paragraph" id="select1">
+                                    <div data-custom-type="code" data-custom-name="JavaScript" data-custom-language="javascript">
+                                        $scope.opts1 = ['opt1', 'opt2', 'opt3'];
+                                    </div>
+                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
+                                        <select class="select" data-variable="opt1" data-options="opts1"></select>
+                                    </div>
+                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
+                                </div>
+                                <p class="paragraph text" data-text="selects-objects"></p>
+                                <div class="custom-code paragraph" id="select2">
+                                    <div data-custom-type="code" data-custom-name="JSON" data-custom-language="json" data-custom-variable="jsonSyntax"></div>
+                                </div>
+                                <p class="paragraph text" data-text="selects-objects-explained"></p>
+                                <p class="paragraph text" data-text="selects-final-outcome"></p>
+                                <div class="custom-code paragraph" id="select3">
+                                    <div data-custom-type="code" data-custom-name="JavaScript" data-custom-language="javascript" data-custom-variable="complexOptions"></div>
+                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
+                                        <select class="select" data-variable="opt2" data-options="opts2"></select>
+                                    </div>
+                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <h2 class="w-full paragraph text" data-text="dynamic-change"></h2>
+                                <div class="w-full">
+                                    <p class="paragraph text" data-text="selects-dynamic-change"></p>
+                                    <button class="btn" data-ng-click="switchOptions()"><span class="text" data-text="launch-example" ></span></button>
+                                    <select class="select" data-variable="opt3" data-options="dynamicOptions"></select>
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <h2 class="w-full paragraph text" data-text="real-element"></h2>
+                                <div class="w-full">
+                                    <p class="paragraph text" data-text="real-element-information"></p>
+                                    <div class="paragraph">
+                                        <select class="select" data-variable="opt4" data-options="opts1" style="display: initial; margin-right: 20px;"></select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

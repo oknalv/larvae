@@ -38,5 +38,13 @@
   "modals-display": "If you want to launch it, you have to use the <code>modal-launcher</code> directive class and the <code>data-reference</code> attribute with the modal id. You can place it wherever you want and it will launch the modal when you click it. For example, you can place it in a button:",
   "modals-body": "Elements with <code>modal-header</code> and <code>modal-footer</code> are optional, so you can skip them.",
   "launch-example": "Launch example",
-  "modals-close": "The last directive class is <code>modal-closer</code>. You can place an element with it inside a modal to close it."
+  "modals-close": "The last directive class is <code>modal-closer</code>. You can place an element with it inside a modal to close it.",
+  "selects": "Selects",
+  "selects-introduction": "Selects have to be declared with <code>select</code> directive class. It hides the original select and generates an element that acts like a select. This directive is more complex than others. The select element must have <code>data-variable</code> attribute with the scope variable name that will contain the select's value inside your app controller, it also has to be declared with a <code>data-options</code> attribute, with the scope variable name of the options of the select inside your app controller. Don't declare the options inside the select, just do it in the controller. The basic syntax is an array of strings, one for each option:",
+  "selects-objects": "But that syntax is not very powerful. Instead of using an array of strings, you can use JSON objects whit the following syntax:",
+  "selects-objects-explained": "The only required key is <code>value</code>, the other ones are optional. If you declare the <code>text</code> key, it will display a different option text than the <code>value</code> key. If you declare the <code>translation</code> key, it will ignore both <code>text</code> and <code>value</code> keys and will draw on <code>translate</code> directive and change its text dynamically when language changes. Finally, the <code>selected</code> key, if its value is true, makes the select to take that option by default if the scope variable in <code>data-variable</code> is not set.",
+  "selects-final-outcome": "So let's see an example of a select working with JSON objects and strings mixed (try changing the page language to change options' language):",
+  "option": "Option",
+  "dynamic-change": "Dynamic change",
+  "selects-dynamic-change": "Select options can be changed dynamically by changing the options scope variable and they will update the constructed select element. Try clicking this button and see how the select changes."
 }
