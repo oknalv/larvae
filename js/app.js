@@ -54,13 +54,30 @@ app.controller("larvaeController", ["$scope", function($scope){
     $scope.tabsVertical += '<div id="tab2-2" style="background-color: lightgray">¡¡Hola mundo!!</div>\n';
     $scope.tabsVertical += '<div id="tab2-3" style="background-color: lightgray">Ola mundo!!</div>';
 
+    var loremFistrum = 'Lorem fistrum amatomaa no te digo trigo por no llamarte Rodrigor te voy a borrar el cerito ese pedazo de a peich quietooor quietooor a wan la caidita. Ese pedazo de pecador a peich caballo blanco caballo negroorl te voy a borrar el cerito. Hasta luego Lucas llevame al sircoo caballo blanco caballo negroorl fistro caballo blanco caballo negroorl diodeno diodenoo. Benemeritaar ese hombree qué dise usteer apetecan. Se calle ustée se calle ustée papaar papaar condemor. Diodeno me cago en tus muelas caballo blanco caballo negroorl te voy a borrar el cerito. Quietooor pecador ahorarr está la cosa muy malar se calle ustée no te digo trigo por no llamarte Rodrigor no puedor. No puedor no puedor benemeritaar la caidita no te digo trigo por no llamarte Rodrigor.';
+
     $scope.simpleModal = '<div class="modal" id="simple-modal">\n';
     $scope.simpleModal += '    <div class="modal-container">\n';
     $scope.simpleModal += '        <div class="modal-header"></div>\n';
-    $scope.simpleModal += '        <div class="modal-body"></div>\n';
+    $scope.simpleModal += '        <div class="modal-body">' + loremFistrum + '</div>\n';
     $scope.simpleModal += '        <div class="modal-footer"></div>\n';
     $scope.simpleModal += '    </div>\n';
     $scope.simpleModal += '</div>';
+
+    $scope.bodyModal = '<div class="modal" id="body-modal">\n';
+    $scope.bodyModal += '    <div class="modal-container">\n';
+    $scope.bodyModal += '        <div class="modal-body">' + loremFistrum + '</div>\n';
+    $scope.bodyModal += '    </div>\n';
+    $scope.bodyModal += '</div>';
+
+    $scope.closeModal = '<div class="modal" id="close-modal">\n';
+    $scope.closeModal += '    <div class="modal-container">\n';
+    $scope.closeModal += '        <div class="modal-body">\n';
+    $scope.closeModal += '           <button class="btn modal-closer" data-reference="close-modal">button</button>\n';
+    $scope.closeModal += '       </div>\n';
+    $scope.closeModal += '    </div>\n';
+    $scope.closeModal += '</div>';
+
 }]);
 
 app.directive("customCode", ["$compile", function($compile){
@@ -106,7 +123,7 @@ app.directive("customCode", ["$compile", function($compile){
                         variable = el.html();
                     else
                         variable = scope[variable];
-                    result = {"contents": variable, "reference": el.attr("data-custom-reference")};
+                    result = {"contents": variable, "reference": el.attr("data-custom-reference"), "options": el.attr("data-custom-options")};
                     hasResult = true;
                 }
             }
@@ -118,6 +135,8 @@ app.directive("customCode", ["$compile", function($compile){
                     result = codes[0];
                 }
                 var codeId = result["reference"];
+                console.log(result["options"]);
+                var options = result["options"] != undefined ? result["options"].split(" ") : [];
                 if(codeId == undefined)
                     result = result["contents"];
                 else {
@@ -129,6 +148,8 @@ app.directive("customCode", ["$compile", function($compile){
                 resultContainer.append(result);
                 container.prepend(resultContainer);
                 $compile(resultContainer)(scope);
+                if(options.indexOf("no-padding") != -1)
+                    resultContainer.addClass("custom-no-padding");
             }
             $compile(tabContainer)(scope);
         }

@@ -34,6 +34,9 @@
   "tabs-modifiers": "If you want to use tabs vertically, you have to add the <code>vertical</code> class to the tab container element.",
   "modals": "Modals",
   "modals-introduction": "There are three different AngularJS directives involved in the generation of modals. The main one is the <code>modal</code> directive class. The basic HTML tag structure is the following:",
-  "modals-minimum-classes": "It has to have an element with the <code>modal-container</code> class containing at least an element with the <code>modal-body</code> class. The elements with <code>modal-header</code> and <code>modal-footer</code> classes are optional.",
-  "modals-display": "If you want to launch it, you have to use the <code>modal-launcher</code> directive class and the <code>data-reference</code> attribute with the modal id. You can place it wherever you want and it will launch the modal when you click it. For example, you can place it in a button:"
+  "modals-minimum-classes": "It must have an element with the <code>modal-container</code> class containing at least an element with the <code>modal-body</code> class.",
+  "modals-display": "If you want to launch it, you have to use the <code>modal-launcher</code> directive class and the <code>data-reference</code> attribute with the modal id. You can place it wherever you want and it will launch the modal when you click it. For example, you can place it in a button:",
+  "modals-body": "Elements with <code>modal-header</code> and <code>modal-footer</code> are optional, so you can skip them.",
+  "launch-example": "Launch example",
+  "modals-close": "The last directive class is <code>modal-closer</code>. You can place an element with it inside a modal to close it."
 }

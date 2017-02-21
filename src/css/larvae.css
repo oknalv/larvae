@@ -303,7 +303,7 @@ body.modal-open{
 }
 
 .modal > .modal-container > .modal-header,
-.modal > .modal-container > .modal-body.header {
+.modal > .modal-container > .modal-body:first-of-type {
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 }
@@ -313,7 +313,7 @@ body.modal-open{
 }
 
 .modal > .modal-container > .modal-footer,
-.modal > .modal-container > .modal-body.footer{
+.modal > .modal-container > .modal-body:last-of-type {
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
 }
