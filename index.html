@@ -24,8 +24,8 @@
             <div class="w-full">
                 <div class="w-quarter"></div>
                 <div class="w-half tabs">
-                    <div class="text" data-reference="about-tab" data-text="about-tab"></div>
-                    <div class="selected text" data-reference="components-tab main-index" data-text="components-tab"></div>
+                    <div class="selected text" data-reference="about-tab" data-text="about-tab"></div>
+                    <div class="text" data-reference="components-tab main-index" data-text="components-tab"></div>
                 </div>
                 <div class="w-quarter"></div>
             </div>
@@ -222,7 +222,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div is="selects-tab">
+                        <div id="selects-tab">
                             <div class="w-full paragraph">
                                 <h1 class="text" data-text="selects"></h1>
                                 <span class="text" data-text="angular-directive-css"></span>
@@ -256,7 +256,7 @@
                                 <h2 class="w-full paragraph text" data-text="dynamic-change"></h2>
                                 <div class="w-full">
                                     <p class="paragraph text" data-text="selects-dynamic-change"></p>
-                                    <button class="btn" data-ng-click="switchOptions()"><span class="text" data-text="launch-example" ></span></button>
+                                    <button class="btn text" data-ng-click="switchOptions()" data-text="launch-example"></button>
                                     <select class="select" data-variable="opt3" data-options="dynamicOptions"></select>
                                 </div>
                             </div>

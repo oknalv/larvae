@@ -117,7 +117,7 @@ app.controller("larvaeController", ["$scope", function($scope){
     $scope.complexOptions += '        translation: "option",\n';
     $scope.complexOptions += '        selected: true\n';
     $scope.complexOptions += '    }\n';
-    $scope.complexOptions += '};';
+    $scope.complexOptions += '];';
 
     $scope.dynamicOptions = $scope.opts1;
 

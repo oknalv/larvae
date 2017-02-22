@@ -1,4 +1,71 @@
 larvae = angular.module("larvae-directive", []);
+
+larvae.directive("translate", ["$compile", "$http", function($compile, $http){
+    return {
+        restrict: "C",
+        controller: function(){
+            this.language = null;
+            this.defaultLanguage = null;
+            this.texts = [];
+            this.get = function (textKey, language){
+                var language = language == undefined ? this.language : language;
+                var langTexts = this.texts[language] == undefined ? this.texts[this.defaultLanguage] : this.texts[language];
+                var returnText = langTexts[textKey] == undefined ? textKey : langTexts[textKey];
+                return returnText;
+            };
+            this.translate = function(elements){
+                for(var i = 0; i < elements.length; i++){
+                    var element = angular.element(elements[i]);
+                    element.html(this.get(element.attr("data-text")));
+                }
+            };
+        },
+        compile: function(tElement, tAttributes){
+            return {
+                pre: function(scope, element, attributes, translate){
+                    var scopeSelectedLangVarName = element.attr("data-selected-lang");
+                    translate.texts = scope[element.attr("data-texts")];
+                    var defaultLang = scope[element.attr("data-default-lang")];
+                    translate.defaultLanguage = defaultLang == undefined ? Object.keys(translate.texts)[0] : defaultLang;
+                    translate.language = window.localStorage.getItem("lang");
+                    if(translate.language == undefined){
+                        scope[scopeSelectedLangVarName] = scope[scopeSelectedLangVarName] == undefined ? translate.defaultLanguage : scope[scopeSelectedLangVarName];
+                        window.localStorage.setItem("lang", scope[scopeSelectedLangVarName]);
+                        translate.language = scope[scopeSelectedLangVarName];
+                    }
+                    else
+                        scope[scopeSelectedLangVarName] = translate.language;
+                    scope.$watch(scopeSelectedLangVarName, function(){
+                            window.localStorage.setItem("lang", scope[scopeSelectedLangVarName]);
+                            translate.language = scope[scopeSelectedLangVarName];
+                            if(typeof translate.texts[translate.language] == "string"){
+                                $http.get(translate.texts[translate.language]).then(function(response){
+                                    translate.texts[translate.language] = response.data;
+                                    translate.translate(angular.element(element[0].getElementsByClassName("text")));
+                                });
+                            }
+                            else
+                                translate.translate(angular.element(element[0].getElementsByClassName("text")));
+                    });
+                },
+                pos: function(scope, element, attributes, translate){
+
+                }
+            }
+        }
+    }
+}]);
+
+larvae.directive("text", function(){
+    return {
+        restrict: "C",
+        require: "^translate",
+        link: function(scope, element, attributes, translate){
+            element.html(translate.get(element.attr("data-text")));
+        }
+    }
+});
+
 larvae.directive("tabs", function(){
     return {
         restrict: "C",
@@ -98,7 +165,8 @@ larvae.directive("modalCloser", function(){
 larvae.directive("select", ["$compile", function($compile){
     return {
         restrict: "C",
-        link: function(scope, element, attributes){
+        require: "^?translate",
+        link: function(scope, element, attributes, translate){
             var scopeVariableName = element.attr("data-variable");
             var scopeOptionsVariableName = element.attr("data-options");
 
@@ -113,13 +181,24 @@ larvae.directive("select", ["$compile", function($compile){
                 if(spanSelectOptions.hasClass("show")){
                     spanSelectValue[0].blur();
                     spanSelectOptions.removeClass("show");
+                    spanSelectOptions.removeClass("up");
+                    spanSelectOptions.css({transform: "none"});
                 }
-                else
+                else{
                     spanSelectOptions.addClass("show");
+                    var distanceToBottom = window.innerHeight - spanSelect[0].getBoundingClientRect().bottom;
+                    if(spanSelectOptions[0].offsetHeight > distanceToBottom){
+                        spanSelectOptions.addClass("up");
+                        var bottom = - spanSelectOptions[0].offsetHeight - spanSelect[0].offsetHeight;
+                        spanSelectOptions.css({transform: "translateY(" + bottom + "px)"});
+                    }
+                }
             });
             spanSelectValue.bind("blur", function(event){
                 if(!overSpanSelect){
                     spanSelectOptions.removeClass("show");
+                    spanSelectOptions.removeClass("up");
+                    spanSelectOptions.css({transform: "none"});
                 }
             });
             spanSelect.bind("mouseenter", function(){
@@ -153,19 +232,26 @@ larvae.directive("select", ["$compile", function($compile){
                     if(option.translation != undefined){
                         optionElement = angular.element("<option value='" + option.value + "' data-text='" + option.translation + "'></option>")
                         spanOptionElement = angular.element("<span data-value='" + option.value + "' class='text' tabindex='0' data-text='" + option.translation + "'></span>");
-
                     }
                     selected = option.selected != undefined && option.selected ? option.value : selected;
                     element.append(optionElement);
                     spanSelectOptions.append(spanOptionElement);
-                    $compile(spanOptionElement)(scope);
+                    spanOptionElement.bind("DOMSubtreeModified", function(){
+                        var clone = spanSelectOptions.clone();
+                        clone.css({visibility: "hidden"});
+                        angular.element(document.getElementsByTagName("body")).append(clone);
+                        var width = clone[0].offsetWidth + 2;
+                        clone.remove();
+                        spanSelectValue.css({width: width + "px"});
+                    });
+                    if(translate != null)
+                        translate.translate(spanOptionElement);
                     spanOptionElement.bind("click", function(){
                         scope[scopeVariableName] = angular.element(this).attr("data-value");
                         scope.$apply();
                         spanSelectOptions.removeClass("show");
                     });
                 }
-                spanSelectValue.css({width: spanSelectOptions[0].offsetWidth + 2 + "px"});
                 var variable = scope[scopeVariableName];
                 if(
                     (variable == undefined || optionValues.indexOf(variable) == -1)
@@ -204,7 +290,10 @@ larvae.directive("select", ["$compile", function($compile){
                 if(translation != undefined){
                     spanSelectValue.attr("data-text", translation);
                     spanSelectValue.addClass("text");
-                    $compile(spanSelectValue)(scope);
+                    if(translate != null)
+                        translate.translate(spanSelectValue);
+                    else
+                        spanSelectValue.html(text);
                 }
                 else{
                     spanSelectValue.html(text);
@@ -220,66 +309,6 @@ larvae.directive("select", ["$compile", function($compile){
         }
     }
 }]);
-
-larvae.directive("translate", ["$compile", "$http", function($compile, $http){
-    return {
-        restrict: "C",
-        controller: function(){
-            this.language = null;
-            this.defaultLanguage = null;
-            this.texts = [];
-            this.get = function (textKey, language){
-                var language = language == undefined ? this.language : language;
-                var langTexts = this.texts[language] == undefined ? this.texts[this.defaultLanguage] : this.texts[language];
-                var returnText = langTexts[textKey] == undefined ? textKey : langTexts[textKey];
-                return returnText;
-            };
-        },
-        compile: function(tElement, tAttributes){
-            return {
-                pre: function(scope, element, attributes, translate){
-                    var scopeSelectedLangVarName = element.attr("data-selected-lang");
-                    translate.texts = scope[element.attr("data-texts")];
-                    var defaultLang = scope[element.attr("data-default-lang")];
-                    translate.defaultLanguage = defaultLang == undefined ? Object.keys(translate.texts)[0] : defaultLang;
-                    translate.language = window.localStorage.getItem("lang");
-                    if(translate.language == undefined){
-                        scope[scopeSelectedLangVarName] = scope[scopeSelectedLangVarName] == undefined ? translate.defaultLanguage : scope[scopeSelectedLangVarName];
-                        window.localStorage.setItem("lang", scope[scopeSelectedLangVarName]);
-                        translate.language = scope[scopeSelectedLangVarName];
-                    }
-                    else
-                        scope[scopeSelectedLangVarName] = translate.language;
-                    scope.$watch(scopeSelectedLangVarName, function(){
-                            window.localStorage.setItem("lang", scope[scopeSelectedLangVarName]);
-                            translate.language = scope[scopeSelectedLangVarName];
-                            if(typeof translate.texts[translate.language] == "string"){
-                                $http.get(translate.texts[translate.language]).then(function(response){
-                                    translate.texts[translate.language] = response.data;
-                                    $compile(angular.element(element[0].getElementsByClassName("text")))(scope);
-                                });
-                            }
-                            else
-                                $compile(angular.element(element[0].getElementsByClassName("text")))(scope);
-                    });
-                },
-                pos: function(scope, element, attributes, translate){
-
-                }
-            }
-        }
-    }
-}]);
-
-larvae.directive("text", function(){
-    return {
-        restrict: "C",
-        require: "^translate",
-        link: function(scope, element, attributes, translate){
-            element.html(translate.get(element.attr("data-text")));
-        }
-    }
-});
 
 larvae.directive("range", ["$compile", function($compile){
     return {
