@@ -1,16 +1,11 @@
-.custom-code-element > span {
-    font-weight: bold;
-    font-size: .75rem;
-    margin-top: 5px;
-    display: block;
-}
-
 .custom-code-element > div {
     padding: 10px 0;
 }
 
 .custom-code-element > .tabs > .tab {
-    padding: 0 5px;
+    padding: 10px 5px 0;
+    font-weight: bold;
+    font-size: .75rem;
 
 }
 

@@ -240,7 +240,7 @@ larvae.directive("select", ["$compile", function($compile){
                         var clone = spanSelectOptions.clone();
                         clone.css({visibility: "hidden"});
                         angular.element(document.getElementsByTagName("body")).append(clone);
-                        var width = clone[0].offsetWidth + 2;
+                        var width = clone[0].getBoundingClientRect().width + 2;
                         clone.remove();
                         spanSelectValue.css({width: width + "px"});
                     });
@@ -314,7 +314,7 @@ larvae.directive("range", ["$compile", function($compile){
     return {
         restrict: "C",
         link: function(scope, element, attributes){
-            var spanRangeModelVariableName = element.attr("data-ng-model");
+            var spanRangeVariableName = element.attr("data-variable");
             var spanRangeContainer = angular.element("<span class='span-range-container'></span>");
             element.after(spanRangeContainer);
             var spanRange = angular.element("<span class='span-range'></span>");
@@ -323,7 +323,9 @@ larvae.directive("range", ["$compile", function($compile){
             spanRange.append(spanRangeBar);
             var spanRangeDot = angular.element("<span class='span-range-dot'></span>");
             spanRange.append(spanRangeDot);
-            var spanRangeValue = angular.element("<span class='span-range-value'>{{" + spanRangeModelVariableName + "}}</span>");
+            if(scope[spanRangeVariableName] == undefined)
+                scope[spanRangeVariableName] = element.attr("min");
+            var spanRangeValue = angular.element("<span class='span-range-value'>" + scope[spanRangeVariableName] + "</span>");
             $compile(spanRangeValue)(scope);
             spanRange.append(spanRangeValue);
             var clicking = false;
@@ -346,17 +348,16 @@ larvae.directive("range", ["$compile", function($compile){
             });
 
             element.bind("change", function(){
-                var percentage = 100 * (element.val() - element.attr("min")) / (element.attr("max") - element.attr("min"));
-                spanRangeDot.css("margin-left", percentage + "%");
-                spanRangeValue.css("margin-left", percentage + "%");
-                scope[spanRangeModelVariableName] = element.val();
+                scope[spanRangeVariableName] = element.val();
+                scope.$apply();
             });
 
-            scope.$watch(spanRangeModelVariableName, function(){
-                element.val(scope[spanRangeModelVariableName]);
+            scope.$watch(spanRangeVariableName, function(){
+                element.val(scope[spanRangeVariableName]);
                 var percentage = 100 * (element.val() - element.attr("min")) / (element.attr("max") - element.attr("min"));
                 spanRangeDot.css("margin-left", percentage + "%");
                 spanRangeValue.css("margin-left", percentage + "%");
+                spanRangeValue.html(element.val());
             });
 
             function moveDot(event){
