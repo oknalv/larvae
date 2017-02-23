@@ -1,7 +1,7 @@
 {
   "language-selector": "language",
   "about-tab": "About larvae",
-  "about-text": "Larvae is a CSS/JavaScript framework for AngularJS inspired by Bootstrap. I'm building it with the purpose of learning about AngularJS directives and also expanding my CSS knowledge.",
+  "about-text": "Larvae is a CSS/JavaScript framework for AngularJS inspired by Bootstrap. I'm building it with the purpose of learning about AngularJS directives and also expanding my JavaScript and CSS knowledge.",
   "about-name": "I've chosen larvae as project name because, when I started it, there were a lot of moth larvae in my pantry due to a flour moth plague (Plodia interpunctella) that we had had in summer.",
   "under-construction": "(Note: both larvae and this page are under construction).",
   "components-tab": "Components",
@@ -48,5 +48,15 @@
   "dynamic-change": "Dynamic change",
   "selects-dynamic-change": "Select options can be changed dynamically by changing the options scope variable and they will update the constructed select element. Try clicking this button and see how the select changes.",
   "input-range": "Input type range",
-  "range-introduction": "Inputs of type range must have the <code>range</code> directive class. This directive requires <code>min</code> and <code>max</code> HTML tag attributes and also <code>data-variable</code> attribute to work."
+  "range-introduction": "Inputs of type range must have the <code>range</code> directive class. This directive requires <code>min</code> and <code>max</code> HTML tag attributes and also <code>data-variable</code> attribute to work.",
+  "multilang": "Multilanguage",
+  "only-angular-directive": "(Only AngularJS directive)",
+  "multilang-introduction": "You can bring multilanguage support to your page very easily. First you must declare a main parent element with the <code>translate</code> directive class and with the <code>data-texts</code>, <code>data-selected-lang</code> and <code>data-default-lang</code> attributes.",
+  "multilang-texts": "The <code>data-texts</code> attribute must contain the name of the scope variable that will contain an array with all the translations inside JSON objects identified by the language name, and the translations identified by a key:",
+  "hello-world": "Hello world!!",
+  "multilang-external": "You can also use external JSON files instead of putting the translations directly inside the app controller. The syntax is similar, but instead of JSON object, you must provide the JSON file path in a string:",
+  "multilang-selected": "The <code>data-selected-lang</code> attribute contains the name of the variable in the controller with the current language.",
+  "multilang-default": "The <code>data-default-lang</code> attribute is optional, it tells the directive which is the controller variable that contains the name of a default language if there is no language specified. If it is not defined, the directive will pick the first language declared in the controller variable specified in the <code>data-texts</code> attribute.",
+  "texts-introduction": "After declaring the main parent element that will contain all the elements to translate, you must put, for each text that you want to have multilanguage support, the <code>text</code> directive class and a <code>data-text</code> attribute with the key of the text. (Note: if you create those elements dynamically, you must compile them to translate them the first time).",
+  "multilang-change": "To change the language of the page, you only have to change the controller variable declared in the <code>data-selected-lang</code> attribute. It's up to you how to do it. In this page, I did it using a select element, that one which is in the top right of the page. Try changing it."
 }

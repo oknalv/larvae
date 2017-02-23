@@ -11,7 +11,7 @@
         <script src="https://pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script>
         <script src="src/js/larvae.js"></script>
     </head>
-    <body class="translate" data-langs="langs" data-texts="texts" data-selected-lang="selectedLang" data-default-lang="defaultLang">
+    <body class="translate" data-texts="texts" data-selected-lang="selectedLang" data-default-lang="defaultLang">
         <div class="header-bar w-full">
             <div class="w-quarter"></div>
             <h1 class="w-half t-center">larvae</h1>
@@ -24,276 +24,48 @@
             <div class="w-full">
                 <div class="w-quarter"></div>
                 <div class="w-half tabs">
-                    <div class="text" data-reference="about-tab" data-text="about-tab"></div>
-                    <div class="selected text" data-reference="components-tab main-index" data-text="components-tab"></div>
+                    <div class="selected text" data-reference="about-tab" data-text="about-tab"></div>
+                    <div class="text" data-reference="components-tab main-index" data-text="components-tab"></div>
                 </div>
                 <div class="w-quarter"></div>
             </div>
             <div class="w-full">
                 <div class="w-quarter custom-index">
                     <div class="tabs w-full vertical" id="main-index">
-                        <div class="text" data-reference="buttons-tab" data-text="buttons"></div>
+                        <div class="selected text" data-reference="buttons-tab" data-text="buttons"></div>
                         <div class="text" data-reference="checkboxes-tab" data-text="checkboxes"></div>
                         <div class="text" data-reference="tabs-tab" data-text="tabs"></div>
                         <div class="text" data-reference="modals-tab" data-text="modals"></div>
                         <div class="text" data-reference="selects-tab" data-text="selects"></div>
-                        <div class="selected text" data-reference="range-tab" data-text="input-range"></div>
+                        <div class="text" data-reference="range-tab" data-text="input-range"></div>
+                        <div class="text" data-reference="multilang-tab" data-text="multilang"></div>
                     </div>
                 </div>
                 <div class="w-half">
                     <div class="w-full" id="about-tab">
-                        <p class="text paragraph indent" data-text="about-text"></p>
-                        <p class="text paragraph indent" data-text="about-name"></p>
-                        <p class="text paragraph indent" data-text="under-construction"></p>
-                        <h2 class="text paragraph" data-text="installation"></h2>
-                        <p class="text paragraph indent" data-text="include-it"></p>
-                        <div class="custom-code paragraph" id="sources">
-                            <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="sources"></div>
-                        </div>
+                        <div data-ng-include="aboutTab"></div>
                     </div>
                     <div class="w-full" id="components-tab">
                         <div class="w-full" id="buttons-tab">
-                            <div class="w-full paragraph">
-                                <h1 class="text" data-text="buttons"></h1>
-                                <span class="text" data-text="only-css"></span>
-                            </div>
-                            <div class="w-full">
-                                <p class="paragraph text" data-text="button-introduction"></p>
-                                <div class="custom-code paragraph" id="buttons1">
-                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
-                                        <button class="btn">button</button>
-                                    </div>
-                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                </div>
-                            </div>
-                            <div class="w-full">
-                                <h2 class="w-full paragraph text" data-text="modifiers"></h2>
-                                <div class="w-full">
-                                    <p class="paragraph text" data-text="button-modifiers"></p>
-                                    <div class="w-full">
-                                        <p class="paragraph text" data-text="button-modifiers-round"></p>
-                                        <div class="custom-code paragraph" id="buttons2">
-                                            <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
-                                                <button class="btn round">button</button>
-                                            </div>
-                                            <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                        </div>
-                                    </div>
-                                    <div class="w-full">
-                                        <p class="paragraph text" data-text="button-modifiers-icon"></p>
-                                        <div class="custom-code paragraph" id="buttons3">
-                                            <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
-                                                <button class="btn icon"><i class="fa fa-question-circle-o"></i></button>
-                                            </div>
-                                            <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                        </div>
-                                    </div>
-                                    <div class="w-full">
-                                        <p class="paragraph text" data-text="button-modifiers-both"></p>
-                                        <div class="custom-code paragraph" id="buttons4">
-                                            <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
-                                                <button class="btn icon round"><i class="fa fa-question-circle-o"></i></button>
-                                            </div>
-                                            <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                        </div>
-                                    </div>
-                                    <div class="w-full">
-                                        <p class="paragraph text" data-text="button-modifiers-custom"></p>
-                                        <div class="custom-code paragraph" id="buttons5">
-                                            <div data-custom-type="code" data-custom-name="CSS" data-custom-language="css" data-custom-variable="buttonModifiersCss"></div>
-                                            <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="buttonModifiersHtml"></div>
-                                            <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full">
-                                <h2 class="w-full paragraph text" data-text="grouping"></h2>
-                                <div class="w-full">
-                                    <p class="paragraph text" data-text="button-grouping"></p>
-                                    <div class="custom-code paragraph" id="buttons6">
-                                        <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="groupedButtons"></div>
-                                        <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div data-ng-include="buttonsTab"></div>
                         </div>
                         <div id="checkboxes-tab">
-                            <div class="w-full paragraph">
-                                <h1 class="text" data-text="checkboxes"></h1>
-                                <span class="text" data-text="only-css"></span>
-                            </div>
-                            <div class="w-full">
-                                <p class="paragraph text" data-text="checkboxes-introduction"></p>
-                                <p class="paragraph text" data-text="checkbox-left"></p>
-                                <div class="custom-code paragraph" id="checkbox1">
-                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="leftCheckbox"></div>
-                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                </div>
-                                <p class="paragraph text" data-text="checkbox-right"></p>
-                                <div class="custom-code paragraph" id="checkbox2">
-                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="rightCheckbox"></div>
-                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                </div>
-                                <p class="paragraph text" data-text="checkbox-btn"></p>
-                                <div class="custom-code paragraph" id="checkbox3">
-                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="btnCheckbox"></div>
-                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                </div>
-                            </div>
-                            <div class="w-full">
-                                <h2 class="w-full paragraph text" data-text="grouping"></h2>
-                                <div class="w-full">
-                                    <p class="paragraph text" data-text="checkbox-grouping"></p>
-                                    <div class="custom-code paragraph" id="checkbox4">
-                                        <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="groupedCheckboxes"></div>
-                                        <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-full">
-                                <h2 class="w-full paragraph text" data-text="real-element"></h2>
-                                <div class="w-full">
-                                    <p class="paragraph text" data-text="real-element-information"></p>
-                                    <div class="paragraph">
-                                        <label for="checkbox-real" class="text" data-text="hidden-checkbox"></label>
-                                        <input type="checkbox" class="checkbox-right" id="checkbox-real" style="display: initial; margin-right: 20px;"/>
-                                        <label for="checkbox-real" class="text" data-text="displayed-element"></label>
-                                    </div>
-                                </div>
-                            </div>
+                            <div data-ng-include="checkboxesTab"></div>
                         </div>
                         <div id="tabs-tab">
-                            <div class="w-full paragraph">
-                                <h1 class="text" data-text="tabs"></h1>
-                                <span class="text" data-text="angular-directive-css"></span>
-                            </div>
-                            <div class="w-full">
-                                <p class="paragraph text" data-text="tabs-introduction"></p>
-                                <div class="custom-code paragraph" id="tabs1">
-                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="tabsHorizontal"></div>
-                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                </div>
-                            </div>
-                            <div class="w-full">
-                                <h2 class="w-full paragraph text" data-text="modifiers"></h2>
-                                <div class="w-full">
-                                    <p class="paragraph text" data-text="tabs-modifiers"></p>
-                                    <div class="custom-code paragraph" id="tabs2">
-                                        <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="tabsVertical"></div>
-                                        <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div data-ng-include="tabsTab"></div>
                         </div>
                         <div id="modals-tab">
-                            <div class="w-full paragraph">
-                                <h1 class="text" data-text="modals"></h1>
-                                <span class="text" data-text="angular-directive-css"></span>
-                            </div>
-                            <div class="w-full">
-                                <p class="paragraph text" data-text="modals-introduction"></p>
-                                <div class="custom-code paragraph" id="modals1">
-                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="simpleModal"></div>
-                                    <div data-custom-type="result" data-custom-reference="HTML" data-custom-options="no-padding"></div>
-                                </div>
-                                <p class="paragraph text" data-text="modals-minimum-classes"></p>
-                                <p class="paragraph text" data-text="modals-display"></p>
-                                <div class="custom-code paragraph" id="modals2">
-                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
-                                        <button class="btn modal-launcher" data-reference="simple-modal">button</button>
-                                    </div>
-                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                </div>
-                                <p class="paragraph text" data-text="modals-body"></p>
-                                <div class="custom-code paragraph" id="modals3">
-                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="bodyModal"></div>
-                                    <div data-custom-type="result" data-custom-reference="HTML" data-custom-options="no-padding"></div>
-                                </div>
-                                <p class="paragraph">
-                                    <button class="btn text modal-launcher" data-reference="body-modal" data-text="launch-example"></button>
-                                </p>
-                                <p class="paragraph text" data-text="modals-close"></p>
-                                <div class="custom-code paragraph" id="modals4">
-                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html" data-custom-variable="closeModal"></div>
-                                    <div data-custom-type="result" data-custom-reference="HTML" data-custom-options="no-padding"></div>
-                                </div>
-                                <p class="paragraph">
-                                    <button class="btn text modal-launcher" data-reference="close-modal" data-text="launch-example"></button>
-                                </p>
-                            </div>
+                            <div data-ng-include="modalsTab"></div>
                         </div>
                         <div id="selects-tab">
-                            <div class="w-full paragraph">
-                                <h1 class="text" data-text="selects"></h1>
-                                <span class="text" data-text="angular-directive-css"></span>
-                            </div>
-                            <div class="w-full">
-                                <p class="paragraph text" data-text="selects-introduction"></p>
-                                <div class="custom-code paragraph" id="select1">
-                                    <div data-custom-type="code" data-custom-name="JavaScript" data-custom-language="javascript">
-                                        $scope.opts1 = ['opt1', 'opt2', 'opt3'];
-                                    </div>
-                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
-                                        <select class="select" data-variable="opt1" data-options="opts1"></select>
-                                    </div>
-                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                </div>
-                                <p class="paragraph text" data-text="selects-objects"></p>
-                                <div class="custom-code paragraph" id="select2">
-                                    <div data-custom-type="code" data-custom-name="JSON" data-custom-language="json" data-custom-variable="jsonSyntax"></div>
-                                </div>
-                                <p class="paragraph text" data-text="selects-objects-explained"></p>
-                                <p class="paragraph text" data-text="selects-final-outcome"></p>
-                                <div class="custom-code paragraph" id="select3">
-                                    <div data-custom-type="code" data-custom-name="JavaScript" data-custom-language="javascript" data-custom-variable="complexOptions"></div>
-                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
-                                        <select class="select" data-variable="opt2" data-options="opts2"></select>
-                                    </div>
-                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                </div>
-                            </div>
-                            <div class="w-full">
-                                <h2 class="w-full paragraph text" data-text="dynamic-change"></h2>
-                                <div class="w-full">
-                                    <p class="paragraph text" data-text="selects-dynamic-change"></p>
-                                    <button class="btn text" data-ng-click="switchOptions()" data-text="launch-example"></button>
-                                    <select class="select" data-variable="opt3" data-options="dynamicOptions"></select>
-                                </div>
-                            </div>
-                            <div class="w-full">
-                                <h2 class="w-full paragraph text" data-text="real-element"></h2>
-                                <div class="w-full">
-                                    <p class="paragraph text" data-text="real-element-information"></p>
-                                    <div class="paragraph">
-                                        <select class="select" data-variable="opt4" data-options="opts1" style="display: initial; margin-right: 20px;"></select>
-                                    </div>
-                                </div>
-                            </div>
+                            <div data-ng-include="selectsTab"></div>
                         </div>
                         <div id="range-tab">
-                            <div class="w-full paragraph">
-                                <h1 class="text" data-text="input-range"></h1>
-                                <span class="text" data-text="angular-directive-css"></span>
-                            </div>
-                            <div class="w-full">
-                                <p class="paragraph text" data-text="range-introduction"></p>
-                                <div class="custom-code paragraph" id="range1">
-                                    <div data-custom-type="code" data-custom-name="HTML" data-custom-language="html">
-                                        <input type="range" class="range" min="0" max="100" data-variable="range1">
-                                    </div>
-                                    <div data-custom-type="result" data-custom-reference="HTML"></div>
-                                </div>
-                            </div>
-                            <div class="w-full">
-                                <h2 class="w-full paragraph text" data-text="real-element"></h2>
-                                <div class="w-full">
-                                    <p class="paragraph text" data-text="real-element-information"></p>
-                                    <div class="paragraph">
-                                        <input type="range" class="range" min="0" max="100" data-variable="range2" style="display: initial;"/>
-                                    </div>
-                                </div>
-                            </div>
+                            <div data-ng-include="rangeTab"></div>
+                        </div>
+                        <div id="multilang-tab">
+                            <div data-ng-include="multilangTab"></div>
                         </div>
                     </div>
                 </div>

@@ -47,9 +47,6 @@ larvae.directive("translate", ["$compile", "$http", function($compile, $http){
                             else
                                 translate.translate(angular.element(element[0].getElementsByClassName("text")));
                     });
-                },
-                pos: function(scope, element, attributes, translate){
-
                 }
             }
         }
@@ -59,9 +56,10 @@ larvae.directive("translate", ["$compile", "$http", function($compile, $http){
 larvae.directive("text", function(){
     return {
         restrict: "C",
-        require: "^translate",
+        require: "^?translate",
         link: function(scope, element, attributes, translate){
-            element.html(translate.get(element.attr("data-text")));
+            if(translate != null)
+                element.html(translate.get(element.attr("data-text")));
         }
     }
 });
@@ -236,14 +234,7 @@ larvae.directive("select", ["$compile", function($compile){
                     selected = option.selected != undefined && option.selected ? option.value : selected;
                     element.append(optionElement);
                     spanSelectOptions.append(spanOptionElement);
-                    spanOptionElement.bind("DOMSubtreeModified", function(){
-                        var clone = spanSelectOptions.clone();
-                        clone.css({visibility: "hidden"});
-                        angular.element(document.getElementsByTagName("body")).append(clone);
-                        var width = clone[0].getBoundingClientRect().width + 2;
-                        clone.remove();
-                        spanSelectValue.css({width: width + "px"});
-                    });
+                    spanOptionElement.bind("DOMSubtreeModified", updateWidth);
                     if(translate != null)
                         translate.translate(spanOptionElement);
                     spanOptionElement.bind("click", function(){
@@ -251,6 +242,7 @@ larvae.directive("select", ["$compile", function($compile){
                         scope.$apply();
                         spanSelectOptions.removeClass("show");
                     });
+                    updateWidth();
                 }
                 var variable = scope[scopeVariableName];
                 if(
@@ -306,6 +298,15 @@ larvae.directive("select", ["$compile", function($compile){
                 scope[scopeVariableName] = element.val();
                 scope.$apply();
             });
+
+            function updateWidth(){
+                var clone = spanSelectOptions.clone();
+                clone.css({"max-height": "initial"});
+                angular.element(document.getElementsByTagName("body")).append(clone);
+                var width = clone[0].getBoundingClientRect().width + 2;
+                clone.remove();
+                spanSelectValue.css({width: width + "px"});
+            }
         }
     }
 }]);

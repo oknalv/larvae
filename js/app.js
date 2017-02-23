@@ -1,11 +1,20 @@
 var app = angular.module("larvaeApp", ["larvae-directive", "hljs"]);
-app.controller("larvaeController", ["$scope", function($scope){
+app.controller("larvaeController", ["$scope", "$location", function($scope, $location){
     $scope.texts = {
         "English": "js/en.json",
         "español": "js/es.json"
     }
     $scope.langs = Object.keys($scope.texts);
     $scope.defaultLang = "English";
+
+    $scope.multilangTab = "sections/multilang.html";
+    $scope.rangeTab = "sections/range.html";
+    $scope.selectsTab = "sections/selects.html";
+    $scope.modalsTab = "sections/modals.html";
+    $scope.tabsTab = "sections/tabs.html";
+    $scope.checkboxesTab = "sections/checkboxes.html";
+    $scope.buttonsTab = "sections/buttons.html";
+    $scope.aboutTab = "sections/about.html";
 
     $scope.buttonModifiersHtml = '<button class="btn icon round purple"><i class="fa fa-question-circle-o"></i></button>\n';
     $scope.buttonModifiersHtml += '<button class="btn orange">button</button>';
@@ -121,14 +130,37 @@ app.controller("larvaeController", ["$scope", function($scope){
 
     $scope.dynamicOptions = $scope.opts1;
 
-    var changeOpts = false
+    $scope.opts3 = ['1opt', '2opt', '3opt'];
+
+    $scope.scopeTexts = '$scope.texts = [\n';
+    $scope.scopeTexts += '    "English": {\n';
+    $scope.scopeTexts += '        "hello-world": "Hello world!!"\n';
+    $scope.scopeTexts += '    },\n';
+    $scope.scopeTexts += '    "español": {\n';
+    $scope.scopeTexts += '        "hello-world": "¡¡Hola mundo!!"\n';
+    $scope.scopeTexts += '    }\n';
+    $scope.scopeTexts += ']';
+
+    $scope.externalTexts = 'scope.texts = [\n';
+    $scope.externalTexts += '    "English": "en.json",\n';
+    $scope.externalTexts += '    "español": "es.json"\n';
+    $scope.externalTexts += ']';
+
+    var changeOpts = false;
+
     $scope.switchOptions = function(){
         if(!changeOpts)
-            $scope.dynamicOptions = $scope.opts2;
+            $scope.dynamicOptions = $scope.opts3;
         else
             $scope.dynamicOptions = $scope.opts1;
         changeOpts = !changeOpts;
     }
+
+    var goTo = function(){
+        console.log($location.hash());
+    }
+
+    goTo();
 
 }]);
 
