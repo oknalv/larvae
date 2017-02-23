@@ -10,7 +10,15 @@ html {
     text-decoration: none;
     font-weight: normal;
     outline: 0;
-    font-size: 1rem;
+    /*font-size: 1rem;*/
+}
+
+a {
+    color: #6A5CAE;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /* heading section */
