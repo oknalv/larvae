@@ -23,15 +23,15 @@
         <div class="w-full">
             <div class="w-full">
                 <div class="w-quarter"></div>
-                <div class="w-half tabs">
+                <div class="w-half tabs" id="main-index" data-link="true">
                     <div class="selected text" data-reference="about-tab" data-text="about-tab"></div>
-                    <div class="text" data-reference="components-tab main-index" data-text="components-tab"></div>
+                    <div class="text" data-reference="components-tab components-index" data-text="components-tab"></div>
                 </div>
                 <div class="w-quarter"></div>
             </div>
             <div class="w-full">
                 <div class="w-quarter custom-index">
-                    <div class="tabs w-full vertical" id="main-index">
+                    <div class="tabs w-full vertical" id="components-index" data-link="true">
                         <div class="selected text" data-reference="buttons-tab" data-text="buttons"></div>
                         <div class="text" data-reference="checkboxes-tab" data-text="checkboxes"></div>
                         <div class="text" data-reference="tabs-tab" data-text="tabs"></div>
@@ -45,7 +45,7 @@
                     <div class="w-full" id="about-tab">
                         <div data-ng-include="aboutTab"></div>
                     </div>
-                    <div class="w-full" id="components-tab">
+                    <div class="w-full" id="components-tab" data-link="true">
                         <div class="w-full" id="buttons-tab">
                             <div data-ng-include="buttonsTab"></div>
                         </div>

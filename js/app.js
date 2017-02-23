@@ -155,13 +155,6 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
             $scope.dynamicOptions = $scope.opts1;
         changeOpts = !changeOpts;
     }
-
-    var goTo = function(){
-        console.log($location.hash());
-    }
-
-    goTo();
-
 }]);
 
 app.directive("customCode", ["$compile", function($compile){

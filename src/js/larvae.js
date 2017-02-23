@@ -64,7 +64,7 @@ larvae.directive("text", function(){
     }
 });
 
-larvae.directive("tabs", function(){
+larvae.directive("tabs", ["$location", function($location){
     return {
         restrict: "C",
         link: function(scope, element, attributes){
@@ -98,9 +98,33 @@ larvae.directive("tabs", function(){
                         angular.element(document.getElementById(ids[j])).removeClass("hidden");
                 }
             });
+
+            var link = element.attr("data-link") != undefined ? element.attr("data-link") == "true": false;
+            var id = element.attr("id");
+            if(link && id != undefined){
+                var hash = $location.hash();
+                if(hash != undefined && hash != null && hash != ""){
+                    var hashSplit = hash.split("&");
+                    var hashObj = {};
+                    for(var i = 0; i < hashSplit.length; i++){
+                        var valSplit = hashSplit[i].split("=")
+                        if(valSplit.length == 2)
+                        hashObj[valSplit[0]] = valSplit[1];
+                    }
+                    if(Object.keys(hashObj).indexOf(id) != -1){
+                        var children = angular.element(element.children());
+                        for(var i = 0; i < children.length; i++){
+                            var child = angular.element(children[i]);
+                            if(child.attr("data-reference").split(" ").indexOf(hashObj[id]) != -1){
+                                child.triggerHandler("click");
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-});
+}]);
 
 larvae.directive("modalLauncher", function(){
     return {
