@@ -146,6 +146,8 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.externalTexts += '    "español": "es.json"\n';
     $scope.externalTexts += ']';
 
+    $scope.fragment = "#main-index=components-tab&components-index=tabs-tab";
+
     var changeOpts = false;
 
     $scope.switchOptions = function(){
