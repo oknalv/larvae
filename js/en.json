@@ -2,7 +2,7 @@
   "language-selector": "language",
   "about-tab": "About larvae",
   "about-text": "Larvae is a CSS/JavaScript framework for AngularJS inspired by Bootstrap. I'm building it with the purpose of learning about AngularJS directives and also expanding my JavaScript and CSS knowledge.",
-  "about-name": "I've chosen larvae as project name because, when I started it, there were a lot of moth larvae in my pantry due to a flour moth plague (Plodia interpunctella) that we had had in summer.",
+  "about-name": "I've chosen larvae as project name because, when I started it, there were a lot of moth larvae in my pantry due to a flour moth plague (<a href='https://en.wikipedia.org/wiki/Indian_mealmoth' target='_blank'><i>Plodia interpunctella</i></a>) that we had had in summer.",
   "under-construction": "(Note: both larvae and this page are under construction).",
   "components-tab": "Components",
   "only-css": "(Only CSS)",
@@ -61,5 +61,6 @@
   "multilang-selected": "The <code>data-selected-lang</code> attribute contains the name of the variable in the controller with the current language.",
   "multilang-default": "The <code>data-default-lang</code> attribute is optional, it tells the directive which is the controller variable that contains the name of a default language if there is no language specified. If it is not defined, the directive will pick the first language declared in the controller variable specified in the <code>data-texts</code> attribute.",
   "texts-introduction": "After declaring the main parent element that will contain all the elements to translate, you must put, for each text that you want to have multilanguage support, the <code>text</code> directive class and a <code>data-text</code> attribute with the key of the text. (Note: if you create those elements dynamically, you must compile them to translate them the first time).",
-  "multilang-change": "To change the language of the page, you only have to change the controller variable declared in the <code>data-selected-lang</code> attribute. It's up to you how to do it. In this page, I did it using a select element, that one which is in the top right of the page. Try changing it."
+  "multilang-change": "To change the language of the page, you only have to change the controller variable declared in the <code>data-selected-lang</code> attribute. It's up to you how to do it. In this page, I did it using a select element, that one which is in the top right of the page. Try changing it.",
+  "github": "View on GitHub"
 }

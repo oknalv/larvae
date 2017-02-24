@@ -17,7 +17,7 @@
 .custom-index > * {
     justify-content: flex-end;
     align-items: flex-end;
-    padding-right: 25px;
+    padding-right: 10%;
 }
 
 .custom-no-padding {

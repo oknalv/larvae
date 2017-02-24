@@ -170,9 +170,9 @@ app.directive("customCode", ["$compile", function($compile){
                     var codes = [];
                     var result = null;
                     var hasResult = false;
-                    var tabContainer = angular.element("<span class='tabs w-full'></span>");
+                    var tabContainer = angular.element("<span class='tabs'></span>");
                     var showOnlyOneTab = element.attr("data-custom-only-one-tab") != undefined ? element.attr("data-custom-only-one-tab") == "true" : false;
-                    var container = angular.element("<div class='custom-code-element w-full'></div>");
+                    var container = angular.element("<div class='custom-code-element'></div>");
                     element.replaceWith(container);
                     container.append(tabContainer);
                     for(var i = 0; i < contents.length; i++){
@@ -181,40 +181,34 @@ app.directive("customCode", ["$compile", function($compile){
                         if(type == "code"){
                             var reference = el.attr("data-custom-name");
                             var variable = el.attr("data-custom-variable");
-                            if(variable == undefined)
-                                variable = el.html();
-                            else
-                                variable = scope[variable];
-                            codes.push({"name": el.attr("data-custom-name"), "contents": variable});
+                            var content = variable == undefined ? el.html() : scope[variable];
+                            codes.push({"name": el.attr("data-custom-name"), "contents": content});
                             var selected = "";
                             if(tabContainer.children().length == 0)
                                 selected = " class='selected'";
                             tabContainer.append(angular.element("<span data-reference='" + id + "-" + reference + "'" + selected + ">" + reference + "</span>"));
                             var language = el.attr("data-custom-language");
-                            var hl = angular.element("<div class='w-full custom-entry-code' id='" + id + "-" + reference + "' hljs></div>");
+                            var hl = angular.element("<div class='custom-entry-code' id='" + id + "-" + reference + "' hljs></div>");
                             if(language != undefined)
                                 hl.attr("hljs-language", language);
-                            hl.append(variable);
+                            if(variable != undefined)
+                                hl.attr("hljs-source", variable);
+                            else
+                                hl.append(content);
                             container.append(hl);
                             $compile(hl)(scope);
                         }
                         else if(type == "result" && !hasResult){
                             var variable = el.attr("data-custom-variable");
-                            if(variable == undefined)
-                                variable = el.html();
-                            else
-                                variable = scope[variable];
-                            result = {"contents": variable, "reference": el.attr("data-custom-reference"), "options": el.attr("data-custom-options")};
+                            var content = variable == undefined ? el.html() : scope[variable];
+                            result = {"contents": content, "reference": el.attr("data-custom-reference"), "options": el.attr("data-custom-options")};
                             hasResult = true;
                         }
                     }
                     if(codes.length == 1 && !showOnlyOneTab)
                         tabContainer.remove();
                     if(hasResult){
-                        var resultContainer = angular.element("<div class='w-full'></div>");
-                        if(result == null){
-                            result = codes[0];
-                        }
+                        var resultContainer = angular.element("<div></div>");
                         var codeId = result["reference"];
                         var options = result["options"] != undefined ? result["options"].split(" ") : [];
                         if(codeId == undefined)
