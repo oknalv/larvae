@@ -10,23 +10,28 @@ larvae.directive("translate", ["$compile", "$http", function($compile, $http){
             this.get = function (textKey, language){
                 var language = language == undefined ? this.language : language;
                 var langTexts = this.texts[language] == undefined ? this.texts[this.defaultLanguage] : this.texts[language];
-                var returnText = langTexts[textKey] == undefined ? textKey : langTexts[textKey];
+                var returnText = langTexts[textKey] == undefined ? this.texts[this.defaultLanguage][textKey] == undefined ? textKey : this.texts[this.defaultLanguage][textKey] : langTexts[textKey];
                 return returnText;
             };
             this.translate = function(elements){
                 for(var i = 0; i < elements.length; i++){
                     var element = angular.element(elements[i]);
-                    element.html(this.get(element.attr("data-text")));
+                    element.html(this.get(element.attr("data-lrv-text")));
                 }
             };
         },
         compile: function(tElement, tAttributes){
             return {
                 pre: function(scope, element, attributes, translate){
-                    var scopeSelectedLangVarName = element.attr("data-selected-lang");
-                    translate.texts = scope[element.attr("data-texts")];
-                    var defaultLang = scope[element.attr("data-default-lang")];
+                    var scopeSelectedLangVarName = element.attr("data-lrv-selected-lang");
+                    translate.texts = scope[element.attr("data-lrv-texts")];
+                    var defaultLang = scope[element.attr("data-lrv-default-lang")];
                     translate.defaultLanguage = defaultLang == undefined ? Object.keys(translate.texts)[0] : defaultLang;
+                    if(typeof translate.texts[defaultLang] == "string"){
+                        $http.get(translate.texts[defaultLang]).then(function(response){
+                            translate.texts[defaultLang] = response.data;
+                        });
+                    }
                     translate.language = window.localStorage.getItem("lang");
                     if(translate.language == undefined){
                         scope[scopeSelectedLangVarName] = scope[scopeSelectedLangVarName] == undefined ? translate.defaultLanguage : scope[scopeSelectedLangVarName];
@@ -36,16 +41,16 @@ larvae.directive("translate", ["$compile", "$http", function($compile, $http){
                     else
                         scope[scopeSelectedLangVarName] = translate.language;
                     scope.$watch(scopeSelectedLangVarName, function(){
-                            window.localStorage.setItem("lang", scope[scopeSelectedLangVarName]);
-                            translate.language = scope[scopeSelectedLangVarName];
-                            if(typeof translate.texts[translate.language] == "string"){
-                                $http.get(translate.texts[translate.language]).then(function(response){
-                                    translate.texts[translate.language] = response.data;
-                                    translate.translate(angular.element(element[0].getElementsByClassName("text")));
-                                });
-                            }
-                            else
+                        window.localStorage.setItem("lang", scope[scopeSelectedLangVarName]);
+                        translate.language = scope[scopeSelectedLangVarName];
+                        if(typeof translate.texts[translate.language] == "string"){
+                            $http.get(translate.texts[translate.language]).then(function(response){
+                                translate.texts[translate.language] = response.data;
                                 translate.translate(angular.element(element[0].getElementsByClassName("text")));
+                            });
+                        }
+                        else
+                            translate.translate(angular.element(element[0].getElementsByClassName("text")));
                     });
                 }
             }
@@ -59,7 +64,7 @@ larvae.directive("text", function(){
         require: "^?translate",
         link: function(scope, element, attributes, translate){
             if(translate != null)
-                element.html(translate.get(element.attr("data-text")));
+                element.html(translate.get(element.attr("data-lrv-text")));
         }
     }
 });
@@ -73,7 +78,7 @@ larvae.directive("tabs", ["$location", function($location){
             for(var i = 0; i < children.length; i++){
                 var child = angular.element(children[i]);
                 if(!child.hasClass("selected")){
-                    var ids = child.attr("data-reference").split(" ");
+                    var ids = child.attr("data-lrv-tab").split(" ");
                     for(var j = 0; j < ids.length; j++)
                         angular.element(document.getElementById(ids[j])).addClass("hidden");
                 }
@@ -84,14 +89,14 @@ larvae.directive("tabs", ["$location", function($location){
                 self.addClass("selected");
                 for(i = 0; i < children.length; i++){
                     var child = angular.element(children[i]);
-                    var content_ids = child.attr("data-reference");
+                    var content_ids = child.attr("data-lrv-tab");
                     if(content_ids !== undefined && content_ids != ""){
                         var ids = content_ids.split(" ");
                         for(var j = 0; j < ids.length; j++){
                             angular.element(document.getElementById(ids[j])).addClass("hidden");}
                     }
                 }
-                var content_ids = self.attr("data-reference");
+                var content_ids = self.attr("data-lrv-tab");
                 if(content_ids !== undefined && content_ids != ""){
                     var ids = content_ids.split(" ");
                     for(var j = 0; j < ids.length; j++)
@@ -99,7 +104,7 @@ larvae.directive("tabs", ["$location", function($location){
                 }
             });
 
-            var link = element.attr("data-link") != undefined ? element.attr("data-link") == "true": false;
+            var link = element.attr("data-lrv-link") != undefined ? element.attr("data-lrv-link") == "true": false;
             var id = element.attr("id");
             if(link && id != undefined){
                 var hash = $location.hash();
@@ -115,7 +120,7 @@ larvae.directive("tabs", ["$location", function($location){
                         var children = angular.element(element.children());
                         for(var i = 0; i < children.length; i++){
                             var child = angular.element(children[i]);
-                            if(child.attr("data-reference").split(" ").indexOf(hashObj[id]) != -1){
+                            if(child.attr("data-lrv-tab").split(" ").indexOf(hashObj[id]) != -1){
                                 child.triggerHandler("click");
                             }
                         }
@@ -131,7 +136,7 @@ larvae.directive("modalLauncher", function(){
         restrict: "C",
         link: function(scope, element, attributes){
             element.on("click", function(){
-                modal_id = element.attr("data-reference");
+                modal_id = element.attr("data-lrv-modal");
                 modal = document.getElementById(modal_id);
                 angular.element(modal).addClass("show");
                 angular.element(document.querySelector("body")).addClass("modal-open");
@@ -160,7 +165,7 @@ larvae.directive("modalHeader", ["$compile", function($compile){
         restrict: "C",
         link: function(scope, element, attributes){
             button = angular.element(
-                '<button class="btn icon round modal-x modal-closer" data-reference="' +
+                '<button class="btn icon round modal-x modal-closer" data-lrv-modal="' +
                 element.parent().parent().attr("id") +
                 '"><i class="fa fa-close"></i></button>'
             );
@@ -175,7 +180,7 @@ larvae.directive("modalCloser", function(){
         restrict: "C",
         link: function(scope, element, attributes){
             element.on("click", function(event){
-                modal_id = element.attr("data-reference");
+                modal_id = element.attr("data-lrv-modal");
                 modal = document.getElementById(modal_id);
                 angular.element(modal).removeClass("show");
                 angular.element(document.querySelector("body")).removeClass("modal-open");
@@ -189,8 +194,8 @@ larvae.directive("select", ["$compile", function($compile){
         restrict: "C",
         require: "^?translate",
         link: function(scope, element, attributes, translate){
-            var scopeVariableName = element.attr("data-variable");
-            var scopeOptionsVariableName = element.attr("data-options");
+            var scopeVariableName = element.attr("data-lrv-model");
+            var scopeOptionsVariableName = element.attr("data-lrv-options");
 
             var spanSelect = angular.element("<span class='span-select'></span>");
             element.after(spanSelect);
@@ -252,8 +257,8 @@ larvae.directive("select", ["$compile", function($compile){
                     var optionElement = angular.element("<option value='" + option.value + "'>" + option.text + "</option>");
                     var spanOptionElement = angular.element("<span data-value='" + option.value + "' tabindex='0'>" + option.text + "</span>");
                     if(option.translation != undefined){
-                        optionElement = angular.element("<option value='" + option.value + "' data-text='" + option.translation + "'></option>")
-                        spanOptionElement = angular.element("<span data-value='" + option.value + "' class='text' tabindex='0' data-text='" + option.translation + "'></span>");
+                        optionElement = angular.element("<option value='" + option.value + "' data-lrv-text='" + option.translation + "'></option>")
+                        spanOptionElement = angular.element("<span data-value='" + option.value + "' class='text' tabindex='0' data-lrv-text='" + option.translation + "'></span>");
                     }
                     selected = option.selected != undefined && option.selected ? option.value : selected;
                     element.append(optionElement);
@@ -304,7 +309,7 @@ larvae.directive("select", ["$compile", function($compile){
                     }
                 }
                 if(translation != undefined){
-                    spanSelectValue.attr("data-text", translation);
+                    spanSelectValue.attr("data-lrv-text", translation);
                     spanSelectValue.addClass("text");
                     if(translate != null)
                         translate.translate(spanSelectValue);
@@ -313,7 +318,7 @@ larvae.directive("select", ["$compile", function($compile){
                 }
                 else{
                     spanSelectValue.html(text);
-                    spanSelectValue.removeAttr("data-text");
+                    spanSelectValue.removeAttr("data-lrv-text");
                     spanSelectValue.removeClass("text");
                 }
             });
@@ -339,7 +344,7 @@ larvae.directive("range", ["$compile", function($compile){
     return {
         restrict: "C",
         link: function(scope, element, attributes){
-            var spanRangeVariableName = element.attr("data-variable");
+            var spanRangeVariableName = element.attr("data-lrv-model");
             var spanRangeContainer = angular.element("<span class='span-range-container'></span>");
             element.after(spanRangeContainer);
             var spanRange = angular.element("<span class='span-range'></span>");

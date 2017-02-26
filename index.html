@@ -4,42 +4,42 @@
         <title>larvae</title>
         <link rel="stylesheet" type="text/css" href="src/css/larvae.css"/>
         <link rel="stylesheet" type="text/css" href="css/custom.css"/>
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github-gist.min.css">
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/highlight.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
         <script src="https://pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script>
         <script src="src/js/larvae.js"></script>
     </head>
-    <body class="translate" data-texts="texts" data-selected-lang="selectedLang" data-default-lang="defaultLang">
+    <body class="translate" data-lrv-texts="texts" data-lrv-selected-lang="selectedLang" data-lrv-default-lang="defaultLang">
         <div class="header-bar w-full">
             <div class="w-quarter">
             </div>
             <h1 class="w-half t-center">larvae</h1>
             <div class="w-quarter vh-right-container">
-                <label for="langSelector" class="text" data-text="language-selector"></label>:&nbsp;
-                <select id="langSelector" class="select" data-variable="selectedLang" data-options="langs"></select>
+                <label for="langSelector" class="text" data-lrv-text="language-selector"></label>:&nbsp;
+                <select id="langSelector" class="select" data-lrv-model="selectedLang" data-lrv-options="langs"></select>
             </div>
         </div>
         <div class="w-full">
             <div class="w-full">
                 <div class="w-quarter"></div>
-                <div class="w-half tabs" id="main-index" data-link="true">
-                    <div class="selected text" data-reference="about-tab" data-text="about-tab"></div>
-                    <div class="text" data-reference="components-tab components-index" data-text="components-tab"></div>
+                <div class="w-half tabs" id="main-index" data-lrv-link="true">
+                    <div class="selected text" data-lrv-tab="about-tab" data-lrv-text="about-tab"></div>
+                    <div class="text" data-lrv-tab="components-tab components-index" data-lrv-text="components-tab"></div>
                 </div>
                 <div class="w-quarter"></div>
             </div>
             <div class="w-full">
                 <div class="w-quarter custom-index">
-                    <div class="tabs w-full vertical" id="components-index" data-link="true">
-                        <div class="selected text" data-reference="buttons-tab" data-text="buttons"></div>
-                        <div class="text" data-reference="checkboxes-tab" data-text="checkboxes"></div>
-                        <div class="text" data-reference="tabs-tab" data-text="tabs"></div>
-                        <div class="text" data-reference="modals-tab" data-text="modals"></div>
-                        <div class="text" data-reference="selects-tab" data-text="selects"></div>
-                        <div class="text" data-reference="range-tab" data-text="input-range"></div>
-                        <div class="text" data-reference="multilang-tab" data-text="multilang"></div>
+                    <div class="tabs w-full vertical" id="components-index" data-lrv-link="true">
+                        <div class="selected text" data-lrv-tab="buttons-tab" data-lrv-text="buttons"></div>
+                        <div class="text" data-lrv-tab="checkboxes-tab" data-lrv-text="checkboxes"></div>
+                        <div class="text" data-lrv-tab="tabs-tab" data-lrv-text="tabs"></div>
+                        <div class="text" data-lrv-tab="modals-tab" data-lrv-text="modals"></div>
+                        <div class="text" data-lrv-tab="selects-tab" data-lrv-text="selects"></div>
+                        <div class="text" data-lrv-tab="range-tab" data-lrv-text="input-range"></div>
+                        <div class="text" data-lrv-tab="multilang-tab" data-lrv-text="multilang"></div>
                     </div>
                 </div>
                 <div class="w-half">

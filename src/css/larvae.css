@@ -87,7 +87,7 @@ button::-moz-focus-inner {
     background: none;
     border-radius: 4px;
     border: 1px solid black;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     transition: box-shadow .25s ease;
     cursor: pointer;
@@ -96,11 +96,11 @@ button::-moz-focus-inner {
 }
 
 .btn:hover {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .75);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, .75);
 }
 
 .btn:active {
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .75);
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, .75);
 }
 
 .btn.round {
@@ -113,17 +113,12 @@ button::-moz-focus-inner {
     border: none;
 }
 
-.btn.invert {
-    color: white;
-    border-color: white;
+.btn.icon:hover {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .75);
 }
 
-.btn.invert:hover {
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, .75);
-}
-
-.btn.invert:active {
-    box-shadow: inset 0px 0px 10px rgba(255, 255, 255, .75);
+.btn.icon:active {
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .75);
 }
 
 /* helper section*/
@@ -409,21 +404,21 @@ body.modal-open{
 .checkbox-btn + label {
     border-radius: 4px;
     border: 1px solid black;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     transition: box-shadow .25s ease;
 }
 
 .checkbox-btn + label:hover {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .75);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, .75);
 }
 
 .checkbox-btn:checked + label {
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .75);
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, .75);
 }
 
 .checkbox-btn:checked + label:hover {
-    box-shadow: inset 0px 0px 20px rgba(0, 0, 0, .75);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .75);
 }
 
 /* link section */
@@ -451,16 +446,15 @@ body.modal-open{
     padding: 5px 0;
     transition: box-shadow .25s ease;
     display: inline-block;
-    height: 20px;
     text-align: center;
 }
 
 .span-select-value:hover{
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .75);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, .75);
 }
 
 .span-select-value:focus{
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .75);
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, .75);
 }
 
 .span-select-options {

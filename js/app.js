@@ -1,11 +1,20 @@
 var app = angular.module("larvaeApp", ["larvae-directive", "hljs"]);
 app.controller("larvaeController", ["$scope", "$location", function($scope, $location){
     $scope.texts = {
-        "English": "js/en.json",
-        "español": "js/es.json"
+        "en": "js/en.json",
+        "es": "js/es.json"
     }
-    $scope.langs = Object.keys($scope.texts);
-    $scope.defaultLang = "English";
+    $scope.langs = [
+        {
+            value: "en",
+            text: "English"
+        },
+        {
+            value: "es",
+            text: "español"
+        }
+    ];
+    $scope.defaultLang = "en";
 
     $scope.multilangTab = "sections/multilang.html";
     $scope.rangeTab = "sections/range.html";
@@ -20,8 +29,8 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.buttonModifiersHtml += '<button class="btn orange">button</button>';
 
     $scope.buttonModifiersCss = '.btn.orange {\n    color: rgb(255, 116, 0);\n    border-color: rgb(255, 116, 0);\n}\n\n';
-    $scope.buttonModifiersCss += '.btn.orange:hover {\n    box-shadow: 0px 0px 10px rgba(255, 116, 0, .75)\n}\n\n';
-    $scope.buttonModifiersCss += '.btn.orange:active {\n    box-shadow: inset 0px 0px 10px rgba(255, 116, 0, .75)\n}\n\n';
+    $scope.buttonModifiersCss += '.btn.orange:hover {\n    box-shadow: 0px 0px 5px rgba(255, 116, 0, .75)\n}\n\n';
+    $scope.buttonModifiersCss += '.btn.orange:active {\n    box-shadow: inset 0px 0px 5px rgba(255, 116, 0, .75)\n}\n\n';
     $scope.buttonModifiersCss += '.btn.purple {\n    color: rgb(165, 2, 255);\n    border-color: rgb(165, 2, 255);\n}\n\n';
     $scope.buttonModifiersCss += '.btn.purple:hover {\n    box-shadow: 0px 0px 10px rgba(165, 2, 255, .75);\n}\n\n';
     $scope.buttonModifiersCss += '.btn.purple:active {\n    box-shadow: inset 0px 0px 10px rgba(165, 2, 255, .75);\n}';
@@ -50,14 +59,14 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.groupedCheckboxes += '</div>';
 
     $scope.tabsHorizontal = '<div class="tabs">\n';
-    $scope.tabsHorizontal += '    <div class="selected" data-reference="tab1-1">eng</div>\n    <div data-reference="tab1-2">esp</div>\n    <div data-reference="tab1-3">gal</div>\n'
+    $scope.tabsHorizontal += '    <div class="selected" data-lrv-tab="tab1-1">eng</div>\n    <div data-lrv-tab="tab1-2">esp</div>\n    <div data-lrv-tab="tab1-3">gal</div>\n'
     $scope.tabsHorizontal += '</div>\n';
     $scope.tabsHorizontal += '<div id="tab1-1" style="background-color: lightgray">Hello World!!</div>\n';
     $scope.tabsHorizontal += '<div id="tab1-2" style="background-color: lightgray">¡¡Hola mundo!!</div>\n';
     $scope.tabsHorizontal += '<div id="tab1-3" style="background-color: lightgray">Ola mundo!!</div>\n';
 
     $scope.tabsVertical = '<div class="tabs vertical">\n';
-    $scope.tabsVertical += '    <div class="selected" data-reference="tab2-1">eng</div>\n    <div data-reference="tab2-2">esp</div>\n    <div data-reference="tab2-3">gal</div>\n'
+    $scope.tabsVertical += '    <div class="selected" data-lrv-tab="tab2-1">eng</div>\n    <div data-lrv-tab="tab2-2">esp</div>\n    <div data-lrv-tab="tab2-3">gal</div>\n'
     $scope.tabsVertical += '</div>\n';
     $scope.tabsVertical += '<div id="tab2-1" style="background-color: lightgray">Hello World!!</div>\n';
     $scope.tabsVertical += '<div id="tab2-2" style="background-color: lightgray">¡¡Hola mundo!!</div>\n';
@@ -82,7 +91,7 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.closeModal = '<div class="modal" id="close-modal">\n';
     $scope.closeModal += '    <div class="modal-container">\n';
     $scope.closeModal += '        <div class="modal-body">\n';
-    $scope.closeModal += '           <button class="btn modal-closer" data-reference="close-modal">button</button>\n';
+    $scope.closeModal += '           <button class="btn modal-closer" data-lrv-modal="close-modal">button</button>\n';
     $scope.closeModal += '       </div>\n';
     $scope.closeModal += '    </div>\n';
     $scope.closeModal += '</div>';
@@ -132,19 +141,19 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
 
     $scope.opts3 = ['1opt', '2opt', '3opt'];
 
-    $scope.scopeTexts = '$scope.texts = [\n';
-    $scope.scopeTexts += '    "English": {\n';
+    $scope.scopeTexts = '$scope.texts = {\n';
+    $scope.scopeTexts += '    "en": {\n';
     $scope.scopeTexts += '        "hello-world": "Hello world!!"\n';
     $scope.scopeTexts += '    },\n';
-    $scope.scopeTexts += '    "español": {\n';
+    $scope.scopeTexts += '    "es": {\n';
     $scope.scopeTexts += '        "hello-world": "¡¡Hola mundo!!"\n';
     $scope.scopeTexts += '    }\n';
-    $scope.scopeTexts += ']';
+    $scope.scopeTexts += '}';
 
-    $scope.externalTexts = 'scope.texts = [\n';
-    $scope.externalTexts += '    "English": "en.json",\n';
-    $scope.externalTexts += '    "español": "es.json"\n';
-    $scope.externalTexts += ']';
+    $scope.externalTexts = 'scope.texts = {\n';
+    $scope.externalTexts += '    "en": "en.json",\n';
+    $scope.externalTexts += '    "es": "es.json"\n';
+    $scope.externalTexts += '}';
 
     $scope.fragment = "#main-index=components-tab&components-index=tabs-tab";
 
@@ -186,7 +195,7 @@ app.directive("customCode", ["$compile", function($compile){
                             var selected = "";
                             if(tabContainer.children().length == 0)
                                 selected = " class='selected'";
-                            tabContainer.append(angular.element("<span data-reference='" + id + "-" + reference + "'" + selected + ">" + reference + "</span>"));
+                            tabContainer.append(angular.element("<span data-lrv-tab='" + id + "-" + reference + "'" + selected + ">" + reference + "</span>"));
                             var language = el.attr("data-custom-language");
                             var hl = angular.element("<div class='custom-entry-code' id='" + id + "-" + reference + "' hljs></div>");
                             if(language != undefined)
