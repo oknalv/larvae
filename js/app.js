@@ -24,6 +24,9 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.checkboxesTab = "sections/checkboxes.html";
     $scope.buttonsTab = "sections/buttons.html";
     $scope.aboutTab = "sections/about.html";
+    $scope.headingsTab = "sections/headings.html";
+    $scope.tablesTab = "sections/tables.html";
+    $scope.headerBarTab = "sections/header-bar.html";
 
     $scope.buttonModifiersHtml = '<button class="btn icon round purple"><i class="fa fa-question-circle-o"></i></button>\n';
     $scope.buttonModifiersHtml += '<button class="btn orange">button</button>';
@@ -156,6 +159,46 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.externalTexts += '}';
 
     $scope.fragment = "#main-index=components-tab&components-index=tabs-tab";
+
+    $scope.headings = "<h1>h1</h1>\n<h2>h2</h2>\n<h3>h3</h3>\n<h4>h4</h4>\n<h5>h5</h5>\n<h6>h6</h6>";
+
+    $scope.table = "<table>\n";
+    $scope.table += "    <thead>\n";
+    $scope.table += "        <tr>\n";
+    $scope.table += "            <th>th</th>\n";
+    $scope.table += "            <th>th</th>\n";
+    $scope.table += "            <th>th</th>\n";
+    $scope.table += "        </tr>\n";
+    $scope.table += "    </thead>\n";
+    $scope.table += "    <tbody>\n";
+    $scope.table += "        <tr>\n";
+    $scope.table += "            <td>td</td>\n";
+    $scope.table += "            <td>td</td>\n";
+    $scope.table += "            <td>td</td>\n";
+    $scope.table += "        </tr>\n";
+    $scope.table += "        <tr>\n";
+    $scope.table += "            <td>td</td>\n";
+    $scope.table += "            <td>td</td>\n";
+    $scope.table += "            <td>td</td>\n";
+    $scope.table += "        </tr>\n";
+    $scope.table += "        <tr>\n";
+    $scope.table += "            <td>td</td>\n";
+    $scope.table += "            <td>td</td>\n";
+    $scope.table += "            <td>td</td>\n";
+    $scope.table += "        </tr>\n";
+    $scope.table += "        <tr>\n";
+    $scope.table += "            <td>td</td>\n";
+    $scope.table += "            <td>td</td>\n";
+    $scope.table += "            <td>td</td>\n";
+    $scope.table += "        </tr>\n";
+    $scope.table += "    </tbody>\n";
+    $scope.table += "</table>";
+
+    $scope.headerBar = "<div class='header-bar' style='background-color: lightgray;'>\n";
+    $scope.headerBar += "    <button class='btn'>button</button>&nbsp;\n";
+    $scope.headerBar += "    <a href='#'>link</a>&nbsp;\n";
+    $scope.headerBar += "    <span>span</span>&nbsp;\n";
+    $scope.headerBar += "</div>";
 
     var changeOpts = false;
 

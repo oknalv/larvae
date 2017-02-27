@@ -52,19 +52,26 @@ h6 {
 
 /* table section */
 
-.table {
+table {
     border-collapse: collapse;
+    width: 100%;
+    text-align: center;
 }
 
-.table tbody tr:nth-of-type(even){
+table thead th {
+    border-bottom: 1px solid black;
+    font-weight: bold;
+}
+
+table tbody tr:nth-of-type(even){
     background-color: #FAFAFA;
 }
 
-.table tbody tr:hover{
+table tbody tr:hover{
     background-color: #F0F0F0;
 }
 
-.table tbody tr td {
+table tbody tr td {
     padding: 5px 0;
 }
 
@@ -74,6 +81,8 @@ h6 {
     padding: 10px;
     min-height: 50px;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
 }
 
 /* button section */
@@ -260,10 +269,12 @@ button::-moz-focus-inner {
 
 .tabs.vertical {
     flex-direction: column;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .tabs.vertical > .tab {
-    padding: 5px;
+    padding: 0px;
     text-align: center;
     margin-top: 10px;
 }

@@ -31,8 +31,8 @@
                 <div class="w-quarter"></div>
             </div>
             <div class="w-full">
-                <div class="w-quarter custom-index">
-                    <div class="tabs w-full vertical" id="components-index" data-lrv-link="true">
+                <div class="w-quarter">
+                    <div class="tabs w-full vertical custom-index" id="components-index" data-lrv-link="true">
                         <div class="selected text" data-lrv-tab="buttons-tab" data-lrv-text="buttons"></div>
                         <div class="text" data-lrv-tab="checkboxes-tab" data-lrv-text="checkboxes"></div>
                         <div class="text" data-lrv-tab="tabs-tab" data-lrv-text="tabs"></div>
@@ -40,6 +40,9 @@
                         <div class="text" data-lrv-tab="selects-tab" data-lrv-text="selects"></div>
                         <div class="text" data-lrv-tab="range-tab" data-lrv-text="input-range"></div>
                         <div class="text" data-lrv-tab="multilang-tab" data-lrv-text="multilang"></div>
+                        <div class="text" data-lrv-tab="headings-tab" data-lrv-text="headings"></div>
+                        <div class="text" data-lrv-tab="tables-tab" data-lrv-text="tables"></div>
+                        <div class="text" data-lrv-tab="header-bar-tab" data-lrv-text="header-bar"></div>
                     </div>
                 </div>
                 <div class="w-half">
@@ -67,6 +70,15 @@
                         </div>
                         <div id="multilang-tab">
                             <div data-ng-include="multilangTab"></div>
+                        </div>
+                        <div id="headings-tab">
+                            <div data-ng-include="headingsTab"></div>
+                        </div>
+                        <div id="tables-tab">
+                            <div data-ng-include="tablesTab"></div>
+                        </div>
+                        <div id="header-bar-tab">
+                            <div data-ng-include="headerBarTab"></div>
                         </div>
                     </div>
                 </div>

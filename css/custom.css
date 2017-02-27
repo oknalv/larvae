@@ -14,8 +14,7 @@
     font-size: .75rem;
 }
 
-.custom-index > * {
-    justify-content: flex-end;
+.custom-index {
     align-items: flex-end;
     padding: 0 25px;
 }

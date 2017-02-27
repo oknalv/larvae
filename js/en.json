@@ -64,5 +64,11 @@
   "multilang-change": "To change the language of the page, you only have to change the model declared in the <code>data-lrv-selected-lang</code> attribute. It's up to you how to do it. In this page, I did it using a select element, that one which is in the top right corner of the page. Try changing it.",
   "saving-lang": "Saving the selected language",
   "saving-lang-introduction": "This directive makes use of the local storage API, saving automatically the page's current language when it changes in a variable named <code>lang</code> in the <code>window.localStorage</code> object, so, if you close the browser tab or even the browser, when you load the page again, it is translated to the language you had selected before.",
-  "github": "View on GitHub"
+  "github": "View on GitHub",
+  "headings": "Headings",
+  "headings-introduction": "Heading HTML tags don't need any class. They look like this:",
+  "tables": "Tables",
+  "tables-introduction": "Tables don't need any class, just follow the HTML tag tree structure for tables. They look like this:",
+  "header-bar": "Header bar",
+  "header-bar-introduction": "You can use the class <code>header-bar</code> to make an element look like a header bar. It adds padding to the element and centers vertically its elements."
 }
