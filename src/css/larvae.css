@@ -133,7 +133,7 @@ button::-moz-focus-inner {
 /* helper section*/
 
 .icon {
-    font-size: 1.25rem;
+    font-size: 1.25em !important;
 }
 
 .hidden {
@@ -627,5 +627,5 @@ code,
     font-weight: bold;
     padding: 2px 5px;
     border-radius: 4px;
-    font-size: .75rem;
+    font-size: .75em;
 }

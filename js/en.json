@@ -70,5 +70,9 @@
   "tables": "Tables",
   "tables-introduction": "Tables don't need any class, just follow the HTML tag tree structure for tables. They look like this:",
   "header-bar": "Header bar",
-  "header-bar-introduction": "You can use the class <code>header-bar</code> to make an element look like a header bar. It adds padding to the element and centers vertically its elements."
+  "header-bar-introduction": "You can use the class <code>header-bar</code> to make an element look like a header bar. It adds padding to the element and centers vertically its elements.",
+  "helpers": "Helpers",
+  "helpers-introduction": "There are some classes that you can use with certain elements to change their appearance.",
+  "icon-introduction": "This class makes a font icon to be a little bit bigger than the rest of the text.",
+  "hidden-introduction": "This class hides an element. It's used by some directives."
 }

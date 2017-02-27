@@ -27,6 +27,7 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.headingsTab = "sections/headings.html";
     $scope.tablesTab = "sections/tables.html";
     $scope.headerBarTab = "sections/header-bar.html";
+    $scope.helpersTab = "sections/helpers.html";
 
     $scope.buttonModifiersHtml = '<button class="btn icon round purple"><i class="fa fa-question-circle-o"></i></button>\n';
     $scope.buttonModifiersHtml += '<button class="btn orange">button</button>';
