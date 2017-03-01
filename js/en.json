@@ -79,5 +79,12 @@
   "text-style-introduction": "This section contains information about HTML text tag's default style and also classes which change texts' style.",
   "paragraph-introduction": "This class makes the text to be justified and adds some top and bottom margin to the text. This is a comparison between elements with and without <code>.paragraph</code> class (in this example, they have a background color and a parent element with border each one for better understanding):",
   "indent-introduction": "This class adds intentation to the first line of a text. This is a comparison between elements with and without <code>.indent</code> class (in this example, they have a border for better understanding):",
-  "code-introduction": "This class changes the style of the element to make it monospace with some other style changes such as text color or background color. The HTML <code>code</code> tag has the same style, but this class if for other tags to look like that. This is an example with <code>code</code> tag and <code>span</code> tag with <code>.code</code> class:"
+  "code-introduction": "This class changes the style of the element to make it monospace with some other style changes such as text color or background color. The HTML <code>code</code> tag has the same style, but this class if for other tags to look like that. This is an example with <code>code</code> tag and <code>span</code> tag with <code>.code</code> class:",
+  "radio-buttons": "Radio buttons",
+  "radio-buttons-introduction": "Radio buttons have to be declared with their <code>label</code> tag just after each one. There are three different classes:",
+  "radio-button-left": "The first one is the <code>radio-left</code> class. It hides the original radio button and adds the <code>before</code> pseudo-element to the <code>label</code>, which displays a tiny circle.",
+  "radio-button-right": "Another class is <code>radio-right</code>. It works like the previous one but displays the <code>after</code> peudo-element instead.",
+  "radio-button-btn": "The last available class is <code>radio-btn</code>. It doesn't use <code>label</code> tag's pseudo-elements, it changes its style to look like a button.",
+  "radio-button-grouping": "You can group radio buttons wrapping them in an element which has to have the <code>grouped</code> class. It only works with radio buttons which have the <code>radio-btn</code> class.",
+  "hidden-radio-button": "Hidden radio button"
 }

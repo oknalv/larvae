@@ -28,6 +28,7 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.headerBarTab = "sections/header-bar.html";
     $scope.helpersTab = "sections/helpers.html";
     $scope.textStyleTab = "sections/text-style.html";
+    $scope.radioButtonsTab = "sections/radio-buttons.html";
 
     $scope.buttonModifiersHtml = '<button class="btn icon round purple"><i class="fa fa-question-circle-o"></i></button>\n';
     $scope.buttonModifiersHtml += '<button class="btn orange">button</button>';
@@ -210,6 +211,18 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
 
     $scope.indent = "<div class='indent' style='border: 1px solid black;'>\n    " + loremFistrum + "\n</div>\n";
     $scope.indent += "<div style='border: 1px solid black;'>\n    " + loremFistrum + "\n</div>";
+
+    $scope.leftRadioButton = '<input type="radio" name="rad1" class="radio-left" id="rad1"/>\n<label for="rad1">radio</label>';
+
+    $scope.rightRadioButton = '<input type="radio" name="rad2" class="radio-right" id="rad2"/>\n<label for="rad2">radio</label>';
+
+    $scope.btnRadioButton = '<input type="radio" name="rad3" class="radio-btn" id="rad3"/>\n<label for="rad3">radio</label>';
+
+    $scope.groupedRadioButtons = '<div class="grouped">\n';
+    $scope.groupedRadioButtons += '    <input type="radio" name="rad4" class="radio-btn" id="rad4"/>\n    <label for="rad4">radio</label>\n';
+    $scope.groupedRadioButtons += '    <input type="radio" name="rad4" class="radio-btn" id="rad5"/>\n    <label for="rad5">radio</label>\n';
+    $scope.groupedRadioButtons += '    <input type="radio" name="rad4" class="radio-btn" id="rad6"/>\n    <label for="rad6">radio</label>\n';
+    $scope.groupedRadioButtons += '</div>';
 
     var changeOpts = false;
 
