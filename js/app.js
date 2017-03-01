@@ -24,10 +24,10 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.checkboxesTab = "sections/checkboxes.html";
     $scope.buttonsTab = "sections/buttons.html";
     $scope.aboutTab = "sections/about.html";
-    $scope.headingsTab = "sections/headings.html";
     $scope.tablesTab = "sections/tables.html";
     $scope.headerBarTab = "sections/header-bar.html";
     $scope.helpersTab = "sections/helpers.html";
+    $scope.textStyleTab = "sections/text-style.html";
 
     $scope.buttonModifiersHtml = '<button class="btn icon round purple"><i class="fa fa-question-circle-o"></i></button>\n';
     $scope.buttonModifiersHtml += '<button class="btn orange">button</button>';
@@ -200,6 +200,16 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.headerBar += "    <a href='#'>link</a>&nbsp;\n";
     $scope.headerBar += "    <span>span</span>&nbsp;\n";
     $scope.headerBar += "</div>";
+
+    $scope.paragraph = "<div style='border: 1px solid black;'>\n";
+    $scope.paragraph += "    <div class='paragraph' style='background-color: lightgray;'>\n        " + loremFistrum + "\n    </div>\n";
+    $scope.paragraph += "</div>\n";
+    $scope.paragraph += "<div style='border: 1px solid black;'>\n";
+    $scope.paragraph += "    <div style='background-color: lightgray;'>\n        " + loremFistrum + "\n    </div>\n";
+    $scope.paragraph += "</div>";
+
+    $scope.indent = "<div class='indent' style='border: 1px solid black;'>\n    " + loremFistrum + "\n</div>\n";
+    $scope.indent += "<div style='border: 1px solid black;'>\n    " + loremFistrum + "\n</div>";
 
     var changeOpts = false;
 

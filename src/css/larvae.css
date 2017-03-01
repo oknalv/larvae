@@ -357,7 +357,7 @@ body.modal-open{
     height: 30px;
     width: 30px;
     padding: 0;
-    font-size: .5rem;
+    font-size: 1rem !important;
     text-align: center;
 }
 
@@ -584,6 +584,7 @@ body.modal-open{
 
 .span-range-bar:hover ~ .span-range-value,
 .span-range-dot:active ~ .span-range-value,
+.span-range-dot:hover ~ .span-range-value,
 .span-range-bar:active ~ .span-range-value {
     display: block;
 }

@@ -349,6 +349,8 @@ larvae.directive("range", ["$compile", function($compile){
             element.after(spanRangeContainer);
             var spanRange = angular.element("<span class='span-range'></span>");
             spanRangeContainer.append(spanRange);
+            if(element.hasClass("load"))
+                spanRange.addClass("load");
             var spanRangeBar = angular.element("<span class='span-range-bar'></span>");
             spanRange.append(spanRangeBar);
             var spanRangeDot = angular.element("<span class='span-range-dot'></span>");
