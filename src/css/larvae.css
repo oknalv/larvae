@@ -166,75 +166,6 @@ button::-moz-focus-inner {
     border-bottom-right-radius: 4px;
 }
 
-/* element position section */
-
-/*.h-center-2 {
-    display: block;
-    margin: 0 auto;
-}
-
-.v-center-2 {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.vh-center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.vh-right-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.t-center{
-    text-align: center;
-}*/
-
-/* element size section */
-
-/*.w-half, .w-quarter, .w-three-quarters, .w-full, .w-eight, .w-three-eights, .w-five-eigths, .w-seven-eigths {
-    min-height: 1px;
-    float: left;
-    box-sizing: border-box;
-}
-
-.w-full {
-    width: 100%;
-}
-
-.w-seven-eights {
-    width: 87.5%;
-}
-
-.w-three-quarters {
-    width: 75%;
-}
-
-.w-five-eights {
-    width: 62.5%;
-}
-
-.w-half {
-    width: 50%;
-}
-
-.w-three-eights {
-    width: 37.5%;
-}
-
-.w-quarter {
-    width: 25%;
-}
-
-.w-eight {
-    width: 12.5%;
-}*/
-
 /* flex grid section */
 
 .f-row {
@@ -255,6 +186,10 @@ button::-moz-focus-inner {
 
 .f-row.v-center {
     align-items: center;
+}
+
+.f-row.h-around {
+    justify-content: space-around;
 }
 
 .f-1-1 {
