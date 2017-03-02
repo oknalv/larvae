@@ -197,9 +197,9 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.table += "</table>";
 
     $scope.headerBar = "<div class='header-bar' style='background-color: lightgray;'>\n";
-    $scope.headerBar += "    <button class='btn'>button</button>&nbsp;\n";
-    $scope.headerBar += "    <a href='#'>link</a>&nbsp;\n";
-    $scope.headerBar += "    <span>span</span>&nbsp;\n";
+    $scope.headerBar += "    <button class='btn'>button</button>\n";
+    $scope.headerBar += "    <a href='#'>link</a>\n";
+    $scope.headerBar += "    <span>span</span>\n";
     $scope.headerBar += "</div>";
 
     $scope.paragraph = "<div style='border: 1px solid black;'>\n";

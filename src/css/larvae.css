@@ -81,8 +81,6 @@ table tbody tr td {
     padding: 10px;
     min-height: 50px;
     box-sizing: border-box;
-    display: flex;
-    align-items: center;
 }
 
 /* button section */
@@ -302,11 +300,10 @@ button::-moz-focus-inner {
 /* tabs section */
 
 .tabs {
-    display: inline-flex;
+    display: flex;
 }
 
 .tabs > .tab {
-    float: left;
     padding: 10px;
     cursor: pointer;
     text-align: center;
@@ -369,17 +366,18 @@ body.modal-open{
     right: 0;
     overflow: auto;
     cursor: pointer;
+    justify-content: center;
 }
 
 .modal.show {
-    display: block;
+    display: flex;
 }
 
 .modal > .modal-container {
-    width: 50%;
     margin: 10px auto;
-    position: relative;
     cursor: initial;
+    flex-basis: 50%;
+    max-width: 50%;
 }
 
 .modal > .modal-container > .modal-header,
