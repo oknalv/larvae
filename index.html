@@ -12,27 +12,29 @@
         <script src="src/js/larvae.js"></script>
     </head>
     <body class="translate" data-lrv-texts="texts" data-lrv-selected-lang="selectedLang" data-lrv-default-lang="defaultLang">
-        <div class="header-bar w-full">
-            <div class="w-quarter">
+        <div class="header-bar f-row">
+            <div class="f-1-4">
             </div>
-            <h1 class="w-half t-center">larvae</h1>
-            <div class="w-quarter vh-right-container">
+            <h1 class="f-1-2 f-row h-center">
+                <span>larvae</span>
+            </h1>
+            <div class="f-1-4 f-row h-end v-center">
                 <label for="langSelector" class="text" data-lrv-text="language-selector"></label>:&nbsp;
                 <select id="langSelector" class="select" data-lrv-model="selectedLang" data-lrv-options="langs"></select>
             </div>
         </div>
-        <div class="w-full">
-            <div class="w-full">
-                <div class="w-quarter"></div>
-                <div class="w-half tabs" id="main-index" data-lrv-link="true">
+        <div>
+            <div class="f-row">
+                <div class="f-1-4"></div>
+                <div class="f-1-2 tabs" id="main-index" data-lrv-link="true">
                     <div class="selected text" data-lrv-tab="about-tab" data-lrv-text="about-tab"></div>
                     <div class="text" data-lrv-tab="components-tab components-index" data-lrv-text="components-tab"></div>
                 </div>
-                <div class="w-quarter"></div>
+                <div class="f-1-4"></div>
             </div>
-            <div class="w-full">
-                <div class="w-quarter">
-                    <div class="tabs w-full vertical custom-index" id="components-index" data-lrv-link="true">
+            <div class="f-row">
+                <div class="f-1-4 f-row">
+                    <div class="tabs f-1-1 vertical custom-index" id="components-index" data-lrv-link="true">
                         <div class="selected text" data-lrv-tab="buttons-tab" data-lrv-text="buttons"></div>
                         <div class="text" data-lrv-tab="checkboxes-tab" data-lrv-text="checkboxes"></div>
                         <div class="text" data-lrv-tab="radio-buttons-tab" data-lrv-text="radio-buttons"></div>
@@ -47,12 +49,12 @@
                         <div class="text" data-lrv-tab="helpers-tab" data-lrv-text="helpers"></div>
                     </div>
                 </div>
-                <div class="w-half">
-                    <div class="w-full" id="about-tab">
+                <div class="f-1-2">
+                    <div id="about-tab">
                         <div data-ng-include="aboutTab"></div>
                     </div>
-                    <div class="w-full" id="components-tab" data-link="true">
-                        <div class="w-full" id="buttons-tab">
+                    <div id="components-tab" data-link="true">
+                        <div id="buttons-tab">
                             <div data-ng-include="buttonsTab"></div>
                         </div>
                         <div id="checkboxes-tab">
@@ -90,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-quarter"></div>
+                <div class="f-1-4"></div>
             </div>
         </div>
         <script src="js/app.js"></script>

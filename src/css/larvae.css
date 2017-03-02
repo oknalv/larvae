@@ -170,12 +170,12 @@ button::-moz-focus-inner {
 
 /* element position section */
 
-.h-center {
+/*.h-center-2 {
     display: block;
     margin: 0 auto;
 }
 
-.v-center {
+.v-center-2 {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
@@ -195,11 +195,11 @@ button::-moz-focus-inner {
 
 .t-center{
     text-align: center;
-}
+}*/
 
 /* element size section */
 
-.w-half, .w-quarter, .w-three-quarters, .w-full, .w-eight, .w-three-eights, .w-five-eigths, .w-seven-eigths {
+/*.w-half, .w-quarter, .w-three-quarters, .w-full, .w-eight, .w-three-eights, .w-five-eigths, .w-seven-eigths {
     min-height: 1px;
     float: left;
     box-sizing: border-box;
@@ -235,6 +235,68 @@ button::-moz-focus-inner {
 
 .w-eight {
     width: 12.5%;
+}*/
+
+/* flex grid section */
+
+.f-row {
+    display: flex;
+}
+
+.f-row.h-end {
+    justify-content: flex-end;
+}
+
+.f-row.v-end {
+    align-items: flex-end;
+}
+
+.f-row.h-center {
+    justify-content: center;
+}
+
+.f-row.v-center {
+    align-items: center;
+}
+
+.f-1-1 {
+    flex-basis: 100%;
+    max-width: 100%;
+}
+
+.f-7-8 {
+    flex-basis: 87.5%;
+    max-width: 87.5%;
+}
+
+.f-3-4 {
+    flex-basis: 75%;
+    max-width: 75%;
+}
+
+.f-5-8 {
+    flex-basis: 62.5%;
+    max-width: 62.5%;
+}
+
+.f-1-2 {
+    flex-basis: 50%;
+    max-width: 50%;
+}
+
+.f-3-8 {
+    flex-basis: 37.5%;
+    max-width: 37.5%;
+}
+
+.f-1-4 {
+    flex-basis: 25%;
+    max-width: 25%;
+}
+
+.f-1-8 {
+    flex-basis: 12.5%;
+    max-width: 12.5%;
 }
 
 /* tabs section */
@@ -317,7 +379,6 @@ body.modal-open{
     width: 50%;
     margin: 10px auto;
     position: relative;
-    display: table;
     cursor: initial;
 }
 
@@ -361,7 +422,6 @@ body.modal-open{
     width: 30px;
     padding: 0;
     font-size: 1rem !important;
-    text-align: center;
 }
 
 /* checkbox and radio section */
@@ -647,6 +707,8 @@ body.modal-open{
 .paragraph {
     text-align: justify;
     margin: 10px 0;
+    display: inline-block;
+    width: 100%;
 }
 
 .indent {
