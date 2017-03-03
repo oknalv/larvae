@@ -654,7 +654,5 @@ code,
     color: #FAFAFA;
     font-family: monospace;
     font-weight: bold;
-    padding: 2px 5px;
-    border-radius: 4px;
-    font-size: .75em;
+    padding: 0 1px;
 }
