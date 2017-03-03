@@ -170,6 +170,7 @@ button::-moz-focus-inner {
 
 .f-row {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .f-row.h-end {
@@ -268,6 +269,7 @@ button::-moz-focus-inner {
     flex-direction: column;
     padding-top: 5px;
     padding-bottom: 5px;
+    align-items: baseline;
 }
 
 .tabs.vertical > .tab {
@@ -302,6 +304,7 @@ body.modal-open{
     overflow: auto;
     cursor: pointer;
     justify-content: center;
+    padding: 10px 0;
 }
 
 .modal.show {
@@ -309,10 +312,11 @@ body.modal-open{
 }
 
 .modal > .modal-container {
-    margin: 10px auto;
+    margin: 0 auto;
     cursor: initial;
     flex-basis: 50%;
     max-width: 50%;
+    height: 0;
 }
 
 .modal > .modal-container > .modal-header,
@@ -654,5 +658,5 @@ code,
     color: #FAFAFA;
     font-family: monospace;
     font-weight: bold;
-    padding: 0 1px;
+    padding: 1px 1px;
 }

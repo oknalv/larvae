@@ -14,7 +14,7 @@
     font-size: .75rem;
 }
 
-.custom-index {
+.tabs.vertical.custom-index {
     align-items: flex-end;
     padding: 0 25px;
 }
@@ -44,6 +44,9 @@ h1:hover > .custom-link:hover > i:before {
     background-color: #FAFAFA !important;
 }
 
+.custom-logo {
+    max-height: 50px;
+}
 /* examples */
 
 .btn.orange {

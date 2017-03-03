@@ -226,40 +226,52 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.groupedRadioButtons += '</div>';
 
     $scope.defaultGrid = '<div class="f-row" style="background-color: lightgray;">\n';
-    $scope.defaultGrid += '    <div style="background-color: cyan; height: 20px;">div</div>\n';
-    $scope.defaultGrid += '    <div style="background-color: yellow; height: 40px;">div</div>\n';
-    $scope.defaultGrid += '    <div style="background-color: magenta; height: 80px;">div</div>\n';
+    $scope.defaultGrid += '    <div style="background-color: cyan;">div</div>\n';
+    $scope.defaultGrid += '    <div style="background-color: yellow;">div</div>\n';
+    $scope.defaultGrid += '    <div style="background-color: magenta;">div</div>\n';
     $scope.defaultGrid += '</div>';
 
     $scope.hEndGrid = '<div class="f-row h-end" style="background-color: lightgray;">\n';
-    $scope.hEndGrid += '    <div style="background-color: cyan; height: 20px;">div</div>\n';
-    $scope.hEndGrid += '    <div style="background-color: yellow; height: 40px;">div</div>\n';
-    $scope.hEndGrid += '    <div style="background-color: magenta; height: 80px;">div</div>\n';
+    $scope.hEndGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
+    $scope.hEndGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
+    $scope.hEndGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
     $scope.hEndGrid += '</div>';
 
     $scope.hCenterGrid = '<div class="f-row h-center" style="background-color: lightgray;">\n';
-    $scope.hCenterGrid += '    <div style="background-color: cyan; height: 20px;">div</div>\n';
-    $scope.hCenterGrid += '    <div style="background-color: yellow; height: 40px;">div</div>\n';
-    $scope.hCenterGrid += '    <div style="background-color: magenta; height: 80px;">div</div>\n';
+    $scope.hCenterGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
+    $scope.hCenterGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
+    $scope.hCenterGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
     $scope.hCenterGrid += '</div>';
 
     $scope.hAroundGrid = '<div class="f-row h-around" style="background-color: lightgray;">\n';
-    $scope.hAroundGrid += '    <div style="background-color: cyan; height: 20px;">div</div>\n';
-    $scope.hAroundGrid += '    <div style="background-color: yellow; height: 40px;">div</div>\n';
-    $scope.hAroundGrid += '    <div style="background-color: magenta; height: 80px;">div</div>\n';
+    $scope.hAroundGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
+    $scope.hAroundGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
+    $scope.hAroundGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
     $scope.hAroundGrid += '</div>';
 
     $scope.vEndGrid = '<div class="f-row v-end" style="background-color: lightgray;">\n';
-    $scope.vEndGrid += '    <div style="background-color: cyan; height: 20px;">div</div>\n';
-    $scope.vEndGrid += '    <div style="background-color: yellow; height: 40px;">div</div>\n';
-    $scope.vEndGrid += '    <div style="background-color: magenta; height: 80px;">div</div>\n';
+    $scope.vEndGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
+    $scope.vEndGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
+    $scope.vEndGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
     $scope.vEndGrid += '</div>';
 
     $scope.vCenterGrid = '<div class="f-row v-center" style="background-color: lightgray;">\n';
-    $scope.vCenterGrid += '    <div style="background-color: cyan; height: 20px;">div</div>\n';
-    $scope.vCenterGrid += '    <div style="background-color: yellow; height: 40px;">div</div>\n';
-    $scope.vCenterGrid += '    <div style="background-color: magenta; height: 80px;">div</div>\n';
+    $scope.vCenterGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
+    $scope.vCenterGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
+    $scope.vCenterGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
     $scope.vCenterGrid += '</div>';
+
+    $scope.fullGrid = '<div class="f-row">\n';
+    $scope.fullGrid += '    <div class="f-1-1" style="background-color: cyan;">.f-1-1</div>\n';
+    $scope.fullGrid += '    <div class="f-1-2" style="background-color: yellow;">.f-1-2</div>\n';
+    $scope.fullGrid += '    <div class="f-1-2" style="background-color: magenta;">.f-1-2</div>\n';
+    $scope.fullGrid += '    <div class="f-1-4" style="background-color: magenta;">.f-1-4</div>\n';
+    $scope.fullGrid += '    <div class="f-3-4" style="background-color: cyan;">.f-3-4</div>\n';
+    $scope.fullGrid += '    <div class="f-1-8" style="background-color: cyan;">.f-1-8</div>\n';
+    $scope.fullGrid += '    <div class="f-7-8" style="background-color: yellow;">.f-7-8</div>\n';
+    $scope.fullGrid += '    <div class="f-3-8" style="background-color: magenta;">.f-3-8</div>\n';
+    $scope.fullGrid += '    <div class="f-5-8" style="background-color: cyan;">.f-5-8</div>\n';
+    $scope.fullGrid += '</div>';
 
     var changeOpts = false;
 

@@ -89,7 +89,7 @@
   "hidden-radio-button": "Hidden radio button",
   "grid": "Grid",
   "grid-introduction": "The grid system depends on the CSS flexbox layout. The main class is <code>.f-row</code>. It's a container class where you have to place the flex items. By default, the elements inside has their default width. Let's see an example:",
-  "grid-elements": "But it doesn't look like a grid; you need to add the element classes. There are some of them, they start with the prefix <code>f-</code> and a fraction, but instead of using the <code>/</code> character for separating the numerator from the denominator, this class uses the <code>-</code> character.",
+  "grid-elements": "But it doesn't look like a grid; you need to add the element classes. There are some of them, they start with the prefix <code>f-</code> and a fraction, but instead of using the <code>/</code> character for separating the numerator from the denominator, these classes use the <code>-</code> character. The fractions must be in their simplified form. Why have I designed it that way? Because it's funnier. So, <code>.f-1-4</code> is a valid class, but <code>.f-2-4</code> not. For now, the only available denominators are 1, 2, 4 and 8, and the numerators can't be bigger or equal to their denominators, except 1. This is an example of the grid system:",
   "alignment": "Alignment",
   "grid-alignment": "If you want to align the elements horizontally or vertically, there are some modifier classes that you can add to your container element. Those classes are:",
   "grid-h-end": "<code>.h-end</code> - It makes the elements to be horizontally aligned to the right. It uses the <code>justify-content: flex-end;</code> CSS rule.",
