@@ -13,7 +13,7 @@
   "button-modifiers-round": "One of them is the <code>.round</code> class. It makes the button corners to be more rounded.",
   "button-modifiers-icon": "Another class is <code>.icon</code>. It is designed for buttons with only an icon inside. Its width is the same than its height, it's thicker than a normal button and it has no border.",
   "button-modifiers-both": "You can use <code>.icon</code> and <code>.round</code> classes together.",
-  "button-modifiers-custom": "You can also write your own modifier classes and use them to change buttons' color.",
+  "button-colors": "If you want to change button colors, you must use the <code>data-lrv-color</code> attribute with the color you want in CSS hexadecimal format.",
   "grouping": "Grouping",
   "button-grouping": "You can group buttons wrapping them in an element which has to have the <code>.grouped</code> class.",
   "installation": "Installation",
@@ -96,5 +96,6 @@
   "grid-h-center": "<code>.h-center</code> - It makes the elements to be horizontally aligned to the center. It uses the <code>justify-content: center;</code> CSS rule.",
   "grid-h-around": "<code>.h-around</code> - It makes the elements to be horizontally equally distributed. It uses the <code>justify-content: space-around;</code> CSS rule.",
   "grid-v-end": "<code>.v-end</code> - It makes the elements to be vertically aligned to the bottom. It uses the <code>align-items: flex-end;</code> CSS rule.",
-  "grid-v-center": "<code>.v-center</code> - It makes the elements to be vertically aligned to the center. It uses the <code>align-items: center;</code> CSS rule."
+  "grid-v-center": "<code>.v-center</code> - It makes the elements to be vertically aligned to the center. It uses the <code>align-items: center;</code> CSS rule.",
+  "colors": "Colors"
 }

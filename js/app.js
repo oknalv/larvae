@@ -31,16 +31,6 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.radioButtonsTab = "sections/radio-buttons.html";
     $scope.gridTab = "sections/grid.html";
 
-    $scope.buttonModifiersHtml = '<button class="btn icon round purple"><i class="fa fa-question-circle-o"></i></button>\n';
-    $scope.buttonModifiersHtml += '<button class="btn orange">button</button>';
-
-    $scope.buttonModifiersCss = '.btn.orange {\n    color: rgb(255, 116, 0);\n    border-color: rgb(255, 116, 0);\n}\n\n';
-    $scope.buttonModifiersCss += '.btn.orange:hover {\n    box-shadow: 0px 0px 5px rgba(255, 116, 0, .75)\n}\n\n';
-    $scope.buttonModifiersCss += '.btn.orange:active {\n    box-shadow: inset 0px 0px 5px rgba(255, 116, 0, .75)\n}\n\n';
-    $scope.buttonModifiersCss += '.btn.purple {\n    color: rgb(165, 2, 255);\n    border-color: rgb(165, 2, 255);\n}\n\n';
-    $scope.buttonModifiersCss += '.btn.purple:hover {\n    box-shadow: 0px 0px 10px rgba(165, 2, 255, .75);\n}\n\n';
-    $scope.buttonModifiersCss += '.btn.purple:active {\n    box-shadow: inset 0px 0px 10px rgba(165, 2, 255, .75);\n}';
-
     $scope.groupedButtons = '<div class="grouped">\n';
     $scope.groupedButtons += '    <button class="btn">button</button>\n';
     $scope.groupedButtons += '    <button class="btn">button</button>\n';
@@ -49,6 +39,19 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.groupedButtons += '    <button class="btn">button</button>\n';
     $scope.groupedButtons += '    <button class="btn">button</button>\n';
     $scope.groupedButtons += '</div>';
+
+    $scope.coloredButtons = '<button class="btn" data-lrv-color="#54075B">button</button>\n';
+    $scope.coloredButtons += '<button class="btn round" data-lrv-color="#FA5000">button</button>\n';
+    $scope.coloredButtons += '<button class="btn icon" data-lrv-color="#0BB2FF"><i class="fa fa-question-circle-o"></i></button>\n';
+    $scope.coloredButtons += '<button class="btn icon round" data-lrv-color="#F31912"><i class="fa fa-question-circle-o"></i></button>\n';
+    $scope.coloredButtons += '<div class="grouped">\n';
+    $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
+    $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
+    $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
+    $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
+    $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
+    $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
+    $scope.coloredButtons += '</div>';
 
     $scope.sources = '<link rel="stylesheet" type="text/css" href="larvae.css"/>\n<script src="larvae.js"></script>';
 
