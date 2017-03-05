@@ -44,6 +44,8 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.coloredButtons += '<button class="btn round" data-lrv-color="#FA5000">button</button>\n';
     $scope.coloredButtons += '<button class="btn icon" data-lrv-color="#0BB2FF"><i class="fa fa-question-circle-o"></i></button>\n';
     $scope.coloredButtons += '<button class="btn icon round" data-lrv-color="#F31912"><i class="fa fa-question-circle-o"></i></button>\n';
+    $scope.coloredButtons += '<button class="btn round" data-lrv-color="#FF0000 #FF9999">button</button>\n';;
+    $scope.coloredButtons += '<button class="btn icon round" data-lrv-color="#003333 #669999"><i class="fa fa-question-circle-o"></i></button>\n';
     $scope.coloredButtons += '<div class="grouped">\n';
     $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
     $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
@@ -51,7 +53,7 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
     $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
     $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
-    $scope.coloredButtons += '</div>';
+    $scope.coloredButtons += '</div>'
 
     $scope.sources = '<link rel="stylesheet" type="text/css" href="larvae.css"/>\n<script src="larvae.js"></script>';
 
@@ -66,6 +68,16 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check5"/>\n    <label for="check5">checkbox</label>\n';
     $scope.groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check6"/>\n    <label for="check6">checkbox</label>\n';
     $scope.groupedCheckboxes += '</div>';
+
+    $scope.coloredCheckboxes = '<input type="checkbox" class="checkbox-left" id="check7" data-lrv-color="#FF00FF"/>\n<label for="check7">checkbox</label>';
+    $scope.coloredCheckboxes += '<input type="checkbox" class="checkbox-right" id="check8" data-lrv-color="#00FFFF"/>\n<label for="check8">checkbox</label>';
+    $scope.coloredCheckboxes += '<input type="checkbox" class="checkbox-btn" id="check9" data-lrv-color="#00FF00"/>\n<label for="check9">checkbox</label>';
+    $scope.coloredCheckboxes += '<input type="checkbox" class="checkbox-btn" id="check10" data-lrv-color="#0000FF #AAAAFF"/>\n<label for="check10">checkbox</label>';
+    $scope.coloredCheckboxes += '<div class="grouped">\n';
+    $scope.coloredCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check11" data-lrv-color="#FF0000"/>\n    <label for="check11">checkbox</label>\n';
+    $scope.coloredCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check12" data-lrv-color="#FF0000"/>\n    <label for="check12">checkbox</label>\n';
+    $scope.coloredCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check13" data-lrv-color="#FF0000"/>\n    <label for="check13">checkbox</label>\n';
+    $scope.coloredCheckboxes += '</div>';
 
     $scope.tabsHorizontal = '<div class="tabs">\n';
     $scope.tabsHorizontal += '    <div class="selected" data-lrv-tab="tab1-1">eng</div>\n    <div data-lrv-tab="tab1-2">esp</div>\n    <div data-lrv-tab="tab1-3">gal</div>\n'
@@ -227,6 +239,16 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.groupedRadioButtons += '    <input type="radio" name="rad4" class="radio-btn" id="rad5"/>\n    <label for="rad5">radio</label>\n';
     $scope.groupedRadioButtons += '    <input type="radio" name="rad4" class="radio-btn" id="rad6"/>\n    <label for="rad6">radio</label>\n';
     $scope.groupedRadioButtons += '</div>';
+
+    $scope.coloredRadioButtons = '<input type="radio" name="rad5" class="radio-left" id="rad7" data-lrv-color="#00FF00"/>\n<label for="rad7">radio</label>\n';
+    $scope.coloredRadioButtons  += '<input type="radio" name="rad5" class="radio-right" id="rad8" data-lrv-color="#999900"/>\n<label for="rad8">radio</label>\n';
+    $scope.coloredRadioButtons  += '<input type="radio" name="rad5" class="radio-btn" id="rad9" data-lrv-color="#FF00FF"/>\n<label for="rad9">radio</label>\n';
+    $scope.coloredRadioButtons  += '<input type="radio" name="rad5" class="radio-btn" id="rad10" data-lrv-color="#FF0000 #FFAAAA"/>\n<label for="rad10">radio</label>\n';
+    $scope.coloredRadioButtons  += '<div class="grouped">\n';
+    $scope.coloredRadioButtons  += '    <input type="radio" name="rad5" class="radio-btn" id="rad11" data-lrv-color="#123456"/>\n    <label for="rad11">radio</label>\n';
+    $scope.coloredRadioButtons  += '    <input type="radio" name="rad5" class="radio-btn" id="rad12" data-lrv-color="#123456"/>\n    <label for="rad12">radio</label>\n';
+    $scope.coloredRadioButtons  += '    <input type="radio" name="rad5" class="radio-btn" id="rad13" data-lrv-color="#123456"/>\n    <label for="rad13">radio</label>\n';
+    $scope.coloredRadioButtons  += '</div>';
 
     $scope.defaultGrid = '<div class="f-row" style="background-color: lightgray;">\n';
     $scope.defaultGrid += '    <div style="background-color: cyan;">div</div>\n';
