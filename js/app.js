@@ -1,5 +1,5 @@
 var app = angular.module("larvaeApp", ["larvae-directive", "hljs"]);
-app.controller("larvaeController", ["$scope", "$location", function($scope, $location){
+app.controller("larvaeController", ["$scope", "$location", "colorFactory", function($scope, $location, colorFactory){
     $scope.texts = {
         "en": "js/en.json",
         "es": "js/es.json"
@@ -30,6 +30,7 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.textStyleTab = "sections/text-style.html";
     $scope.radioButtonsTab = "sections/radio-buttons.html";
     $scope.gridTab = "sections/grid.html";
+    $scope.colorsTab = "sections/colors.html";
 
     $scope.groupedButtons = '<div class="grouped">\n';
     $scope.groupedButtons += '    <button class="btn">button</button>\n';
@@ -39,21 +40,6 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.groupedButtons += '    <button class="btn">button</button>\n';
     $scope.groupedButtons += '    <button class="btn">button</button>\n';
     $scope.groupedButtons += '</div>';
-
-    $scope.coloredButtons = '<button class="btn" data-lrv-color="#54075B">button</button>\n';
-    $scope.coloredButtons += '<button class="btn round" data-lrv-color="#FA5000">button</button>\n';
-    $scope.coloredButtons += '<button class="btn icon" data-lrv-color="#0BB2FF"><i class="fa fa-question-circle-o"></i></button>\n';
-    $scope.coloredButtons += '<button class="btn icon round" data-lrv-color="#F31912"><i class="fa fa-question-circle-o"></i></button>\n';
-    $scope.coloredButtons += '<button class="btn round" data-lrv-color="#FF0000 #FF9999">button</button>\n';;
-    $scope.coloredButtons += '<button class="btn icon round" data-lrv-color="#003333 #669999"><i class="fa fa-question-circle-o"></i></button>\n';
-    $scope.coloredButtons += '<div class="grouped">\n';
-    $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
-    $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
-    $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
-    $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
-    $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
-    $scope.coloredButtons += '    <button class="btn" data-lrv-color="#93A607">button</button>\n';
-    $scope.coloredButtons += '</div>'
 
     $scope.sources = '<link rel="stylesheet" type="text/css" href="larvae.css"/>\n<script src="larvae.js"></script>';
 
@@ -297,6 +283,29 @@ app.controller("larvaeController", ["$scope", "$location", function($scope, $loc
     $scope.fullGrid += '    <div class="f-3-8" style="background-color: magenta;">.f-3-8</div>\n';
     $scope.fullGrid += '    <div class="f-5-8" style="background-color: cyan;">.f-5-8</div>\n';
     $scope.fullGrid += '</div>';
+
+    $scope.coloredButtons = '<button class="btn btn1">button</button>\n';
+    $scope.coloredButtons += '<button class="btn round btn2">button</button>\n';
+    $scope.coloredButtons += '<button class="btn icon btn3"><i class="fa fa-question-circle-o"></i></button>\n';
+    $scope.coloredButtons += '<button class="btn icon round btn4"><i class="fa fa-question-circle-o"></i></button>\n';
+    $scope.coloredButtons += '<div class="grouped">\n';
+    $scope.coloredButtons += '    <button class="btn btn5">button</button>\n';
+    $scope.coloredButtons += '    <button class="btn btn5">button</button>\n';
+    $scope.coloredButtons += '    <button class="btn btn5">button</button>\n';
+    $scope.coloredButtons += '    <button class="btn btn5">button</button>\n';
+    $scope.coloredButtons += '    <button class="btn btn5">button</button>\n';
+    $scope.coloredButtons += '</div>';
+
+    colorFactory.addColor("btn", "btn1", ["#4444FF", "#44FFFF"]);
+    $scope.coloredButtonsJs = 'colorFactory.addColor("btn", "btn1", ["#4444FF", "#44FFFF"]);\n';
+    colorFactory.addColor("btn", "btn2", "#FF4444");
+    $scope.coloredButtonsJs += 'colorFactory.addColor("btn", "btn2", "#FF4444");\n';
+    colorFactory.addColor("btn", "btn3", "#770088");
+    $scope.coloredButtonsJs += 'colorFactory.addColor("btn", "btn3", "#770088");\n';
+    colorFactory.addColor("btn", "btn4", ["#550000", "#FF4444"]);
+    $scope.coloredButtonsJs += 'colorFactory.addColor("btn", "btn4", ["#550000", "#FF4444"]);\n';
+    colorFactory.addColor("btn", "btn5", "#885500");
+    $scope.coloredButtonsJs += 'colorFactory.addColor("btn", "btn5", "#885500");\n';
 
     var changeOpts = false;
 

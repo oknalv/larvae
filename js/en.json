@@ -96,5 +96,9 @@
   "grid-h-around": "<code>.h-around</code> - It makes the elements to be horizontally equally distributed. It uses the <code>justify-content: space-around;</code> CSS rule.",
   "grid-v-end": "<code>.v-end</code> - It makes the elements to be vertically aligned to the bottom. It uses the <code>align-items: flex-end;</code> CSS rule.",
   "grid-v-center": "<code>.v-center</code> - It makes the elements to be vertically aligned to the center. It uses the <code>align-items: center;</code> CSS rule.",
-  "colors": "Colors"
+  "colors": "Colors",
+  "colors-tab": "Colors",
+  "colors-introduction": "The default color palette of this framework is probably not adapted to your page design. To fix this, you have the <code>colorFactory</code> factory. This factory has the <code>addColor</code> function, which its parameters are the class you want to change its colors, the modifier class name you are going to use and the color in a string or an array of strings if the class accepts more than one color. The color strings must be in the CSS hexadecimal format (for example <code>#123456</code>). Each class accepts a different number of colors:",
+  "colors-btn": "This class supports 2 colors separated by a space. The first one changes the border, shadows and font colors; the second one is optional and changes the background color. These are some examples:"
+
 }

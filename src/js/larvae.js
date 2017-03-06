@@ -5,7 +5,148 @@ larvae.factory("colorFactory", function(){
     angular.element(document.getElementsByTagName("head")[0]).append(style);
     var colors = {};
 
-    var addColor = function(color, directives){
+    var addColor = function(className, name, color){
+        var name = name[0] == "." ? name : "." + name;
+        var className = className == "checkbox-btn" || className == "radio-btn" ? "checkbox-radio-btn" : className;
+        className = className == "checkbox-left" || className == "radio-left" || className == "checkbox-right" || className == "radio-right"? "checkbox-radio" : className;
+        var color = typeof color == "string" ? [color] : color;
+        if(Object.keys(colors).indexOf(className) == -1)
+            colors[className] = [];
+        if(colors[className].indexOf(name) == -1){
+            colors[className].push(name);
+            getColorClasses[className](name, color);
+        }
+    };
+
+    var getColorClasses = {
+        "btn": function(name, color){
+            var color1 = color[0];
+            var color2 = color.length > 1 ? color[1] : null;
+            var rgb = hexToRgb(color1);
+            var css = getCss({
+                head: ".btn" + name,
+                rules: {
+                    "color": color1,
+                    "border-color": color1,
+                    "background-color": color2 == null ? "white" : color2
+                }
+            }) + getCss({
+                head: ".btn" + name + ":hover",
+                rules: {
+                    "box-shadow": "0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                }
+            }) + getCss({
+                head: ".btn" + name + ":active",
+                rules: {
+                    "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                }
+            });
+            style.html(style.html() + css);
+        },
+        "checkbox-radio-btn": function(name, color){
+            var color1 = color[0];
+            var color2 = color.length > 1 ? color[1] : null;
+            var rgb = hexToRgb(color1);
+            var css = getCss({
+                head: [
+                    ".checkbox-btn" + name + "+label",
+                    ".radio-btn" + name + "+label"
+                ],
+                rules: {
+                    "color": color1,
+                    "border-color": color1,
+                    "background-color": color2 == null ? "white" : color2
+                }
+            }) + getCss({
+                head: [
+                    ".checkbox-btn" + name + "+label:hover",
+                    ".radio-btn" + name + "+label:hover"
+                ],
+                rules: {
+                    "box-shadow": "0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                }
+            }) + getCss({
+                head: [
+                    ".checkbox-btn" + name + ":checked+label:hover",
+                    ".radio-btn" + name + ":checked+label:hover"
+                ],
+                rules: {
+                    "box-shadow": "inset 0 0 20px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                }
+            }) + getCss({
+                head: [
+                    ".checkbox-btn" + name + ":checked+label",
+                    ".radio-btn" + name + ":checked+label",
+                    ".checkbox-btn" + name + "+label:active",
+                    ".radio-btn" + name + "+label:active",
+                    ".checkbox-btn" + name + ":checked+label:active",
+                    ".radio-btn" + name + ":checked+label:active"
+                ],
+                rules: {
+                    "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                }
+            });
+            style.html(style.html() + css);
+        },
+        "checkbox-radio": function(name, color){
+            var color1 = color[0];
+            var rgb = hexToRgb(color1);
+            var css = getCss({
+                head: [
+                    ".checkbox-left" + name + " + label:before",
+                    ".checkbox-right" + name + " + label:after",
+                    ".radio-left" + name + " + label:before",
+                    ".radio-right" + name + " + label:after"
+                ],
+                rules: {
+                    "color": color1,
+                    "border-color": color1
+                }
+            }) + getCss({
+                head: [
+                    ".checkbox-left" + name + " + label:hover:before",
+                    ".checkbox-right" + name + " + label:hover:after",
+                    ".radio-left" + name + " + label:hover:before",
+                    ".radio-right" + name + " + label:hover:after"
+                ],
+                rules: {
+                    "box-shadow": "inset 0 0 0 3px white, 0px 0px 5px rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", .75)"
+                }
+            }) + getCss({
+                head: [
+                    ".checkbox-left" + name + " + label:active:before",
+                    ".checkbox-right" + name + " + label:active:after",
+                    ".radio-left" + name + " + label:active:before",
+                    ".radio-right" + name + " + label:active:after",
+                    ".checkbox-left" + name + ":checked + label:hover:before",
+                    ".checkbox-right" + name + ":checked + label:hover:after",
+                    ".radio-left" + name + ":checked + label:hover:before",
+                    ".radio-right" + name + ":checked + label:hover:after"
+                ],
+                rules: {
+                    "box-shadow": "inset 0 0 1px 1px rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", .75), inset 0 0 0 3px white"
+                }
+            }) + getCss({
+                head: [
+                    ".checkbox-left" + name + ":checked + label:active:before",
+                    ".checkbox-right" + name + ":checked + label:active:after",
+                    ".radio-left" + name + ":checked + label:active::before",
+                    ".radio-right" + name + ":checked + label:active::after",
+                    ".checkbox-left" + name + ":checked + label:before",
+                    ".checkbox-right" + name + ":checked + label:after",
+                    ".radio-left" + name + ":checked + label:before",
+                    ".radio-right" + name + ":checked + label:after"
+                ],
+                rules: {
+                    "background-color": color1,
+                    "box-shadow": "inset 0 0 0 3px white"
+                }
+            });
+            style.html(style.html() + css);
+        }
+    }
+
+    /*var addColor = function(color, directives){
         var directives = directives != null && directives != undefined ? typeof directives == "string" ? [directives]: directives : null;
         if(directives != null){
             for(var i = 0; i < directives.length; i++){
@@ -155,7 +296,7 @@ larvae.factory("colorFactory", function(){
             });
             style.html(style.html() + css);
         }
-    }
+    }*/
 
     var getCss = function(object){
         if(typeof object.head == "string")
@@ -592,25 +733,7 @@ larvae.directive("range", ["$compile", function($compile){
         }
     }
 }]);
-
-/*var directives = ["btn", "checkboxBtn", "radioBtn"];
-for(var i = 0; i < directives.length; i++){
-    var directive = directives[i];
-    larvae.directive(directive, ["colorFactory", function(colorFactory){
-        //var directive = directives[i];
-        console.log(directives [i]);
-        return {
-            restrict: "C",
-            link: function(scope, element, attributes){
-                var color = element.attr("data-lrv-color")
-                if(color != undefined){
-                    colorFactory.addColor(color, directive);
-                }
-            }
-        }
-    }]);
-}*/
-
+/*
 larvae.directive("btn", ["colorFactory", function(colorFactory){
     return {
         restrict: "C",
@@ -693,4 +816,4 @@ larvae.directive("radioRight", ["colorFactory", function(colorFactory){
             }
         }
     }
-}]);
+}]);*/
