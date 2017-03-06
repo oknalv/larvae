@@ -104,6 +104,7 @@ button::-moz-focus-inner {
 
 .btn:hover {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, .75);
+    position: relative;
 }
 
 .btn:active {
@@ -355,6 +356,7 @@ body.modal-open{
     width: 30px;
     padding: 0;
     font-size: 1rem !important;
+    background-color: transparent;
 }
 
 /* checkbox and radio section */
@@ -454,6 +456,7 @@ body.modal-open{
 .checkbox-btn + label:hover,
 .radio-btn + label:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, .75);
+    position: relative;
 }
 
 .checkbox-btn:checked + label:hover,

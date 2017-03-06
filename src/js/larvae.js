@@ -1,4 +1,4 @@
-larvae = angular.module("larvae-directive", []);
+larvae = angular.module("larvae", []);
 
 larvae.factory("colorFactory", function(){
     var style = angular.element("<style></style>");
@@ -21,14 +21,14 @@ larvae.factory("colorFactory", function(){
     var getColorClasses = {
         "btn": function(name, color){
             var color1 = color[0];
-            var color2 = color.length > 1 ? color[1] : null;
+            var color2 = color.length > 1 ? color[1] : "white";
             var rgb = hexToRgb(color1);
             var css = getCss({
                 head: ".btn" + name,
                 rules: {
                     "color": color1,
                     "border-color": color1,
-                    "background-color": color2 == null ? "white" : color2
+                    "background-color": color2
                 }
             }) + getCss({
                 head: ".btn" + name + ":hover",
@@ -45,7 +45,7 @@ larvae.factory("colorFactory", function(){
         },
         "checkbox-radio-btn": function(name, color){
             var color1 = color[0];
-            var color2 = color.length > 1 ? color[1] : null;
+            var color2 = color.length > 1 ? color[1] : "white";
             var rgb = hexToRgb(color1);
             var css = getCss({
                 head: [
@@ -55,7 +55,7 @@ larvae.factory("colorFactory", function(){
                 rules: {
                     "color": color1,
                     "border-color": color1,
-                    "background-color": color2 == null ? "white" : color2
+                    "background-color": color2
                 }
             }) + getCss({
                 head: [
@@ -90,6 +90,7 @@ larvae.factory("colorFactory", function(){
         },
         "checkbox-radio": function(name, color){
             var color1 = color[0];
+            var color2 = color.length > 1 ? color[1] : "white";
             var rgb = hexToRgb(color1);
             var css = getCss({
                 head: [
@@ -100,7 +101,8 @@ larvae.factory("colorFactory", function(){
                 ],
                 rules: {
                     "color": color1,
-                    "border-color": color1
+                    "border-color": color1,
+                    "background-color": color2
                 }
             }) + getCss({
                 head: [
@@ -110,7 +112,7 @@ larvae.factory("colorFactory", function(){
                     ".radio-right" + name + " + label:hover:after"
                 ],
                 rules: {
-                    "box-shadow": "inset 0 0 0 3px white, 0px 0px 5px rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", .75)"
+                    "box-shadow": "inset 0 0 0 3px " + color2 + ", 0px 0px 5px rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", .75)"
                 }
             }) + getCss({
                 head: [
@@ -124,7 +126,7 @@ larvae.factory("colorFactory", function(){
                     ".radio-right" + name + ":checked + label:hover:after"
                 ],
                 rules: {
-                    "box-shadow": "inset 0 0 1px 1px rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", .75), inset 0 0 0 3px white"
+                    "box-shadow": "inset 0 0 1px 1px rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", .75), inset 0 0 0 3px " + color2
                 }
             }) + getCss({
                 head: [
@@ -139,164 +141,12 @@ larvae.factory("colorFactory", function(){
                 ],
                 rules: {
                     "background-color": color1,
-                    "box-shadow": "inset 0 0 0 3px white"
+                    "box-shadow": "inset 0 0 0 3px " + color2
                 }
             });
             style.html(style.html() + css);
         }
     }
-
-    /*var addColor = function(color, directives){
-        var directives = directives != null && directives != undefined ? typeof directives == "string" ? [directives]: directives : null;
-        if(directives != null){
-            for(var i = 0; i < directives.length; i++){
-                var directive = directives[i];
-                directive = directive == "checkboxBtn" || directive == "radioBtn" ? "checkboxRadioBtn" : directive;
-                directive = directive == "checkboxLeft" || directive == "radioLeft" || directive == "checkboxRight" || directive == "radioRight"? "checkboxRadio" : directive;
-                if(Object.keys(colors).indexOf(directive) == -1)
-                    colors[directive] = [];
-                if(colors[directive].indexOf(color) == -1){
-                    colors[directive].push(color);
-                    addColorFunctions[directive](color);
-                }
-            }
-        }
-    }
-
-    var addColorFunctions = {
-        btn: function(color){
-            var colorArr = color.split(" ");
-            var color1 = colorArr[0];
-            var color2 = colorArr.length > 1 ? colorArr[1] : null;
-            var rgb = hexToRgb(color1);
-            var data = "[data-lrv-color='" + color + "']";
-            var css = getCss({
-                head: ".btn" + data,
-                rules: {
-                    "color": color1,
-                    "border-color": color1,
-                    "background-color": color2 == null ? "white" : color2
-                }
-            }) + getCss({
-                head: ".btn" + data + ":hover",
-                rules: {
-                    "box-shadow": "0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
-                }
-            }) + getCss({
-                head: ".btn" + data + ":active",
-                rules: {
-                    "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
-                }
-            });
-            style.html(style.html() + css);
-
-        },
-        checkboxRadioBtn: function(color){
-            var colorArr = color.split(" ");
-            var color1 = colorArr[0];
-            var color2 = colorArr.length > 1 ? colorArr[1] : null;
-            var rgb = hexToRgb(color1);
-            var data = "[data-lrv-color='" + color + "']";
-            var css = getCss({
-                head: [
-                    ".checkbox-btn" + data + "+label",
-                    ".radio-btn" + data + "+label"
-                ],
-                rules: {
-                    "color": color1,
-                    "border-color": color1,
-                    "background-color": color2 == null ? "white" : color2
-                }
-            }) + getCss({
-                head: [
-                    ".checkbox-btn" + data + "+label:hover",
-                    ".radio-btn" + data + "+label:hover"
-                ],
-                rules: {
-                    "box-shadow": "0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
-                }
-            }) + getCss({
-                head: [
-                    ".checkbox-btn" + data + ":checked+label:hover",
-                    ".radio-btn" + data + ":checked+label:hover"
-                ],
-                rules: {
-                    "box-shadow": "inset 0 0 20px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
-                }
-            }) + getCss({
-                head: [
-                    ".checkbox-btn" + data + ":checked+label",
-                    ".radio-btn" + data + ":checked+label",
-                    ".checkbox-btn" + data + "+label:active",
-                    ".radio-btn" + data + "+label:active",
-                    ".checkbox-btn" + data + ":checked+label:active",
-                    ".radio-btn" + data + ":checked+label:active"
-                ],
-                rules: {
-                    "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
-                }
-            });
-            style.html(style.html() + css);
-        },
-        checkboxRadio: function(color){
-            var colorArr = color.split(" ");
-            var color1 = colorArr[0];
-            var rgb = hexToRgb(color1);
-            var data = "[data-lrv-color='" + color + "']";
-            var css = getCss({
-                head: [
-                    ".checkbox-left" + data + " + label:before",
-                    ".checkbox-right" + data + " + label:after",
-                    ".radio-left" + data + " + label:before",
-                    ".radio-right" + data + " + label:after"
-                ],
-                rules: {
-                    "color": color1,
-                    "border-color": color1
-                }
-            }) + getCss({
-                head: [
-                    ".checkbox-left" + data + " + label:hover:before",
-                    ".checkbox-right" + data + " + label:hover:after",
-                    ".radio-left" + data + " + label:hover:before",
-                    ".radio-right" + data + " + label:hover:after"
-                ],
-                rules: {
-                    "box-shadow": "inset 0 0 0 3px white, 0px 0px 5px rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", .75)"
-                }
-            }) + getCss({
-                head: [
-                    ".checkbox-left" + data + " + label:active:before",
-                    ".checkbox-right" + data + " + label:active:after",
-                    ".radio-left" + data + " + label:active:before",
-                    ".radio-right" + data + " + label:active:after",
-                    ".checkbox-left" + data + ":checked + label:hover:before",
-                    ".checkbox-right" + data + ":checked + label:hover:after",
-                    ".radio-left" + data + ":checked + label:hover:before",
-                    ".radio-right" + data + ":checked + label:hover:after"
-                ],
-                rules: {
-                    "box-shadow": "inset 0 0 1px 1px rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", .75), inset 0 0 0 3px white"
-                }
-            }) + getCss({
-                head: [
-                    ".checkbox-left" + data + ":checked + label:active:before",
-                    ".checkbox-right" + data + ":checked + label:active:after",
-                    ".radio-left" + data + ":checked + label:active::before",
-                    ".radio-right" + data + ":checked + label:active::after",
-                    ".checkbox-left" + data + ":checked + label:before",
-                    ".checkbox-right" + data + ":checked + label:after",
-                    ".radio-left" + data + ":checked + label:before",
-                    ".radio-right" + data + ":checked + label:after"
-                ],
-                rules: {
-                    "background-color": color1,
-                    "box-shadow": "inset 0 0 0 3px white"
-                }
-            });
-            style.html(style.html() + css);
-        }
-    }*/
 
     var getCss = function(object){
         if(typeof object.head == "string")
@@ -733,87 +583,3 @@ larvae.directive("range", ["$compile", function($compile){
         }
     }
 }]);
-/*
-larvae.directive("btn", ["colorFactory", function(colorFactory){
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes){
-            var color = element.attr("data-lrv-color")
-            if(color != undefined){
-                colorFactory.addColor(color, "btn");
-            }
-        }
-    }
-}]);
-
-larvae.directive("checkboxBtn", ["colorFactory", function(colorFactory){
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes){
-            var color = element.attr("data-lrv-color")
-            if(color != undefined){
-                colorFactory.addColor(color, "checkboxBtn");
-            }
-        }
-    }
-}]);
-
-larvae.directive("radioBtn", ["colorFactory", function(colorFactory){
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes){
-            var color = element.attr("data-lrv-color")
-            if(color != undefined){
-                colorFactory.addColor(color, "radioBtn");
-            }
-        }
-    }
-}]);
-
-larvae.directive("checkboxLeft", ["colorFactory", function(colorFactory){
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes){
-            var color = element.attr("data-lrv-color")
-            if(color != undefined){
-                colorFactory.addColor(color, "checkboxLeft");
-            }
-        }
-    }
-}]);
-
-larvae.directive("radioLeft", ["colorFactory", function(colorFactory){
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes){
-            var color = element.attr("data-lrv-color")
-            if(color != undefined){
-                colorFactory.addColor(color, "radioLeft");
-            }
-        }
-    }
-}]);
-
-larvae.directive("checkboxRight", ["colorFactory", function(colorFactory){
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes){
-            var color = element.attr("data-lrv-color")
-            if(color != undefined){
-                colorFactory.addColor(color, "checkboxRight");
-            }
-        }
-    }
-}]);
-
-larvae.directive("radioRight", ["colorFactory", function(colorFactory){
-    return {
-        restrict: "C",
-        link: function(scope, element, attributes){
-            var color = element.attr("data-lrv-color")
-            if(color != undefined){
-                colorFactory.addColor(color, "radioRight");
-            }
-        }
-    }
-}]);*/

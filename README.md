@@ -4,4 +4,4 @@ CSS/JavaScript framework for AngularJS inspired in Bootstrap and made for learni
 
 Visit [http://oknalv.github.io/larvae](http://oknalv.github.io/larvae) for documentation.
 
-<img src="https://oknalv.github.io/larvae/img/larvae.svg" style="max-height: 100px;"/>
+![larvae_logo](http://oknalv.github.io/larvae/img/larvae.png)

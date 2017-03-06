@@ -12,7 +12,6 @@
   "button-modifiers-round": "One of them is the <code>.round</code> class. It makes the button corners to be more rounded.",
   "button-modifiers-icon": "Another class is <code>.icon</code>. It is designed for buttons with only an icon inside. Its width is the same than its height, it's thicker than a normal button and it has no border.",
   "button-modifiers-both": "You can use <code>.icon</code> and <code>.round</code> classes together.",
-  "button-colors": "If you want to change button colors, you must use the <code>data-lrv-color</code> attribute with the colors you want in CSS hexadecimal format. This attribute supports 2 colors separated by a space: the first one changes the border, shadows and font colors; the second one is optional and changes the background color.",
   "grouping": "Grouping",
   "button-grouping": "You can group buttons wrapping them in an element which has to have the <code>.grouped</code> class.",
   "installation": "Installation",
@@ -23,7 +22,6 @@
   "checkbox-right": "Another class is <code>.checkbox-right</code>. It works like the previous one but displays the <code>after</code> peudo-element instead.",
   "checkbox-btn": "The last available class is <code>.checkbox-btn</code>. It doesn't use <code>label</code> tag's pseudo-elements, it changes its style to look like a button.",
   "checkbox-grouping": "You can group checkboxes wrapping them in an element which has to have the <code>.grouped</code> class. It only works with checkboxes which have the <code>.checkbox-btn</code> class.",
-  "checkbox-colors": "If you want to change checkbox colors, you must use the <code>data-lrv-color</code> attribute with the colors you want in CSS hexadecimal format. For <code>checkbox-btn</code> directive, this attribute supports 2 colors separated by a space: the first one changes the border, shadows and font colors; the second one is optional and changes the background color. For <code>checkbox-right</code> and <code>checkbox-left</code> directives, this attribute supports only one color, that changes the box color.",
   "real-element": "Real element",
   "real-element-information": "As the real element is hidden, this is an example with it displayed.",
   "hidden-checkbox": "Hidden checkbox",
@@ -84,7 +82,6 @@
   "radio-button-right": "Another class is <code>.radio-right</code>. It works like the previous one but displays the <code>after</code> peudo-element instead.",
   "radio-button-btn": "The last available class is <code>.radio-btn</code>. It doesn't use <code>label</code> tag's pseudo-elements, it changes its style to look like a button.",
   "radio-button-grouping": "You can group radio buttons wrapping them in an element which has to have the <code>.grouped</code> class. It only works with radio buttons which have the <code>.radio-btn</code> class.",
-  "radio-button-colors": "If you want to change radio button colors, you must use the <code>data-lrv-color</code> attribute with the colors you want in CSS hexadecimal format. For <code>radio-btn</code> directive, this attribute supports 2 colors separated by a space: the first one changes the border, shadows and font colors; the second one is optional and changes the background color. For <code>radio-right</code> and <code>radio-left</code> directives, this attribute supports only one color, that changes the box color.",
   "hidden-radio-button": "Hidden radio button",
   "grid": "Grid",
   "grid-introduction": "The grid system depends on the CSS flexbox layout. The main class is <code>.f-row</code>. It's a container class where you have to place the flex items. By default, the elements inside has their default width. Let's see an example:",
@@ -98,7 +95,12 @@
   "grid-v-center": "<code>.v-center</code> - It makes the elements to be vertically aligned to the center. It uses the <code>align-items: center;</code> CSS rule.",
   "colors": "Colors",
   "colors-tab": "Colors",
-  "colors-introduction": "The default color palette of this framework is probably not adapted to your page design. To fix this, you have the <code>colorFactory</code> factory. This factory has the <code>addColor</code> function, which its parameters are the class you want to change its colors, the modifier class name you are going to use and the color in a string or an array of strings if the class accepts more than one color. The color strings must be in the CSS hexadecimal format (for example <code>#123456</code>). Each class accepts a different number of colors:",
-  "colors-btn": "This class supports 2 colors separated by a space. The first one changes the border, shadows and font colors; the second one is optional and changes the background color. These are some examples:"
-
+  "colors-introduction": "The default color palette of this framework is probably not adapted to your page design. To fix this, you have the <code>colorFactory</code> factory, which helps changing the elements' color to avoid writing CSS manually. This factory has the <code>addColor</code> function, which its parameters are the class you want to change its colors, the modifier class name you are going to use and the color in a string or an array of strings if the class accepts more than one color. The color strings must be in the CSS hexadecimal format (for example <code>#123456</code>). Each class accepts a different number of colors:",
+  "colors-button": "<code>.btn</code> class supports two colors. The first one changes the border, shadows and font colors; the second one is optional and changes the background color. These are some examples:",
+  "checkboxes-radios": "Checkboxes and radio buttons",
+  "colors-checkbox-radio-introduction": "Checkbox and radio button classes shares the same CSS, so if you declare a color for one of their classes (for example, <code>.checkbox-btn</code>), its counterpart (<code>.radio-btn</code>) will have the same color available.",
+  "checkbox-radio-buttons": "Button version",
+  "colors-checkbox-radio-button": "<code>.checkbox-btn</code> and <code>.radio-btn</code> support two colors. The first one changes the border, shadows and font colors; the second one is optional and changes the background-color. These are some examples:",
+  "checkbox-radio-left-right": "Left and right version",
+  "colors-checkbox-radio-left-right": "<code>.checkbox-left</code>, <code>.checkbox-right</code>, <code>.radio-left</code> and <code>.radio-right</code> support two colors. The first one changes the box/circle border, filling and shadow colors; the second one is optional and changes the box/circle background color. These are some examples:"
 }
