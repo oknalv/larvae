@@ -145,6 +145,29 @@ larvae.factory("colorFactory", function(){
                 }
             });
             style.html(style.html() + css);
+        },
+        "tabs": function(name, color){
+            var color1 = color[0];
+            var color2 = color[1];
+            var rgb = hexToRgb(color1);
+            var css = getCss({
+                head: [
+                    ".tabs" + name + " > .tab:after"
+                ],
+                rules: {
+                    "box-shadow": "inset 0px -3px " + color2
+                }
+            }) + getCss({
+                head: [
+                    ".tabs" + name + "> .tab.selected:after",
+                    ".tabs" + name + "> .tab.selected:hover:after"
+                ],
+                rules: {
+                    "box-shadow": "inset 0px -3px " + color1
+                }
+            });
+            console.log(css);
+            style.html(style.html() + css);
         }
     }
 

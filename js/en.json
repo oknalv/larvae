@@ -96,11 +96,12 @@
   "colors": "Colors",
   "colors-tab": "Colors",
   "colors-introduction": "The default color palette of this framework is probably not adapted to your page design. To fix this, you have the <code>colorFactory</code> factory, which helps changing the elements' color to avoid writing CSS manually. This factory has the <code>addColor</code> function, which its parameters are the class you want to change its colors, the modifier class name you are going to use and the color in a string or an array of strings if the class accepts more than one color. The color strings must be in the CSS hexadecimal format (for example <code>#123456</code>). Each class accepts a different number of colors:",
-  "colors-button": "<code>.btn</code> class supports two colors. The first one changes the border, shadows and font colors; the second one is optional and changes the background color. These are some examples:",
+  "colors-button": "<code>.btn</code> class supports two colors. The first one changes the border, shadows and font colors. The second one is optional and changes the background color. These are some examples:",
   "checkboxes-radios": "Checkboxes and radio buttons",
   "colors-checkbox-radio-introduction": "Checkbox and radio button classes shares the same CSS, so if you declare a color for one of their classes (for example, <code>.checkbox-btn</code>), its counterpart (<code>.radio-btn</code>) will have the same color available.",
   "checkbox-radio-buttons": "Button version",
-  "colors-checkbox-radio-button": "<code>.checkbox-btn</code> and <code>.radio-btn</code> support two colors. The first one changes the border, shadows and font colors; the second one is optional and changes the background-color. These are some examples:",
+  "colors-checkbox-radio-button": "<code>.checkbox-btn</code> and <code>.radio-btn</code> classes support two colors. The first one changes the border, shadows and font colors. The second one is optional and changes the background-color. These are some examples:",
   "checkbox-radio-left-right": "Left and right version",
-  "colors-checkbox-radio-left-right": "<code>.checkbox-left</code>, <code>.checkbox-right</code>, <code>.radio-left</code> and <code>.radio-right</code> support two colors. The first one changes the box/circle border, filling and shadow colors; the second one is optional and changes the box/circle background color. These are some examples:"
+  "colors-checkbox-radio-left-right": "<code>.checkbox-left</code>, <code>.checkbox-right</code>, <code>.radio-left</code> and <code>.radio-right</code> classes support two colors. The first one changes the box/circle border, filling and shadow colors; the second one is optional and changes the box/circle background color. These are some examples:",
+  "colors-tabs": "<code>.tabs</code> class supports two colors. The first one changes the selected tab underline color. The second one changes the color from the underline which appears when you put the mouse over a non selected tab. These are examples for horizontal and vertical tabs:"
 }

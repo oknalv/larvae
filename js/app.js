@@ -315,6 +315,18 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     colorFactory.addColor("radio-right", "check2", "#FF4444");
     $scope.coloredCheckboxRadioLeftRightJs += 'colorFactory.addColor("radio-btn", "check2", "#FF4444");';
 
+    $scope.coloredTabs = '<div class="tabs tabs1">\n';
+    $scope.coloredTabs += '    <div class="selected" data-lrv-tab="">tab</div>\n    <div data-lrv-tab="">tab</div>\n    <div data-lrv-tab="">tab</div>\n'
+    $scope.coloredTabs += '</div>\n';
+    $scope.coloredTabs += '<div class="tabs vertical tabs2">\n';
+    $scope.coloredTabs += '    <div class="selected" data-lrv-tab="">tab</div>\n    <div data-lrv-tab="">tab</div>\n    <div data-lrv-tab="">tab</div>\n'
+    $scope.coloredTabs += '</div>';
+
+    colorFactory.addColor("tabs", "tabs1", ["#FF4444", "#FFAAAA"]);
+    $scope.coloredTabsJs = 'colorFactory.addColor("checkbox-btn", "check1", ["#4444FF", "#44FFFF"]);\n';
+    colorFactory.addColor("tabs", "tabs2", ["#123456", "#ABCDEF"]);
+    $scope.coloredTabsJs += 'colorFactory.addColor("tabs", "check2", ["#123456", "#ABCDEF"]);';
+
     var changeOpts = false;
 
     $scope.switchOptions = function(){
