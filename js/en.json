@@ -103,5 +103,5 @@
   "colors-checkbox-radio-button": "<code>.checkbox-btn</code> and <code>.radio-btn</code> classes support two colors. The first one changes the border, shadows and font colors. The second one is optional and changes the background-color. These are some examples:",
   "checkbox-radio-left-right": "Left and right version",
   "colors-checkbox-radio-left-right": "<code>.checkbox-left</code>, <code>.checkbox-right</code>, <code>.radio-left</code> and <code>.radio-right</code> classes support two colors. The first one changes the box/circle border, filling and shadow colors; the second one is optional and changes the box/circle background color. These are some examples:",
-  "colors-tabs": "<code>.tabs</code> class supports two colors. The first one changes the selected tab underline color. The second one changes the color from the underline which appears when you put the mouse over a non selected tab. These are examples for horizontal and vertical tabs:"
+  "colors-tabs": "<code>.tabs</code> class supports two colors. The first one changes the selected tab underline color. The second one changes the color from the underline which appears when you put the mouse over a non selected tab. This is an example:"
 }
