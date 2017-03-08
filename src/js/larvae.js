@@ -218,6 +218,50 @@ larvae.factory("colorFactory", function(){
                 }
             });
             style.html(style.html() + css);
+        },
+        "select": function(name, color){
+            var color1 = color[0];
+            var rgb = hexToRgb(color1);
+            var css = getCss({
+                head: [
+                    ".select" + name + "+.span-select>.span-select-value"
+                ],
+                rules: {
+                    "border-color": color1,
+                    "color": color1
+                }
+            }) + getCss({
+                head: [
+                    ".select" + name + "+.span-select>.span-select-value:hover"
+                ],
+                rules: {
+                    "box-shadow": "0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                }
+            }) + getCss({
+                head: [
+                    ".select" + name + "+.span-select>.span-select-value:focus"
+                ],
+                rules: {
+                    "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                }
+            }) + getCss({
+                head: [
+                    ".select" + name + "+.span-select>.span-select-options"
+                ],
+                rules: {
+                    "box-shadow": "0 1px 3px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)",
+                    "color": color1,
+                    "border-color": color1
+                }
+            }) + getCss({
+                head: [
+                    ".select" + name + "+.span-select>.span-select-options.show.up"
+                ],
+                rules: {
+                    "box-shadow": "0 -1px 3px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                }
+            });
+            style.html(style.html() + css);
         }
     }
 

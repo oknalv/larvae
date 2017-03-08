@@ -306,6 +306,10 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     colorFactory.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);
     $scope.coloredModalJs = 'colorFactory.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);';
 
+    $scope.coloredSelectJs = "$scope.opts1 = ['opt1', 'opt2', 'opt3'];\n\n";
+    colorFactory.addColor("select", "blue", "#0000FF");
+    $scope.coloredSelectJs += 'colorFactory.addColor("select", "blue", "#0000FF");';
+
     var changeOpts = false;
 
     $scope.switchOptions = function(){
