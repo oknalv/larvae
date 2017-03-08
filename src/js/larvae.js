@@ -94,10 +94,10 @@ larvae.factory("colorFactory", function(){
             var rgb = hexToRgb(color1);
             var css = getCss({
                 head: [
-                    ".checkbox-left" + name + " + label:before",
-                    ".checkbox-right" + name + " + label:after",
-                    ".radio-left" + name + " + label:before",
-                    ".radio-right" + name + " + label:after"
+                    ".checkbox-left" + name + "+label:before",
+                    ".checkbox-right" + name + "+label:after",
+                    ".radio-left" + name + "+label:before",
+                    ".radio-right" + name + "+label:after"
                 ],
                 rules: {
                     "color": color1,
@@ -106,38 +106,38 @@ larvae.factory("colorFactory", function(){
                 }
             }) + getCss({
                 head: [
-                    ".checkbox-left" + name + " + label:hover:before",
-                    ".checkbox-right" + name + " + label:hover:after",
-                    ".radio-left" + name + " + label:hover:before",
-                    ".radio-right" + name + " + label:hover:after"
+                    ".checkbox-left" + name + "+label:hover:before",
+                    ".checkbox-right" + name + "+label:hover:after",
+                    ".radio-left" + name + "+label:hover:before",
+                    ".radio-right" + name + "+label:hover:after"
                 ],
                 rules: {
                     "box-shadow": "inset 0 0 0 3px " + color2 + ", 0px 0px 5px rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", .75)"
                 }
             }) + getCss({
                 head: [
-                    ".checkbox-left" + name + " + label:active:before",
-                    ".checkbox-right" + name + " + label:active:after",
-                    ".radio-left" + name + " + label:active:before",
-                    ".radio-right" + name + " + label:active:after",
-                    ".checkbox-left" + name + ":checked + label:hover:before",
-                    ".checkbox-right" + name + ":checked + label:hover:after",
-                    ".radio-left" + name + ":checked + label:hover:before",
-                    ".radio-right" + name + ":checked + label:hover:after"
+                    ".checkbox-left" + name + "+label:active:before",
+                    ".checkbox-right" + name + "+label:active:after",
+                    ".radio-left" + name + "+label:active:before",
+                    ".radio-right" + name + "+label:active:after",
+                    ".checkbox-left" + name + ":checked+label:hover:before",
+                    ".checkbox-right" + name + ":checked+label:hover:after",
+                    ".radio-left" + name + ":checked+label:hover:before",
+                    ".radio-right" + name + ":checked+label:hover:after"
                 ],
                 rules: {
                     "box-shadow": "inset 0 0 1px 1px rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", .75), inset 0 0 0 3px " + color2
                 }
             }) + getCss({
                 head: [
-                    ".checkbox-left" + name + ":checked + label:active:before",
-                    ".checkbox-right" + name + ":checked + label:active:after",
-                    ".radio-left" + name + ":checked + label:active::before",
-                    ".radio-right" + name + ":checked + label:active::after",
-                    ".checkbox-left" + name + ":checked + label:before",
-                    ".checkbox-right" + name + ":checked + label:after",
-                    ".radio-left" + name + ":checked + label:before",
-                    ".radio-right" + name + ":checked + label:after"
+                    ".checkbox-left" + name + ":checked+label:active:before",
+                    ".checkbox-right" + name + ":checked+label:active:after",
+                    ".radio-left" + name + ":checked+label:active::before",
+                    ".radio-right" + name + ":checked+label:active::after",
+                    ".checkbox-left" + name + ":checked+label:before",
+                    ".checkbox-right" + name + ":checked+label:after",
+                    ".radio-left" + name + ":checked+label:before",
+                    ".radio-right" + name + ":checked+label:after"
                 ],
                 rules: {
                     "background-color": color1,
@@ -152,21 +152,71 @@ larvae.factory("colorFactory", function(){
             var rgb = hexToRgb(color1);
             var css = getCss({
                 head: [
-                    ".tabs" + name + " > .tab:after"
+                    ".tabs" + name + ">.tab:after"
                 ],
                 rules: {
-                    "box-shadow": "inset 0px -3px " + color2
+                    "box-shadow": "inset 0 -3px " + color2
                 }
             }) + getCss({
                 head: [
-                    ".tabs" + name + "> .tab.selected:after",
-                    ".tabs" + name + "> .tab.selected:hover:after"
+                    ".tabs" + name + ">.tab.selected:after",
+                    ".tabs" + name + ">.tab.selected:hover:after"
                 ],
                 rules: {
-                    "box-shadow": "inset 0px -3px " + color1
+                    "box-shadow": "inset 0 -3px " + color1
                 }
             });
-            console.log(css);
+            style.html(style.html() + css);
+        },
+        "modal": function(name, color){
+            var color1 = color[0];
+            var color2 = color[1];
+            var color3 = color.length > 2 ? color[2] : "white";
+            var color4 = color.length > 3 ? color[3] : color[0];
+            var rgb = hexToRgb(color2);
+            var css = getCss({
+                head: [
+                    ".modal" + name + ">.modal-container>.modal-header"
+                ],
+                rules: {
+                    "background-color": color1
+                }
+            }) + getCss({
+                head: [
+                    ".modal" + name + ">.modal-container>.modal-footer"
+                ],
+                rules: {
+                    "background-color": color4
+                }
+            }) + getCss({
+                head: [
+                    ".modal" + name + ">.modal-container>.modal-body"
+                ],
+                rules: {
+                    "background-color": color3
+                }
+            }) + getCss({
+                head: [
+                    ".modal" + name + ">.modal-container .modal-x"
+                ],
+                rules: {
+                    "color": color2,
+                }
+            }) + getCss({
+                head: [
+                    ".modal" + name + ">.modal-container .modal-x:hover"
+                ],
+                rules: {
+                    "box-shadow": "0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                }
+            }) + getCss({
+                head: [
+                    ".modal" + name + ">.modal-container .modal-x:active"
+                ],
+                rules: {
+                    "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                }
+            });
             style.html(style.html() + css);
         }
     }
