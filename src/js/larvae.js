@@ -221,6 +221,9 @@ larvae.factory("colorFactory", function(){
         },
         "select": function(name, color){
             var color1 = color[0];
+            var color2 = color[1];
+            var color3 = color[2];
+            var color4 = color.length > 3 ? color[3] : "white";
             var rgb = hexToRgb(color1);
             var css = getCss({
                 head: [
@@ -228,7 +231,8 @@ larvae.factory("colorFactory", function(){
                 ],
                 rules: {
                     "border-color": color1,
-                    "color": color1
+                    "color": color1,
+                    "background-color": color4
                 }
             }) + getCss({
                 head: [
@@ -251,7 +255,8 @@ larvae.factory("colorFactory", function(){
                 rules: {
                     "box-shadow": "0 1px 3px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)",
                     "color": color1,
-                    "border-color": color1
+                    "border-color": color1,
+                    "background-color": color4
                 }
             }) + getCss({
                 head: [
@@ -259,6 +264,77 @@ larvae.factory("colorFactory", function(){
                 ],
                 rules: {
                     "box-shadow": "0 -1px 3px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                }
+            }) + getCss({
+                head: [
+                    ".select" + name + "+.span-select>.span-select-options>span:hover"
+                ],
+                rules: {
+                    "background-color": color3
+                }
+            }) + getCss({
+                head: [
+                    ".select" + name + "+.span-select>.span-select-options>span.selected",
+                    ".select" + name + "+.span-select>.span-select-options>span.selected:hover"
+                ],
+                rules: {
+                    "background-color": color2
+                }
+            });
+            style.html(style.html() + css);
+        },
+        "range": function(name, color){
+            var color1 = color[0];
+            var color2 = color[1];
+            var color3 = color[2];
+            var rgb = hexToRgb(color1);
+            var css = getCss({
+                head: [
+                    ".range" + name + "+.span-range-container>.span-range:before"
+                ],
+                rules: {
+                    "border-color": color1,
+                    "background-color": color2
+                }
+            }) + getCss({
+                head: [
+                    ".range" + name + "+.span-range-container>.span-range>.span-range-dot"
+                ],
+                rules: {
+                    "border-color": color1,
+                    "background-color": color3
+                }
+            }) + getCss({
+                head: [
+                    ".range" + name + "+.span-range-container>.span-range>.span-range-dot:active",
+                    ".range" + name + "+.span-range-container>.span-range>.span-range-bar:active+.span-range-dot"
+                ],
+                rules: {
+                    "box-shadow": "inset 0px 0px 4px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                }
+            }) + getCss({
+                head: [
+                    ".range" + name + "+.span-range-container>.span-range>.span-range-value"
+                ],
+                rules: {
+                    "box-shadow": "0px 1px 3px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)",
+                    "border-color": color1,
+                    "color": color1,
+                    "background-color": color3
+                }
+            }) + getCss({
+                head: [
+                    ".range" + name + "+.span-range-container>.span-range>.span-range-value:after"
+                ],
+                rules: {
+                    "border-color": color3 + " transparent transparent transparent"
+                }
+            }) + getCss({
+                head: [
+                    ".range" + name + "+.span-range-container>.span-range>.span-range-value:before"
+                ],
+                rules: {
+                    "border-color": color1 + " transparent transparent transparent"
                 }
             });
             style.html(style.html() + css);

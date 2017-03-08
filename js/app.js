@@ -272,16 +272,16 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     colorFactory.addColor("btn", "red", "#FF4444");
     $scope.coloredButtonsJs += 'colorFactory.addColor("btn", "red", "#FF4444");';
 
-    $scope.coloredCheckboxRadioButtons = '<input type="radio" name="crad1" class="radio-btn orange" id="crad1"/>\n<label for="crad1">radio</label>\n';
-    $scope.coloredCheckboxRadioButtons += '<input type="checkbox" class="checkbox-btn purple" id="ccheck1"/>\n<label for="ccheck1">checkbox</label>';
+    $scope.coloredCheckboxRadioButtons = '<input type="radio" name="color-radio1" class="radio-btn orange" id="color-radio1"/>\n<label for="color-radio1">radio</label>\n';
+    $scope.coloredCheckboxRadioButtons += '<input type="checkbox" class="checkbox-btn purple" id="color-checkbox1"/>\n<label for="color-checkbox1">checkbox</label>';
 
     colorFactory.addColor("checkbox-btn", "orange", ["#775500", "#FF7755"]);
     $scope.coloredCheckboxRadioButtonsJs = 'colorFactory.addColor("checkbox-btn", "orange", ["#4444FF", "#44FFFF"]);\n';
     colorFactory.addColor("radio-btn", "purple", "#AA33FF");
     $scope.coloredCheckboxRadioButtonsJs += 'colorFactory.addColor("radio-btn", "purple", "#FF4444");';
 
-    $scope.coloredCheckboxRadioLeftRight = '<input type="checkbox" class="checkbox-left gray" id="ccheck5">\n<label for="ccheck5">checkbox</label>\n';
-    $scope.coloredCheckboxRadioLeftRight += '<input type="radio" name="crad2" class="radio-right magenta" id="crad5"/>\n<label for="crad5">radio</label>\n';
+    $scope.coloredCheckboxRadioLeftRight = '<input type="checkbox" class="checkbox-left gray" id="color-checkbox2">\n<label for="color-checkbox2">checkbox</label>\n';
+    $scope.coloredCheckboxRadioLeftRight += '<input type="radio" name="color-radio2" class="radio-right magenta" id="color-radio2"/>\n<label for="color-radio2">radio</label>\n';
 
     colorFactory.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);
     $scope.coloredCheckboxRadioLeftRightJs = 'colorFactory.addColor("checkbox-btn", "gray", ["#4444FF", "#44FFFF"]);\n';
@@ -289,7 +289,7 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     $scope.coloredCheckboxRadioLeftRightJs += 'colorFactory.addColor("radio-btn", "magenta", "#FF4444");';
 
     $scope.coloredTabs = '<div class="tabs red">\n';
-    $scope.coloredTabs += '    <div class="selected" data-lrv-tab="">tab</div>\n    <div data-lrv-tab="">tab</div>\n    <div data-lrv-tab="">tab</div>\n'
+    $scope.coloredTabs += '    <div class="selected" data-lrv-tab="null">tab</div>\n    <div data-lrv-tab="null">tab</div>\n    <div data-lrv-tab="null">tab</div>\n'
     $scope.coloredTabs += '</div>';
 
     colorFactory.addColor("tabs", "red", ["#FF4444", "#FFAAAA"]);
@@ -307,8 +307,11 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     $scope.coloredModalJs = 'colorFactory.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);';
 
     $scope.coloredSelectJs = "$scope.opts1 = ['opt1', 'opt2', 'opt3'];\n\n";
-    colorFactory.addColor("select", "blue", "#0000FF");
-    $scope.coloredSelectJs += 'colorFactory.addColor("select", "blue", "#0000FF");';
+    colorFactory.addColor("select", "blue", ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"]);
+    $scope.coloredSelectJs += 'colorFactory.addColor("select", "blue", ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"]);';
+
+    colorFactory.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);
+    $scope.coloredRangeJs += 'colorFactory.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);';
 
     var changeOpts = false;
 

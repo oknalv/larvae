@@ -9,6 +9,14 @@
 
 }
 
+.custom-code-element > .tabs > .tab:first-child {
+    padding-left: 0;
+}
+
+.custom-code-element > .tabs > .tab:last-child {
+    padding-right: 0;
+}
+
 .custom-code-element > .custom-entry-code * {
     font-family: monospace;
     font-size: .75rem;

@@ -262,6 +262,14 @@ button::-moz-focus-inner {
     cursor: inherit;
 }
 
+.tabs > .tab:first-child {
+    padding-left: 0;
+}
+
+.tabs > .tab:last-child {
+    padding-right: 0;
+}
+
 .tabs.vertical {
     flex-direction: column;
     padding-top: 5px;
