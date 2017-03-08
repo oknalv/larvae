@@ -313,6 +313,41 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     colorFactory.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);
     $scope.coloredRangeJs += 'colorFactory.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);';
 
+    $scope.coloredTable = "<table class='pink'>\n";
+    $scope.coloredTable += "    <thead>\n";
+    $scope.coloredTable += "        <tr>\n";
+    $scope.coloredTable += "            <th>th</th>\n";
+    $scope.coloredTable += "            <th>th</th>\n";
+    $scope.coloredTable += "            <th>th</th>\n";
+    $scope.coloredTable += "        </tr>\n";
+    $scope.coloredTable += "    </thead>\n";
+    $scope.coloredTable += "    <tbody>\n";
+    $scope.coloredTable += "        <tr>\n";
+    $scope.coloredTable += "            <td>td</td>\n";
+    $scope.coloredTable += "            <td>td</td>\n";
+    $scope.coloredTable += "            <td>td</td>\n";
+    $scope.coloredTable += "        </tr>\n";
+    $scope.coloredTable += "        <tr>\n";
+    $scope.coloredTable += "            <td>td</td>\n";
+    $scope.coloredTable += "            <td>td</td>\n";
+    $scope.coloredTable += "            <td>td</td>\n";
+    $scope.coloredTable += "        </tr>\n";
+    $scope.coloredTable += "        <tr>\n";
+    $scope.coloredTable += "            <td>td</td>\n";
+    $scope.coloredTable += "            <td>td</td>\n";
+    $scope.coloredTable += "            <td>td</td>\n";
+    $scope.coloredTable += "        </tr>\n";
+    $scope.coloredTable += "        <tr>\n";
+    $scope.coloredTable += "            <td>td</td>\n";
+    $scope.coloredTable += "            <td>td</td>\n";
+    $scope.coloredTable += "            <td>td</td>\n";
+    $scope.coloredTable += "        </tr>\n";
+    $scope.coloredTable += "    </tbody>\n";
+    $scope.coloredTable += "</table>";
+
+    colorFactory.addColor("table", "pink", ["#5500AA", "#FAF0FA", "#FAD0FA"]);
+    $scope.coloredTableJs = 'colorFactory.addColor("table", "pink", ["#5500AA", "#FAF0FA", "#FAD0FA"]);';
+
     var changeOpts = false;
 
     $scope.switchOptions = function(){

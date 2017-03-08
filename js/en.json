@@ -1,7 +1,7 @@
 {
   "language-selector": "language",
   "about-tab": "About larvae",
-  "about-text": "Larvae is a CSS/JavaScript framework for AngularJS inspired by Bootstrap. It is a side project of my other project <a href='https://github.com/oknalv/piollo' target='_blank'>piollo</a> and the purpose of doing it is learning about AngularJS directives and also expanding my JavaScript and CSS knowledge.",
+  "about-text": "Larvae is a front-end web framework for AngularJS inspired by Bootstrap. It is a side project of my other project <a href='https://github.com/oknalv/piollo' target='_blank'>piollo</a> and the purpose of doing it is learning about AngularJS directives and also expanding my JavaScript and CSS knowledge.",
   "about-name": "I've chosen larvae as project name because, when I started it, there were a lot of moth larvae in my pantry due to a flour moth plague (<a href='https://en.wikipedia.org/wiki/Indian_mealmoth' target='_blank'><i>Plodia interpunctella</i></a>) that we had had in summer.",
   "under-construction": "(Note: both larvae and this page are likely to change because they are under construction).",
   "components-tab": "Components",
@@ -106,5 +106,6 @@
   "colors-tabs": "<code>.tabs</code> class supports two colors. The first one changes the selected tab underline color. The second one changes the color from the underline which appears when you put the mouse over a non selected tab. This is an example:",
   "colors-modals": "<code>.modal</code> class supports four colors. The first one changes the <code>.modal-header</code> and <code>.modal-footer</code> elements background color. The second one changes the closing icon font and shadow colors from the <code>.modal-header</code> element. The third one is optional and changes the <code>.modal-body</code> element background color. The last one is optional and changes the <code>.modal-footer</code> element background color if you want a different background color of the <code>.modal-header</code> element. Click the button to see an example:",
   "colors-selects": "<code>.select</code> class supports four colors. The first one changes the border, shadows and font colors. The second one changes the background color of the selected option. The third one changes the background color of the not selected options when mouse is over. The last one changes the background color of the element. This is an example:",
-  "colors-range": "<code>.range</code> class supports three colors. The first one changes the border, shadows and font colors. The second one changes the bar color. The third one changes the background color of the tooltip and the circle. This is an example:"
+  "colors-range": "<code>.range</code> class supports three colors. The first one changes the border, shadows and font colors. The second one changes the bar color. The third one changes the background color of the tooltip and the circle. This is an example:",
+  "colors-tables": "<code>table</code> tag supports three colors. The first one changes the header underline color. The second one changes the even rows background color. The third one changes the background color the rows when mouse is over. This is an example:"
 }

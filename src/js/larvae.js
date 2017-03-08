@@ -338,6 +338,34 @@ larvae.factory("colorFactory", function(){
                 }
             });
             style.html(style.html() + css);
+        },
+        "table": function(name, color){
+            var color1 = color[0];
+            var color2 = color[1];
+            var color3 = color[2];
+            var css = getCss({
+                head: [
+                    "table" + name + " thead th"
+                ],
+                rules: {
+                    "border-color": color1
+                }
+            }) + getCss({
+                head: [
+                    "table" + name + " tbody tr:nth-of-type(even)"
+                ],
+                rules: {
+                    "background-color": color2
+                }
+            }) + getCss({
+                head: [
+                    "table" + name + " tbody tr:hover"
+                ],
+                rules: {
+                    "background-color": color3
+                }
+            });
+            style.html(style.html() + css);
         }
     }
 
