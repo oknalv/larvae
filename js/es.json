@@ -9,7 +9,7 @@
   "button-introduction": "Los botones tienen que ser declarados con la clase <code>.btn</code>.",
   "modifiers": "Modificadores",
   "button-modifiers": "Hay algunas clases que puedes añadir a los elementos con la clase <code>.btn</code> para cambiar su apariencia.",
-  "button-modifiers-round": "Una de ellas es la clase <code>.round</code>. Hace que las esquinas de los botones sean mas redondeadas.",
+  "button-modifiers-round": "Una de ellas es la clase <code>.round</code>. Hace que las esquinas de los botones sean más redondeadas.",
   "button-modifiers-icon": "Otra clase es <code>.icon</code>. Está diseñada para botones con solamente un icono dentro. Su alto y su ancho es el mismo, es más grueso que un botón normal y no tiene bordes.",
   "button-modifiers-both": "Puedes usar las clases <code>.icon</code> y <code>.round</code> juntas.",
   "grouping": "Agrupamiento",
