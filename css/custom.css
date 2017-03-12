@@ -50,6 +50,7 @@ h1:hover > .custom-link:hover > i:before {
 
 .hljs {
     background-color: #FAFAFA !important;
+    font-weight: normal;
 }
 
 .custom-logo {

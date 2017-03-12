@@ -403,14 +403,15 @@ larvae.factory("colorFactory", function(){
 larvae.directive("translate", ["$compile", "$http", function($compile, $http){
     return {
         restrict: "C",
+        scope: {
+            lrvModel: "="
+        },
         controller: function(){
-            this.language = null;
-            this.defaultLanguage = null;
-            this.texts = [];
+            this.model = {};
             this.get = function (textKey, language){
-                var language = language == undefined ? this.language : language;
-                var langTexts = this.texts[language] == undefined ? this.texts[this.defaultLanguage] : this.texts[language];
-                var returnText = langTexts[textKey] == undefined ? this.texts[this.defaultLanguage][textKey] == undefined ? textKey : this.texts[this.defaultLanguage][textKey] : langTexts[textKey];
+                var language = language == undefined ? this.model.value : language;
+                var langTexts = this.model.texts[language] == undefined ? this.model.texts[this.model.defaultLanguage] : this.model.texts[language];
+                var returnText = langTexts[textKey] == undefined ? this.model.texts[this.model.defaultLanguage][textKey] == undefined ? textKey : this.model.texts[this.model.defaultLanguage][textKey] : langTexts[textKey];
                 return returnText;
             };
             this.translate = function(elements){
@@ -423,29 +424,25 @@ larvae.directive("translate", ["$compile", "$http", function($compile, $http){
         compile: function(tElement, tAttributes){
             return {
                 pre: function(scope, element, attributes, translate){
-                    var scopeSelectedLangVarName = element.attr("data-lrv-selected-lang");
-                    translate.texts = scope[element.attr("data-lrv-texts")];
-                    var defaultLang = scope[element.attr("data-lrv-default-lang")];
-                    translate.defaultLanguage = defaultLang == undefined ? Object.keys(translate.texts)[0] : defaultLang;
-                    if(typeof translate.texts[defaultLang] == "string"){
-                        $http.get(translate.texts[defaultLang]).then(function(response){
-                            translate.texts[defaultLang] = response.data;
+                    translate.model = scope.lrvModel;
+                    translate.model.defaultLanguage = translate.model.defaultLanguage == undefined ? Object.keys(translate.model.texts)[0] : translate.model.defaultLanguage;
+                    if(typeof translate.model.texts[translate.model.defaultLanguage] == "string"){
+                        $http.get(translate.model.texts[translate.model.defaultLanguage]).then(function(response){
+                            translate.model.texts[translate.model.defaultLanguage] = response.data;
                         });
                     }
-                    translate.language = window.localStorage.getItem("lang");
-                    if(translate.language == undefined){
-                        scope[scopeSelectedLangVarName] = scope[scopeSelectedLangVarName] == undefined ? translate.defaultLanguage : scope[scopeSelectedLangVarName];
-                        window.localStorage.setItem("lang", scope[scopeSelectedLangVarName]);
-                        translate.language = scope[scopeSelectedLangVarName];
+                    var language = window.localStorage.getItem("lang");
+                    if(language == undefined){
+                        translate.model.value = translate.model.value == undefined ? translate.model.defaultLanguage : translate.model.value;
+                        window.localStorage.setItem("lang", translate.model.value);
                     }
                     else
-                        scope[scopeSelectedLangVarName] = translate.language;
-                    scope.$watch(scopeSelectedLangVarName, function(){
-                        window.localStorage.setItem("lang", scope[scopeSelectedLangVarName]);
-                        translate.language = scope[scopeSelectedLangVarName];
-                        if(typeof translate.texts[translate.language] == "string"){
-                            $http.get(translate.texts[translate.language]).then(function(response){
-                                translate.texts[translate.language] = response.data;
+                        translate.model.value = language;
+                    scope.$watch("lrvModel.value", function(){
+                        window.localStorage.setItem("lang", translate.model.value);
+                        if(typeof translate.model.texts[translate.model.value] == "string"){
+                            $http.get(translate.model.texts[translate.model.value]).then(function(response){
+                                translate.model.texts[translate.model.value] = response.data;
                                 translate.translate(angular.element(element[0].getElementsByClassName("text")));
                             });
                         }
@@ -593,9 +590,12 @@ larvae.directive("select", ["$compile", function($compile){
     return {
         restrict: "C",
         require: "^?translate",
+        scope: {
+            lrvModel: "="
+        },
         link: function(scope, element, attributes, translate){
-            var scopeVariableName = element.attr("data-lrv-model");
-            var scopeOptionsVariableName = element.attr("data-lrv-options");
+            if(scope.lrvModel.value == undefined)
+                scope.lrvModel.value = scope.lrvModel.options[0];
 
             var spanSelect = angular.element("<span class='span-select'></span>");
             element.after(spanSelect);
@@ -635,22 +635,21 @@ larvae.directive("select", ["$compile", function($compile){
                 overSpanSelect = false;
             });
 
-            scope.$watch(scopeOptionsVariableName, function(){
+            scope.$watch("lrvModel.options", function(){
                 element.html("");
                 spanSelectOptions.html("");
-                var options = scope[scopeOptionsVariableName];
+                var options = scope.lrvModel.options;
                 var optionValues = [];
-                var selected = null;
                 for(var i = 0; i < options.length; i++){
                     var option = options[i];
                     if(typeof option == "string"){
-                        scope[scopeOptionsVariableName].splice(i, 1, { value: option, text: option });
-                        options = scope[scopeOptionsVariableName];
+                        scope.lrvModel.options.splice(i, 1, { value: option, text: option });
+                        options = scope.lrvModel.options;
                         option = options[i];
                     }
                     if(option.text == undefined){
-                        scope[scopeOptionsVariableName][i].text = option.value;
-                        options = scope[scopeOptionsVariableName];
+                        scope.lrvModel.options[i].text = option.value;
+                        options = scope.lrvModel.options;
                         option = options[i];
                     }
                     optionValues.push(option.value);
@@ -660,49 +659,45 @@ larvae.directive("select", ["$compile", function($compile){
                         optionElement = angular.element("<option value='" + option.value + "' data-lrv-text='" + option.translation + "'></option>")
                         spanOptionElement = angular.element("<span data-value='" + option.value + "' class='text' tabindex='0' data-lrv-text='" + option.translation + "'></span>");
                     }
-                    selected = option.selected != undefined && option.selected ? option.value : selected;
                     element.append(optionElement);
                     spanSelectOptions.append(spanOptionElement);
                     spanOptionElement.bind("DOMSubtreeModified", updateWidth);
                     if(translate != null)
                         translate.translate(spanOptionElement);
                     spanOptionElement.bind("click", function(){
-                        scope[scopeVariableName] = angular.element(this).attr("data-value");
+                        scope.lrvModel.value = angular.element(this).attr("data-value");
                         scope.$apply();
                         spanSelectOptions.removeClass("show");
                     });
                     updateWidth();
                 }
-                var variable = scope[scopeVariableName];
+                var variable = scope.lrvModel.value;
                 if(
                     (variable == undefined || optionValues.indexOf(variable) == -1)
                     && typeof options == "object"
                     && options.length != undefined
                     && options.length > 0
                 ){
-                    if(selected != null)
-                        scope[scopeVariableName] = selected;
-                    else
-                        scope[scopeVariableName] = options[0].value;
+                    scope.lrvModel.value = options[0].value;
                 }
             });
 
-            scope.$watch(scopeVariableName, function(){
+            scope.$watch("lrvModel.value", function(){
                 spanOptionElements = angular.element(spanSelectOptions.children());
                 spanOptionElements.removeClass("selected");
                 for(var i = 0; i < spanOptionElements.length; i++){
                     spanOptionElement = angular.element(spanOptionElements[i]);
-                    if(spanOptionElement.attr("data-value") == scope[scopeVariableName]){
+                    if(spanOptionElement.attr("data-value") == scope.lrvModel.value){
                         spanOptionElement.addClass("selected");
                         break;
                     }
                 }
-                element.val(scope[scopeVariableName]);
-                var options = scope[scopeOptionsVariableName];
+                element.val(scope.lrvModel.value);
+                var options = scope.lrvModel.options;
                 var text = null;
                 var translation = null;
                 for(var i = 0; i < options.length; i++){
-                    if(options[i].value == scope[scopeVariableName]){
+                    if(options[i].value == scope.lrvModel.value){
                         translation = options[i].translation;
                         text = options[i].text;
                         break;
@@ -724,7 +719,7 @@ larvae.directive("select", ["$compile", function($compile){
             });
 
             element.bind("change", function(){
-                scope[scopeVariableName] = element.val();
+                scope.lrvModel.value = element.val();
                 scope.$apply();
             });
 
@@ -743,23 +738,31 @@ larvae.directive("select", ["$compile", function($compile){
 larvae.directive("range", ["$compile", function($compile){
     return {
         restrict: "C",
+        scope: {
+            lrvModel: "="
+        },
         link: function(scope, element, attributes){
-            var spanRangeVariableName = element.attr("data-lrv-model");
             var spanRangeContainer = angular.element("<span class='span-range-container'></span>");
             element.after(spanRangeContainer);
             var spanRange = angular.element("<span class='span-range'></span>");
             spanRangeContainer.append(spanRange);
-            if(element.hasClass("load"))
-                spanRange.addClass("load");
             var spanRangeBar = angular.element("<span class='span-range-bar'></span>");
             spanRange.append(spanRangeBar);
             var spanRangeDot = angular.element("<span class='span-range-dot'></span>");
             spanRange.append(spanRangeDot);
-            if(scope[spanRangeVariableName] == undefined)
-                scope[spanRangeVariableName] = element.attr("min");
-            var spanRangeValue = angular.element("<span class='span-range-value'>" + scope[spanRangeVariableName] + "</span>");
-            $compile(spanRangeValue)(scope);
+            if(scope.lrvModel.min == undefined)
+                scope.lrvModel.min = parseInt(element.attr("min")) || 0;
+            else
+                element.attr("min", scope.lrvModel.min);
+            if(scope.lrvModel.max == undefined)
+                scope.lrvModel.max = parseInt(element.attr("max")) || 100;
+            else
+                element.attr("max", scope.lrvModel.max);
+            if(scope.lrvModel.value == undefined)
+                scope.lrvModel.value = scope.lrvModel.min;
+            var spanRangeValue = angular.element("<span class='span-range-value'>" + scope.lrvModel.value + "</span>");
             spanRange.append(spanRangeValue);
+
             var clicking = false;
 
             spanRangeBar.bind("mousemove", function(event){
@@ -780,13 +783,13 @@ larvae.directive("range", ["$compile", function($compile){
             });
 
             element.bind("change", function(){
-                scope[spanRangeVariableName] = element.val();
+                scope.lrvModel.value = parseInt(element.val());
                 scope.$apply();
             });
 
-            scope.$watch(spanRangeVariableName, function(){
-                element.val(scope[spanRangeVariableName]);
-                var percentage = 100 * (element.val() - element.attr("min")) / (element.attr("max") - element.attr("min"));
+            scope.$watch("lrvModel.value", function(){
+                element.val(parseInt(scope.lrvModel.value));
+                var percentage = 100 * (element.val() - scope.lrvModel.min) / (scope.lrvModel.max - scope.lrvModel.min);
                 spanRangeDot.css("margin-left", percentage + "%");
                 spanRangeValue.css("margin-left", percentage + "%");
                 spanRangeValue.html(element.val());
@@ -794,10 +797,8 @@ larvae.directive("range", ["$compile", function($compile){
 
             function moveDot(event){
                 var percentage = 100 * event.layerX / spanRangeBar[0].offsetWidth;
-                var min = parseInt(element.attr("min"));
-                var max = parseInt(element.attr("max"));
-                var onePercent = (max - min) / 100;
-                var value = percentage * (max - min + onePercent) / 100 + min;
+                var onePercent = (scope.lrvModel.max - scope.lrvModel.min) / 100;
+                var value = percentage * (scope.lrvModel.max - scope.lrvModel.min + onePercent) / 100 + scope.lrvModel.min;
                 element.val(value);
                 element.triggerHandler("change");
             }

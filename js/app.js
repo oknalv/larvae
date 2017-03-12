@@ -1,20 +1,26 @@
 var app = angular.module("larvaeApp", ["larvae", "hljs"]);
 app.controller("larvaeController", ["$scope", "$location", "colorFactory", function($scope, $location, colorFactory){
-    $scope.texts = {
-        "en": "js/en.json",
-        "es": "js/es.json"
-    }
-    $scope.langs = [
-        {
-            value: "en",
-            text: "English"
-        },
-        {
-            value: "es",
-            text: "español"
+    //PAGE SECTION
+
+    $scope.langs = {
+        value: "en",
+        options: [
+            {
+                value: "en",
+                text: "English"
+            },
+            {
+                value: "es",
+                text: "español"
+            }
+        ],
+        texts: {
+            "en": "js/en.json",
+            "es": "js/es.json"
         }
-    ];
-    $scope.defaultLang = "en";
+    };
+
+    //PAGE TABS SECTION
 
     $scope.multilangTab = "sections/multilang.html";
     $scope.rangeTab = "sections/range.html";
@@ -32,400 +38,1042 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     $scope.gridTab = "sections/grid.html";
     $scope.colorsTab = "sections/colors.html";
 
-    $scope.groupedButtons = '<div class="grouped">\n';
-    $scope.groupedButtons += '    <button class="btn">button</button>\n';
-    $scope.groupedButtons += '    <button class="btn">button</button>\n';
-    $scope.groupedButtons += '    <button class="btn">button</button>\n';
-    $scope.groupedButtons += '    <button class="btn">button</button>\n';
-    $scope.groupedButtons += '    <button class="btn">button</button>\n';
-    $scope.groupedButtons += '    <button class="btn">button</button>\n';
-    $scope.groupedButtons += '</div>';
-
-    $scope.sources = '<link rel="stylesheet" type="text/css" href="larvae.css"/>\n<script src="larvae.js"></script>';
-
-    $scope.leftCheckbox = '<input type="checkbox" class="checkbox-left" id="check1"/>\n<label for="check1">checkbox</label>';
-
-    $scope.rightCheckbox = '<input type="checkbox" class="checkbox-right" id="check2"/>\n<label for="check2">checkbox</label>';
-
-    $scope.btnCheckbox = '<input type="checkbox" class="checkbox-btn" id="check3"/>\n<label for="check3">checkbox</label>';
-
-    $scope.groupedCheckboxes = '<div class="grouped">\n';
-    $scope.groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check4"/>\n    <label for="check4">checkbox</label>\n';
-    $scope.groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check5"/>\n    <label for="check5">checkbox</label>\n';
-    $scope.groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check6"/>\n    <label for="check6">checkbox</label>\n';
-    $scope.groupedCheckboxes += '</div>';
-
-    $scope.tabsHorizontal = '<div class="tabs">\n';
-    $scope.tabsHorizontal += '    <div class="selected" data-lrv-tab="tab1-1">eng</div>\n    <div data-lrv-tab="tab1-2">esp</div>\n    <div data-lrv-tab="tab1-3">gal</div>\n'
-    $scope.tabsHorizontal += '</div>\n';
-    $scope.tabsHorizontal += '<div id="tab1-1" style="background-color: lightgray">Hello World!!</div>\n';
-    $scope.tabsHorizontal += '<div id="tab1-2" style="background-color: lightgray">¡¡Hola mundo!!</div>\n';
-    $scope.tabsHorizontal += '<div id="tab1-3" style="background-color: lightgray">Ola mundo!!</div>\n';
-
-    $scope.tabsVertical = '<div class="tabs vertical">\n';
-    $scope.tabsVertical += '    <div class="selected" data-lrv-tab="tab2-1">eng</div>\n    <div data-lrv-tab="tab2-2">esp</div>\n    <div data-lrv-tab="tab2-3">gal</div>\n'
-    $scope.tabsVertical += '</div>\n';
-    $scope.tabsVertical += '<div id="tab2-1" style="background-color: lightgray">Hello World!!</div>\n';
-    $scope.tabsVertical += '<div id="tab2-2" style="background-color: lightgray">¡¡Hola mundo!!</div>\n';
-    $scope.tabsVertical += '<div id="tab2-3" style="background-color: lightgray">Ola mundo!!</div>';
-
+    //VARIABLES FOR SOME SECTIONS SECTION
     var loremFistrum = 'Lorem fistrum amatomaa no te digo trigo por no llamarte Rodrigor te voy a borrar el cerito ese pedazo de a peich quietooor quietooor a wan la caidita. Ese pedazo de pecador a peich caballo blanco caballo negroorl te voy a borrar el cerito. Hasta luego Lucas llevame al sircoo caballo blanco caballo negroorl fistro caballo blanco caballo negroorl diodeno diodenoo. Benemeritaar ese hombree qué dise usteer apetecan. Se calle ustée se calle ustée papaar papaar condemor. Diodeno me cago en tus muelas caballo blanco caballo negroorl te voy a borrar el cerito. Quietooor pecador ahorarr está la cosa muy malar se calle ustée no te digo trigo por no llamarte Rodrigor no puedor. No puedor no puedor benemeritaar la caidita no te digo trigo por no llamarte Rodrigor.';
 
-    $scope.simpleModal = '<div class="modal" id="simple-modal">\n';
-    $scope.simpleModal += '    <div class="modal-container">\n';
-    $scope.simpleModal += '        <div class="modal-header"></div>\n';
-    $scope.simpleModal += '        <div class="modal-body">' + loremFistrum + '</div>\n';
-    $scope.simpleModal += '        <div class="modal-footer"></div>\n';
-    $scope.simpleModal += '    </div>\n';
-    $scope.simpleModal += '</div>';
+    //MAIN SECTION
 
-    $scope.bodyModal = '<div class="modal" id="body-modal">\n';
-    $scope.bodyModal += '    <div class="modal-container">\n';
-    $scope.bodyModal += '        <div class="modal-body">' + loremFistrum + '</div>\n';
-    $scope.bodyModal += '    </div>\n';
-    $scope.bodyModal += '</div>';
+    $scope.sources = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<link rel="stylesheet" type="text/css" href="larvae.css"/>\n<script src="larvae.js"></script>'
+            }
+        ]
+    };
 
-    $scope.closeModal = '<div class="modal" id="close-modal">\n';
-    $scope.closeModal += '    <div class="modal-container">\n';
-    $scope.closeModal += '        <div class="modal-body">\n';
-    $scope.closeModal += '           <button class="btn modal-closer" data-lrv-modal="close-modal">button</button>\n';
-    $scope.closeModal += '       </div>\n';
-    $scope.closeModal += '    </div>\n';
-    $scope.closeModal += '</div>';
+    //BUTTON SECTION
 
-    $scope.opts1 = ['opt1', 'opt2', 'opt3'];
+    $scope.defaultButton = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<button class="btn">button</button>'
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.jsonSyntax = '{\n';
-    $scope.jsonSyntax += '    "value": "opt",\n';
-    $scope.jsonSyntax += '    "text": "opt",\n';
-    $scope.jsonSyntax += '    "translation": "opt",\n';
-    $scope.jsonSyntax += '    "selected": false\n';
-    $scope.jsonSyntax += '}';
+    $scope.roundButton = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<button class="btn round">button</button>'
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.opts2 = [
-        "opt1",
-        {
-            value: "opt2"
-        },
-        {
-            value: "opt3",
-            text: "Opt3"
-        },
-        {
-            value: "opt4",
-            translation: "option",
-            selected: true
-        }
-    ];
+    $scope.iconButton = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<button class="btn icon">\n    <i class="fa fa-question-circle-o"></i>\n</button>'
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.complexOptions = '$scope.opts2 = [\n';
-    $scope.complexOptions += '    "opt1",\n';
-    $scope.complexOptions += '    {\n';
-    $scope.complexOptions += '        value: "opt2"\n';
-    $scope.complexOptions += '    },\n';
-    $scope.complexOptions += '    {\n';
-    $scope.complexOptions += '        value: "opt3",\n';
-    $scope.complexOptions += '        text: "Opt3",\n';
-    $scope.complexOptions += '    },\n';
-    $scope.complexOptions += '    {\n';
-    $scope.complexOptions += '        value: "opt4",\n';
-    $scope.complexOptions += '        translation: "option",\n';
-    $scope.complexOptions += '        selected: true\n';
-    $scope.complexOptions += '    }\n';
-    $scope.complexOptions += '];';
+    $scope.roundIconButton = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<button class="btn icon round">\n    <i class="fa fa-question-circle-o"></i>\n</button>'
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.dynamicOptions = $scope.opts1;
+    var groupedButtons = '<div class="grouped">\n';
+    groupedButtons += '    <button class="btn">button</button>\n';
+    groupedButtons += '    <button class="btn">button</button>\n';
+    groupedButtons += '    <button class="btn">button</button>\n';
+    groupedButtons += '    <button class="btn">button</button>\n';
+    groupedButtons += '    <button class="btn">button</button>\n';
+    groupedButtons += '    <button class="btn">button</button>\n';
+    groupedButtons += '</div>';
+    $scope.groupedButtons = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: groupedButtons
+            }
+        ],
+        result: "HTML"
+    }
 
-    $scope.opts3 = ['1opt', '2opt', '3opt'];
+    //CHECKBOX SECTION
 
-    $scope.scopeTexts = '$scope.texts = {\n';
-    $scope.scopeTexts += '    "en": {\n';
-    $scope.scopeTexts += '        "hello-world": "Hello world!!"\n';
-    $scope.scopeTexts += '    },\n';
-    $scope.scopeTexts += '    "es": {\n';
-    $scope.scopeTexts += '        "hello-world": "¡¡Hola mundo!!"\n';
-    $scope.scopeTexts += '    }\n';
-    $scope.scopeTexts += '}';
+    $scope.leftCheckbox = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<input type="checkbox" class="checkbox-left" id="check1"/>\n<label for="check1">checkbox</label>'
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.externalTexts = 'scope.texts = {\n';
-    $scope.externalTexts += '    "en": "en.json",\n';
-    $scope.externalTexts += '    "es": "es.json"\n';
-    $scope.externalTexts += '}';
+    $scope.rightCheckbox = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<input type="checkbox" class="checkbox-right" id="check2"/>\n<label for="check2">checkbox</label>'
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.fragment = "#main-index=components-tab&components-index=tabs-tab";
+    $scope.btnCheckbox = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<input type="checkbox" class="checkbox-btn" id="check3"/>\n<label for="check3">checkbox</label>'
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.headings = "<h1>h1</h1>\n<h2>h2</h2>\n<h3>h3</h3>\n<h4>h4</h4>\n<h5>h5</h5>\n<h6>h6</h6>";
+    var groupedCheckboxes = '<div class="grouped">\n';
+    groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check4"/>\n    <label for="check4">checkbox</label>\n';
+    groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check5"/>\n    <label for="check5">checkbox</label>\n';
+    groupedCheckboxes += '    <input type="checkbox" class="checkbox-btn" id="check6"/>\n    <label for="check6">checkbox</label>\n';
+    groupedCheckboxes += '</div>';
+    $scope.groupedCheckboxes = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: groupedCheckboxes
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.table = "<table>\n";
-    $scope.table += "    <thead>\n";
-    $scope.table += "        <tr>\n";
-    $scope.table += "            <th>th</th>\n";
-    $scope.table += "            <th>th</th>\n";
-    $scope.table += "            <th>th</th>\n";
-    $scope.table += "        </tr>\n";
-    $scope.table += "    </thead>\n";
-    $scope.table += "    <tbody>\n";
-    $scope.table += "        <tr>\n";
-    $scope.table += "            <td>td</td>\n";
-    $scope.table += "            <td>td</td>\n";
-    $scope.table += "            <td>td</td>\n";
-    $scope.table += "        </tr>\n";
-    $scope.table += "        <tr>\n";
-    $scope.table += "            <td>td</td>\n";
-    $scope.table += "            <td>td</td>\n";
-    $scope.table += "            <td>td</td>\n";
-    $scope.table += "        </tr>\n";
-    $scope.table += "        <tr>\n";
-    $scope.table += "            <td>td</td>\n";
-    $scope.table += "            <td>td</td>\n";
-    $scope.table += "            <td>td</td>\n";
-    $scope.table += "        </tr>\n";
-    $scope.table += "        <tr>\n";
-    $scope.table += "            <td>td</td>\n";
-    $scope.table += "            <td>td</td>\n";
-    $scope.table += "            <td>td</td>\n";
-    $scope.table += "        </tr>\n";
-    $scope.table += "    </tbody>\n";
-    $scope.table += "</table>";
+    //TAB SECTION
 
-    $scope.headerBar = "<div class='header-bar' style='background-color: lightgray;'>\n";
-    $scope.headerBar += "    <button class='btn'>button</button>\n";
-    $scope.headerBar += "    <a href='#'>link</a>\n";
-    $scope.headerBar += "    <span>span</span>\n";
-    $scope.headerBar += "</div>";
+    var tabsHorizontal = '<div class="tabs">\n';
+    tabsHorizontal += '    <div class="selected" data-lrv-tab="tab1-1">eng</div>\n    <div data-lrv-tab="tab1-2">esp</div>\n    <div data-lrv-tab="tab1-3">gal</div>\n'
+    tabsHorizontal += '</div>\n';
+    tabsHorizontal += '<div id="tab1-1" style="background-color: lightgray">Hello World!!</div>\n';
+    tabsHorizontal += '<div id="tab1-2" style="background-color: lightgray">¡¡Hola mundo!!</div>\n';
+    tabsHorizontal += '<div id="tab1-3" style="background-color: lightgray">Ola mundo!!</div>\n';
+    $scope.tabsHorizontal = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: tabsHorizontal,
+                resultNoPadding: true
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.paragraph = "<div style='border: 1px solid black;'>\n";
-    $scope.paragraph += "    <div class='paragraph' style='background-color: lightgray;'>\n        " + loremFistrum + "\n    </div>\n";
-    $scope.paragraph += "</div>\n";
-    $scope.paragraph += "<div style='border: 1px solid black;'>\n";
-    $scope.paragraph += "    <div style='background-color: lightgray;'>\n        " + loremFistrum + "\n    </div>\n";
-    $scope.paragraph += "</div>";
+    var tabsVertical = '<div class="tabs vertical">\n';
+    tabsVertical += '    <div class="selected" data-lrv-tab="tab2-1">eng</div>\n    <div data-lrv-tab="tab2-2">esp</div>\n    <div data-lrv-tab="tab2-3">gal</div>\n'
+    tabsVertical += '</div>\n';
+    tabsVertical += '<div id="tab2-1" style="background-color: lightgray">Hello World!!</div>\n';
+    tabsVertical += '<div id="tab2-2" style="background-color: lightgray">¡¡Hola mundo!!</div>\n';
+    tabsVertical += '<div id="tab2-3" style="background-color: lightgray">Ola mundo!!</div>';
+    $scope.tabsVertical = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: tabsVertical
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.indent = "<div class='indent' style='border: 1px solid black;'>\n    " + loremFistrum + "\n</div>\n";
-    $scope.indent += "<div style='border: 1px solid black;'>\n    " + loremFistrum + "\n</div>";
+    $scope.fragment = {
+        code: [
+            {
+                name: "fragment",
+                content: "#tab-container=tab-reference"
+            }
+        ]
+    };
 
-    $scope.leftRadioButton = '<input type="radio" name="rad1" class="radio-left" id="rad1"/>\n<label for="rad1">radio</label>';
+    $scope.thisFragment = {
+        code: [
+            {
+                name: "fragment",
+                content: "#main-index=components-tab&components-index=tabs-tab"
+            }
+        ]
+    };
 
-    $scope.rightRadioButton = '<input type="radio" name="rad2" class="radio-right" id="rad2"/>\n<label for="rad2">radio</label>';
+    //MODAL SECTION
 
-    $scope.btnRadioButton = '<input type="radio" name="rad3" class="radio-btn" id="rad3"/>\n<label for="rad3">radio</label>';
+    var simpleModal = '<div class="modal" id="simple-modal">\n';
+    simpleModal += '    <div class="modal-container">\n';
+    simpleModal += '        <div class="modal-header"></div>\n';
+    simpleModal += '        <div class="modal-body">' + loremFistrum + '</div>\n';
+    simpleModal += '        <div class="modal-footer"></div>\n';
+    simpleModal += '    </div>\n';
+    simpleModal += '</div>';
+    $scope.simpleModal = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: simpleModal,
+            }
+        ],
+        result: "HTML",
+        resultNoPadding: true
+    };
 
-    $scope.groupedRadioButtons = '<div class="grouped">\n';
-    $scope.groupedRadioButtons += '    <input type="radio" name="rad4" class="radio-btn" id="rad4"/>\n    <label for="rad4">radio</label>\n';
-    $scope.groupedRadioButtons += '    <input type="radio" name="rad4" class="radio-btn" id="rad5"/>\n    <label for="rad5">radio</label>\n';
-    $scope.groupedRadioButtons += '    <input type="radio" name="rad4" class="radio-btn" id="rad6"/>\n    <label for="rad6">radio</label>\n';
-    $scope.groupedRadioButtons += '</div>';
+    $scope.modalLauncher = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<button class="btn modal-launcher" data-lrv-modal="simple-modal">button</button>'
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.defaultGrid = '<div class="f-row" style="background-color: lightgray;">\n';
-    $scope.defaultGrid += '    <div style="background-color: cyan;">div</div>\n';
-    $scope.defaultGrid += '    <div style="background-color: yellow;">div</div>\n';
-    $scope.defaultGrid += '    <div style="background-color: magenta;">div</div>\n';
-    $scope.defaultGrid += '</div>';
+    var bodyModal = '<div class="modal" id="body-modal">\n';
+    bodyModal += '    <div class="modal-container">\n';
+    bodyModal += '        <div class="modal-body">' + loremFistrum + '</div>\n';
+    bodyModal += '    </div>\n';
+    bodyModal += '</div>';
+    $scope.bodyModal = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: bodyModal
+            }
+        ],
+        result: "HTML",
+        resultNoPadding: true
+    };
 
-    $scope.hEndGrid = '<div class="f-row h-end" style="background-color: lightgray;">\n';
-    $scope.hEndGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
-    $scope.hEndGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
-    $scope.hEndGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
-    $scope.hEndGrid += '</div>';
+    var closeModal = '<div class="modal" id="close-modal">\n';
+    closeModal += '    <div class="modal-container">\n';
+    closeModal += '        <div class="modal-body">\n';
+    closeModal += '           <button class="btn modal-closer" data-lrv-modal="close-modal">button</button>\n';
+    closeModal += '       </div>\n';
+    closeModal += '    </div>\n';
+    closeModal += '</div>';
+    $scope.closeModal = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: closeModal
+            }
+        ],
+        result: "HTML",
+        resultNoPadding: true
+    };
 
-    $scope.hCenterGrid = '<div class="f-row h-center" style="background-color: lightgray;">\n';
-    $scope.hCenterGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
-    $scope.hCenterGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
-    $scope.hCenterGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
-    $scope.hCenterGrid += '</div>';
+    //SELECT SECTION
 
-    $scope.hAroundGrid = '<div class="f-row h-around" style="background-color: lightgray;">\n';
-    $scope.hAroundGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
-    $scope.hAroundGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
-    $scope.hAroundGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
-    $scope.hAroundGrid += '</div>';
+    $scope.opts1 = {options:["opt1", "opt2", "opt3"]};
+    var simpleOpts = '<select class="select" data-lrv-model="opts1"></select>';
+    var simpleOptsJs = '$scope.opts1 = {\n';
+    simpleOptsJs += '    "options": ["opt1", "opt2", "opt3"]\n';
+    simpleOptsJs += '};';
+    $scope.simpleOpts = {
+        code: [
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: simpleOptsJs
+            },
+            {
+                name: "HTML",
+                language: "html",
+                content: simpleOpts
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.vEndGrid = '<div class="f-row v-end" style="background-color: lightgray;">\n';
-    $scope.vEndGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
-    $scope.vEndGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
-    $scope.vEndGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
-    $scope.vEndGrid += '</div>';
+    var jsonSyntax = '{\n';
+    jsonSyntax += '    "value": "opt",\n';
+    jsonSyntax += '    "text": "opt",\n';
+    jsonSyntax += '    "translation": "opt"\n';
+    jsonSyntax += '}';
+    $scope.jsonSyntax = {
+        code: [
+            {
+                name: "JSON",
+                language: "json",
+                content: jsonSyntax
+            }
+        ]
+    };
 
-    $scope.vCenterGrid = '<div class="f-row v-center" style="background-color: lightgray;">\n';
-    $scope.vCenterGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
-    $scope.vCenterGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
-    $scope.vCenterGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
-    $scope.vCenterGrid += '</div>';
+    $scope.opts2 = {
+        value: "opt4",
+        options: [
+            "opt1",
+            {
+                value: "opt2"
+            },
+            {
+                value: "opt3",
+                text: "Opt3"
+            },
+            {
+                value: "opt4",
+                translation: "option"
+            }
+        ]
+    };
+    var complexOptions = '<select class="select" data-lrv-model="opts2"></select>';
+    var complexOptionsJs = '$scope.opts2 = {\n';
+    complexOptionsJs += '    "value": "opt4",\n';
+    complexOptionsJs += '    "options": [\n';
+    complexOptionsJs += '        "opt1",\n';
+    complexOptionsJs += '        {\n';
+    complexOptionsJs += '            "value": "opt2"\n';
+    complexOptionsJs += '        },\n';
+    complexOptionsJs += '        {\n';
+    complexOptionsJs += '            "value": "opt3",\n';
+    complexOptionsJs += '            "text": "Opt3",\n';
+    complexOptionsJs += '        },\n';
+    complexOptionsJs += '        {\n';
+    complexOptionsJs += '            "value": "opt4",\n';
+    complexOptionsJs += '            "translation": "option"\n';
+    complexOptionsJs += '        }\n';
+    complexOptionsJs += '    ]\n';
+    complexOptionsJs += '};';
+    $scope.complexOptions = {
+        code: [
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: complexOptionsJs
+            },
+            {
+                name: "HTML",
+                language: "html",
+                content: complexOptions
+            }
+        ],
+        result: "HTML"
+    };
 
-    $scope.fullGrid = '<div class="f-row">\n';
-    $scope.fullGrid += '    <div class="f-1-1" style="background-color: cyan;">.f-1-1</div>\n';
-    $scope.fullGrid += '    <div class="f-1-2" style="background-color: yellow;">.f-1-2</div>\n';
-    $scope.fullGrid += '    <div class="f-1-2" style="background-color: magenta;">.f-1-2</div>\n';
-    $scope.fullGrid += '    <div class="f-1-4" style="background-color: magenta;">.f-1-4</div>\n';
-    $scope.fullGrid += '    <div class="f-3-4" style="background-color: cyan;">.f-3-4</div>\n';
-    $scope.fullGrid += '    <div class="f-1-8" style="background-color: cyan;">.f-1-8</div>\n';
-    $scope.fullGrid += '    <div class="f-7-8" style="background-color: yellow;">.f-7-8</div>\n';
-    $scope.fullGrid += '    <div class="f-3-8" style="background-color: magenta;">.f-3-8</div>\n';
-    $scope.fullGrid += '    <div class="f-5-8" style="background-color: cyan;">.f-5-8</div>\n';
-    $scope.fullGrid += '</div>';
-
-    $scope.coloredButtons = '<button class="btn blue">button</button>\n';
-    $scope.coloredButtons += '<button class="btn icon round red"><i class="fa fa-question-circle-o"></i></button>';
-
-    colorFactory.addColor("btn", "blue", ["#4444FF", "#44FFFF"]);
-    $scope.coloredButtonsJs = 'colorFactory.addColor("btn", "blue", ["#4444FF", "#44FFFF"]);\n';
-    colorFactory.addColor("btn", "red", "#FF4444");
-    $scope.coloredButtonsJs += 'colorFactory.addColor("btn", "red", "#FF4444");';
-
-    $scope.coloredCheckboxRadioButtons = '<input type="radio" name="color-radio1" class="radio-btn orange" id="color-radio1"/>\n<label for="color-radio1">radio</label>\n';
-    $scope.coloredCheckboxRadioButtons += '<input type="checkbox" class="checkbox-btn purple" id="color-checkbox1"/>\n<label for="color-checkbox1">checkbox</label>';
-
-    colorFactory.addColor("checkbox-btn", "orange", ["#775500", "#FF7755"]);
-    $scope.coloredCheckboxRadioButtonsJs = 'colorFactory.addColor("checkbox-btn", "orange", ["#4444FF", "#44FFFF"]);\n';
-    colorFactory.addColor("radio-btn", "purple", "#AA33FF");
-    $scope.coloredCheckboxRadioButtonsJs += 'colorFactory.addColor("radio-btn", "purple", "#FF4444");';
-
-    $scope.coloredCheckboxRadioLeftRight = '<input type="checkbox" class="checkbox-left gray" id="color-checkbox2">\n<label for="color-checkbox2">checkbox</label>\n';
-    $scope.coloredCheckboxRadioLeftRight += '<input type="radio" name="color-radio2" class="radio-right magenta" id="color-radio2"/>\n<label for="color-radio2">radio</label>\n';
-
-    colorFactory.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);
-    $scope.coloredCheckboxRadioLeftRightJs = 'colorFactory.addColor("checkbox-btn", "gray", ["#4444FF", "#44FFFF"]);\n';
-    colorFactory.addColor("radio-right", "magenta", "#FF00FF");
-    $scope.coloredCheckboxRadioLeftRightJs += 'colorFactory.addColor("radio-btn", "magenta", "#FF4444");';
-
-    $scope.coloredTabs = '<div class="tabs red">\n';
-    $scope.coloredTabs += '    <div class="selected" data-lrv-tab="null">tab</div>\n    <div data-lrv-tab="null">tab</div>\n    <div data-lrv-tab="null">tab</div>\n'
-    $scope.coloredTabs += '</div>';
-
-    colorFactory.addColor("tabs", "red", ["#FF4444", "#FFAAAA"]);
-    $scope.coloredTabsJs = 'colorFactory.addColor("checkbox-btn", "red", ["#FF4444", "#FFAAAA"]);';
-
-    $scope.coloredModal = '<div class="modal brown" id="color-modal">\n';
-    $scope.coloredModal += '    <div class="modal-container">\n';
-    $scope.coloredModal += '        <div class="modal-header"></div>\n';
-    $scope.coloredModal += '        <div class="modal-body">' + loremFistrum + '</div>\n';
-    $scope.coloredModal += '        <div class="modal-footer"></div>\n';
-    $scope.coloredModal += '    </div>\n';
-    $scope.coloredModal += '</div>';
-
-    colorFactory.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);
-    $scope.coloredModalJs = 'colorFactory.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);';
-
-    $scope.coloredSelectJs = "$scope.opts1 = ['opt1', 'opt2', 'opt3'];\n\n";
-    colorFactory.addColor("select", "blue", ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"]);
-    $scope.coloredSelectJs += 'colorFactory.addColor("select", "blue", ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"]);';
-
-    colorFactory.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);
-    $scope.coloredRangeJs += 'colorFactory.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);';
-
-    $scope.coloredTable = "<table class='pink'>\n";
-    $scope.coloredTable += "    <thead>\n";
-    $scope.coloredTable += "        <tr>\n";
-    $scope.coloredTable += "            <th>th</th>\n";
-    $scope.coloredTable += "            <th>th</th>\n";
-    $scope.coloredTable += "            <th>th</th>\n";
-    $scope.coloredTable += "        </tr>\n";
-    $scope.coloredTable += "    </thead>\n";
-    $scope.coloredTable += "    <tbody>\n";
-    $scope.coloredTable += "        <tr>\n";
-    $scope.coloredTable += "            <td>td</td>\n";
-    $scope.coloredTable += "            <td>td</td>\n";
-    $scope.coloredTable += "            <td>td</td>\n";
-    $scope.coloredTable += "        </tr>\n";
-    $scope.coloredTable += "        <tr>\n";
-    $scope.coloredTable += "            <td>td</td>\n";
-    $scope.coloredTable += "            <td>td</td>\n";
-    $scope.coloredTable += "            <td>td</td>\n";
-    $scope.coloredTable += "        </tr>\n";
-    $scope.coloredTable += "        <tr>\n";
-    $scope.coloredTable += "            <td>td</td>\n";
-    $scope.coloredTable += "            <td>td</td>\n";
-    $scope.coloredTable += "            <td>td</td>\n";
-    $scope.coloredTable += "        </tr>\n";
-    $scope.coloredTable += "        <tr>\n";
-    $scope.coloredTable += "            <td>td</td>\n";
-    $scope.coloredTable += "            <td>td</td>\n";
-    $scope.coloredTable += "            <td>td</td>\n";
-    $scope.coloredTable += "        </tr>\n";
-    $scope.coloredTable += "    </tbody>\n";
-    $scope.coloredTable += "</table>";
-
-    colorFactory.addColor("table", "pink", ["#5500AA", "#FAF0FA", "#FAD0FA"]);
-    $scope.coloredTableJs = 'colorFactory.addColor("table", "pink", ["#5500AA", "#FAF0FA", "#FAD0FA"]);';
-
+    var dynamicOptions1 = {options:['opt1', 'opt2', 'opt3']};
+    var dynamicOptions2 = {options:['1opt', '2opt', '3opt']};
+    $scope.dynamicOptions = dynamicOptions1;
     var changeOpts = false;
-
     $scope.switchOptions = function(){
         if(!changeOpts)
-            $scope.dynamicOptions = $scope.opts3;
+            $scope.dynamicOptions = dynamicOptions2;
         else
-            $scope.dynamicOptions = $scope.opts1;
+            $scope.dynamicOptions = dynamicOptions1;
         changeOpts = !changeOpts;
     }
+
+    $scope.opts3 = {options:['opt1', 'opt2', 'opt3']};
+
+    //MULTILANGUAGE SECTION
+
+    $scope.translate = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<div class="translate" data-lrv-model="lang"></div>'
+            }
+        ]
+    };
+
+    var scopeTexts = '$scope.lang = {\n';
+    scopeTexts += '    "texts": {\n';
+    scopeTexts += '        "en": {\n';
+    scopeTexts += '            "hello-world": "Hello world!!"\n';
+    scopeTexts += '        },\n';
+    scopeTexts += '        "es": {\n';
+    scopeTexts += '            "hello-world": "¡¡Hola mundo!!"\n';
+    scopeTexts += '        }\n';
+    scopeTexts += '    }\n';
+    scopeTexts += '}';
+    $scope.scopeTexts = {
+        code: [
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: scopeTexts
+            }
+        ]
+    };
+
+    var externalTexts = '$scope.lang = {\n';
+    externalTexts += '    "texts": {\n';
+    externalTexts += '        "en": "en.json",\n';
+    externalTexts += '        "es": "es.json"\n';
+    externalTexts += '    }\n';
+    externalTexts += '}';
+    $scope.externalTexts = {
+        code: [
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: externalTexts
+            }
+        ]
+    };
+
+    var selectedLang = '$scope.lang = {\n';
+    selectedLang += '    "value": "en",\n';
+    selectedLang += '    "texts": {\n';
+    selectedLang += '        "en": "en.json",\n';
+    selectedLang += '        "es": "es.json"\n';
+    selectedLang += '    }\n';
+    selectedLang += '}';
+    $scope.selectedLang = {
+        code: [
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: selectedLang
+            }
+        ]
+    };
+
+    var defaultLang = '$scope.lang = {\n';
+    defaultLang += '    "defaultLanguage": "en",\n';
+    defaultLang += '    "texts": {\n';
+    defaultLang += '        "en": "en.json",\n';
+    defaultLang += '        "es": "es.json"\n';
+    defaultLang += '    }\n';
+    defaultLang += '}';
+    $scope.defaultLang = {
+        code: [
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: defaultLang
+            }
+        ]
+    };
+
+    $scope.text = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<span class="text" data-lrv-text="hello-world"></span>'
+            }
+        ],
+        result: "HTML"
+    };
+
+    //HEADING SECTION
+
+    //TABLE SECTION
+
+    var table = '<table>\n';
+    table += '    <thead>\n';
+    table += '        <tr>\n';
+    table += '            <th>th</th>\n';
+    table += '            <th>th</th>\n';
+    table += '            <th>th</th>\n';
+    table += '        </tr>\n';
+    table += '    </thead>\n';
+    table += '    <tbody>\n';
+    table += '        <tr>\n';
+    table += '            <td>td</td>\n';
+    table += '            <td>td</td>\n';
+    table += '            <td>td</td>\n';
+    table += '        </tr>\n';
+    table += '        <tr>\n';
+    table += '            <td>td</td>\n';
+    table += '            <td>td</td>\n';
+    table += '            <td>td</td>\n';
+    table += '        </tr>\n';
+    table += '        <tr>\n';
+    table += '            <td>td</td>\n';
+    table += '            <td>td</td>\n';
+    table += '            <td>td</td>\n';
+    table += '        </tr>\n';
+    table += '        <tr>\n';
+    table += '            <td>td</td>\n';
+    table += '            <td>td</td>\n';
+    table += '            <td>td</td>\n';
+    table += '        </tr>\n';
+    table += '    </tbody>\n';
+    table += '</table>';
+    $scope.table = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: table
+            }
+        ],
+        result: "HTML"
+    };
+
+    //HEADER BAR SECTION
+
+    $scope.headings = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<h1>h1</h1>\n<h2>h2</h2>\n<h3>h3</h3>\n<h4>h4</h4>\n<h5>h5</h5>\n<h6>h6</h6>'
+            }
+        ],
+        result: "HTML"
+    };
+
+    var headerBar = '<div class="header-bar" style="background-color: lightgray;">\n';
+    headerBar += '    <button class="btn">button</button>\n';
+    headerBar += '    <a href="#">link</a>\n';
+    headerBar += '    <span>span</span>\n';
+    headerBar += '</div>';
+    $scope.headerBar = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: headerBar
+            }
+        ],
+        result: "HTML"
+    };
+
+    $scope.code = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<code>code</code> <span class="code">span</span>'
+            }
+        ],
+        result: "HTML"
+    };
+
+    //TEXT STYLE SECTION
+
+    var paragraph = '<div style="border: 1px solid black;">\n';
+    paragraph += '    <div class="paragraph" style="background-color: lightgray;">\n        ' + loremFistrum + '\n    </div>\n';
+    paragraph += '</div>\n';
+    paragraph += '<div style="border: 1px solid black;">\n';
+    paragraph += '    <div style="background-color: lightgray;">\n        ' + loremFistrum + '\n    </div>\n';
+    paragraph += '</div>';
+    $scope.paragraph = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: paragraph
+            }
+        ],
+        result: "HTML"
+    };
+
+    var indent = '<div class="indent" style="border: 1px solid black;">\n    ' + loremFistrum + '\n</div>\n';
+    indent += '<div style="border: 1px solid black;">\n    ' + loremFistrum + '\n</div>';
+    $scope.indent = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: indent
+            }
+        ],
+        result: "HTML"
+    };
+
+    //RADIO BUTTON SECTION
+
+    $scope.leftRadioButton = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<input type="radio" name="rad1" class="radio-left" id="rad1"/>\n<label for="rad1">radio</label>'
+            }
+        ],
+        result: "HTML"
+    };
+
+    $scope.rightRadioButton = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<input type="radio" name="rad2" class="radio-right" id="rad2"/>\n<label for="rad2">radio</label>'
+            }
+        ],
+        result: "HTML"
+    };
+
+    $scope.btnRadioButton = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<input type="radio" name="rad3" class="radio-btn" id="rad3"/>\n<label for="rad3">radio</label>'
+            }
+        ],
+        result: "HTML"
+    };
+
+    var groupedRadioButtons = '<div class="grouped">\n';
+    groupedRadioButtons += '    <input type="radio" name="rad4" class="radio-btn" id="rad4"/>\n    <label for="rad4">radio</label>\n';
+    groupedRadioButtons += '    <input type="radio" name="rad4" class="radio-btn" id="rad5"/>\n    <label for="rad5">radio</label>\n';
+    groupedRadioButtons += '    <input type="radio" name="rad4" class="radio-btn" id="rad6"/>\n    <label for="rad6">radio</label>\n';
+    groupedRadioButtons += '</div>';
+
+    $scope.groupedRadioButtons = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: groupedRadioButtons
+            }
+        ],
+        result: "HTML"
+    };
+
+    //GRID SECTION
+
+    var defaultGrid = '<div class="f-row" style="background-color: lightgray;">\n';
+    defaultGrid += '    <div style="background-color: cyan;">div</div>\n';
+    defaultGrid += '    <div style="background-color: yellow;">div</div>\n';
+    defaultGrid += '    <div style="background-color: magenta;">div</div>\n';
+    defaultGrid += '</div>';
+    $scope.defaultGrid  = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: defaultGrid
+            }
+        ],
+        result: "HTML"
+    };
+
+    var hEndGrid = '<div class="f-row h-end" style="background-color: lightgray;">\n';
+    hEndGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
+    hEndGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
+    hEndGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
+    hEndGrid += '</div>';
+    $scope.hEndGrid  = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: hEndGrid
+            }
+        ],
+        result: "HTML"
+    };
+
+    var hCenterGrid = '<div class="f-row h-center" style="background-color: lightgray;">\n';
+    hCenterGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
+    hCenterGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
+    hCenterGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
+    hCenterGrid += '</div>';
+    $scope.hCenterGrid  = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: hCenterGrid
+            }
+        ],
+        result: "HTML"
+    };
+
+    var hAroundGrid = '<div class="f-row h-around" style="background-color: lightgray;">\n';
+    hAroundGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
+    hAroundGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
+    hAroundGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
+    hAroundGrid += '</div>';
+    $scope.hAroundGrid  = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: hAroundGrid
+            }
+        ],
+        result: "HTML"
+    };
+
+    var vEndGrid = '<div class="f-row v-end" style="background-color: lightgray;">\n';
+    vEndGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
+    vEndGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
+    vEndGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
+    vEndGrid += '</div>';
+    $scope.vEndGrid  = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: vEndGrid
+            }
+        ],
+        result: "HTML"
+    };
+
+    var vCenterGrid = '<div class="f-row v-center" style="background-color: lightgray;">\n';
+    vCenterGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
+    vCenterGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
+    vCenterGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
+    vCenterGrid += '</div>';
+    $scope.vCenterGrid  = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: vCenterGrid
+            }
+        ],
+        result: "HTML"
+    };
+
+    var fullGrid = '<div class="f-row">\n';
+    fullGrid += '    <div class="f-1-1" style="background-color: cyan;">.f-1-1</div>\n';
+    fullGrid += '    <div class="f-1-2" style="background-color: yellow;">.f-1-2</div>\n';
+    fullGrid += '    <div class="f-1-2" style="background-color: magenta;">.f-1-2</div>\n';
+    fullGrid += '    <div class="f-1-4" style="background-color: magenta;">.f-1-4</div>\n';
+    fullGrid += '    <div class="f-3-4" style="background-color: cyan;">.f-3-4</div>\n';
+    fullGrid += '    <div class="f-1-8" style="background-color: cyan;">.f-1-8</div>\n';
+    fullGrid += '    <div class="f-7-8" style="background-color: yellow;">.f-7-8</div>\n';
+    fullGrid += '    <div class="f-3-8" style="background-color: magenta;">.f-3-8</div>\n';
+    fullGrid += '    <div class="f-5-8" style="background-color: cyan;">.f-5-8</div>\n';
+    fullGrid += '</div>';
+    $scope.fullGrid  = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: fullGrid
+            }
+        ],
+        result: "HTML"
+    };
+
+    //RANGE SECTION
+
+    var range = '<input type="range" class="range" min="0" max="100" data-lrv-model="range1"/>';
+    var rangeJs = '$scope.range1 = {\n';
+    rangeJs += '    "value": 50\n';
+    rangeJs += '};';
+    $scope.range = {
+        code: [
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: rangeJs
+            },
+            {
+                name: "HTML",
+                language: "html",
+                content: range
+            }
+        ],
+        result: "HTML"
+    };
+
+    $scope.range1 = {
+        value: 50
+    };
+    $scope.range2 = {
+        value: 0
+    };
+
+    //HELPER SECTION
+
+    $scope.icon = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<i class="fa fa-question-circle-o icon"></i><i class="fa fa-question-circle-o"></i>'
+            }
+        ],
+        result: "HTML"
+    };
+
+    $scope.hidden = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<span>1,</span> <span class="hidden">2,</span> <span>3</span>'
+            }
+        ],
+        result: "HTML"
+    };
+
+    //COLOR SECTION
+
+    var coloredButtons = '<button class="btn blue">button</button>\n';
+    coloredButtons += '<button class="btn icon round red"><i class="fa fa-question-circle-o"></i></button>';
+    colorFactory.addColor("btn", "blue", ["#4444FF", "#44FFFF"]);
+    var coloredButtonsJs = 'colorFactory.addColor("btn", "blue", ["#4444FF", "#44FFFF"]);\n';
+    colorFactory.addColor("btn", "red", "#FF4444");
+    coloredButtonsJs += 'colorFactory.addColor("btn", "red", "#FF4444");';
+    $scope.coloredButtons = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: coloredButtons
+            },
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: coloredButtonsJs
+            }
+        ],
+        result: "HTML"
+    };
+
+    var coloredCheckboxRadioButtons = '<input type="radio" name="color-radio1" class="radio-btn orange" id="color-radio1"/>\n<label for="color-radio1">radio</label>\n';
+    coloredCheckboxRadioButtons += '<input type="checkbox" class="checkbox-btn purple" id="color-checkbox1"/>\n<label for="color-checkbox1">checkbox</label>';
+    colorFactory.addColor("checkbox-btn", "orange", ["#775500", "#FF7755"]);
+    var coloredCheckboxRadioButtonsJs = 'colorFactory.addColor("checkbox-btn", "orange", ["#4444FF", "#44FFFF"]);\n';
+    colorFactory.addColor("radio-btn", "purple", "#AA33FF");
+    coloredCheckboxRadioButtonsJs += 'colorFactory.addColor("radio-btn", "purple", "#FF4444");';
+    $scope.coloredCheckboxRadioButtons = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: coloredCheckboxRadioButtons
+            },
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: coloredCheckboxRadioButtonsJs
+            }
+        ],
+        result: "HTML"
+    };
+
+    var coloredCheckboxRadioLeftRight = '<input type="checkbox" class="checkbox-left gray" id="color-checkbox2">\n<label for="color-checkbox2">checkbox</label>\n';
+    coloredCheckboxRadioLeftRight += '<input type="radio" name="color-radio2" class="radio-right magenta" id="color-radio2"/>\n<label for="color-radio2">radio</label>\n';
+    colorFactory.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);
+    var coloredCheckboxRadioLeftRightJs = 'colorFactory.addColor("checkbox-btn", "gray", ["#4444FF", "#44FFFF"]);\n';
+    colorFactory.addColor("radio-right", "magenta", "#FF00FF");
+    coloredCheckboxRadioLeftRightJs += 'colorFactory.addColor("radio-btn", "magenta", "#FF4444");';
+    $scope.coloredCheckboxRadioLeftRight = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: coloredCheckboxRadioLeftRight
+            },
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: coloredCheckboxRadioLeftRightJs
+            }
+        ],
+        result: "HTML"
+    };
+
+    var coloredTabs = '<div class="tabs red">\n';
+    coloredTabs += '    <div class="selected" data-lrv-tab="null">tab</div>\n    <div data-lrv-tab="null">tab</div>\n    <div data-lrv-tab="null">tab</div>\n'
+    coloredTabs += '</div>';
+    colorFactory.addColor("tabs", "red", ["#FF4444", "#FFAAAA"]);
+    $scope.coloredTabs = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: coloredTabs
+            },
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: 'colorFactory.addColor("checkbox-btn", "red", ["#FF4444", "#FFAAAA"]);'
+            }
+        ],
+        result: "HTML"
+    };
+
+    var coloredModal = '<div class="modal brown" id="color-modal">\n';
+    coloredModal += '    <div class="modal-container">\n';
+    coloredModal += '        <div class="modal-header"></div>\n';
+    coloredModal += '        <div class="modal-body">' + loremFistrum + '</div>\n';
+    coloredModal += '        <div class="modal-footer"></div>\n';
+    coloredModal += '    </div>\n';
+    coloredModal += '</div>';
+    colorFactory.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);
+    $scope.coloredModal = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: coloredModal
+            },
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: 'colorFactory.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);'
+            }
+        ],
+        result: "HTML",
+        resultNoPadding: true
+    };
+
+    $scope.copts = {options:['opt1', 'opt2', 'opt3']};
+    colorFactory.addColor("select", "blue", ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"]);
+    $scope.coloredSelect = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<select class="select blue" data-lrv-model="copts"></select>'
+            },
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: 'colorFactory.addColor("select", "blue", ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"]);'
+            }
+        ],
+        result: "HTML"
+    };
+
+    colorFactory.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);
+    $scope.colorRange = {value: 0};
+    $scope.coloredRange = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<input type="range" class="range green" min="0" max="100" data-lrv-model="colorRange"/>'
+            },
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: 'colorFactory.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);'
+            }
+        ],
+        result: "HTML"
+    };
+
+    var coloredTable = '<table class="pink">\n';
+    coloredTable += '    <thead>\n';
+    coloredTable += '        <tr>\n';
+    coloredTable += '            <th>th</th>\n';
+    coloredTable += '            <th>th</th>\n';
+    coloredTable += '            <th>th</th>\n';
+    coloredTable += '        </tr>\n';
+    coloredTable += '    </thead>\n';
+    coloredTable += '    <tbody>\n';
+    coloredTable += '        <tr>\n';
+    coloredTable += '            <td>td</td>\n';
+    coloredTable += '            <td>td</td>\n';
+    coloredTable += '            <td>td</td>\n';
+    coloredTable += '        </tr>\n';
+    coloredTable += '        <tr>\n';
+    coloredTable += '            <td>td</td>\n';
+    coloredTable += '            <td>td</td>\n';
+    coloredTable += '            <td>td</td>\n';
+    coloredTable += '        </tr>\n';
+    coloredTable += '        <tr>\n';
+    coloredTable += '            <td>td</td>\n';
+    coloredTable += '            <td>td</td>\n';
+    coloredTable += '            <td>td</td>\n';
+    coloredTable += '        </tr>\n';
+    coloredTable += '        <tr>\n';
+    coloredTable += '            <td>td</td>\n';
+    coloredTable += '            <td>td</td>\n';
+    coloredTable += '            <td>td</td>\n';
+    coloredTable += '        </tr>\n';
+    coloredTable += '    </tbody>\n';
+    coloredTable += '</table>';
+    colorFactory.addColor("table", "pink", ["#5500AA", "#FAF0FA", "#FAD0FA"]);
+    $scope.coloredTable = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: coloredTable
+            },
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: 'colorFactory.addColor("table", "pink", ["#5500AA", "#FAF0FA", "#FAD0FA"]);'
+            }
+        ],
+        result: "HTML"
+    };
 }]);
 
 app.directive("customCode", ["$compile", function($compile){
     return {
         restrict: "C",
+        scope: {
+            model: "=customModel"
+        },
         compile: function(tElement, tAttributes){
             return {
                 pre: function(scope, element, attributes){
                     var id = element.attr("id");
-                    var contents = element.contents();
-                    var codes = [];
-                    var result = null;
-                    var hasResult = false;
                     var tabContainer = angular.element("<span class='tabs'></span>");
-                    var showOnlyOneTab = element.attr("data-custom-only-one-tab") != undefined ? element.attr("data-custom-only-one-tab") == "true" : false;
                     var container = angular.element("<div class='custom-code-element'></div>");
                     element.replaceWith(container);
                     container.append(tabContainer);
-                    for(var i = 0; i < contents.length; i++){
-                        var el = angular.element(contents[i]);
-                        var type = el.attr("data-custom-type");
-                        if(type == "code"){
-                            var reference = el.attr("data-custom-name");
-                            var variable = el.attr("data-custom-variable");
-                            var content = variable == undefined ? el.html() : scope[variable];
-                            codes.push({"name": el.attr("data-custom-name"), "contents": content});
-                            var selected = "";
-                            if(tabContainer.children().length == 0)
-                                selected = " class='selected'";
-                            tabContainer.append(angular.element("<span data-lrv-tab='" + id + "-" + reference + "'" + selected + ">" + reference + "</span>"));
-                            var language = el.attr("data-custom-language");
-                            var hl = angular.element("<div class='custom-entry-code' id='" + id + "-" + reference + "' hljs></div>");
-                            if(language != undefined)
-                                hl.attr("hljs-language", language);
-                            if(variable != undefined)
-                                hl.attr("hljs-source", variable);
-                            else
-                                hl.append(content);
-                            container.append(hl);
-                            $compile(hl)(scope);
-                        }
-                        else if(type == "result" && !hasResult){
-                            var variable = el.attr("data-custom-variable");
-                            var content = variable == undefined ? el.html() : scope[variable];
-                            result = {"contents": content, "reference": el.attr("data-custom-reference"), "options": el.attr("data-custom-options")};
-                            hasResult = true;
-                        }
+                    for(var i = 0; i < scope.model.code.length; i++){
+                        var code = scope.model.code[i];
+                        var selected = "";
+                        if(i == 0)
+                            selected = " class='selected'";
+                        tabContainer.append(angular.element("<span data-lrv-tab='" + id + "-" + code.name + "'" + selected + ">" + code.name + "</span>"));
+                        var hl = angular.element("<div class='custom-entry-code' id='" + id + "-" + code.name + "' hljs></div>");
+                        if(code.language != undefined)
+                            hl.attr("hljs-language", code.language);
+                        hl.attr("hljs-source", "'" + code.content + "'");
+                        container.append(hl);
+                        $compile(hl)(scope);
                     }
-                    if(codes.length == 1 && !showOnlyOneTab)
+                    if(scope.model.code.length == 1 && (scope.model.showTabs == undefined || !scope.model.showTabs))
                         tabContainer.remove();
-                    if(hasResult){
+                    else
+                        $compile(tabContainer)(scope);
+                    if(scope.model.result != undefined){
                         var resultContainer = angular.element("<div></div>");
-                        var codeId = result["reference"];
-                        var options = result["options"] != undefined ? result["options"].split(" ") : [];
-                        if(codeId == undefined)
-                            result = result["contents"];
-                        else {
-                            for(var i = 0; i < codes.length; i++){
-                                if(codeId == codes[i]["name"])
-                                    result = codes[i]["contents"];
+                        for(var i = 0; i < scope.model.code.length; i++){
+                            var code = scope.model.code[i];
+                            if(scope.model.result == code.name){
+                                resultContainer.append(code.content);
+                                break;
                             }
                         }
-                        resultContainer.append(result);
                         container.prepend(resultContainer);
-                        $compile(resultContainer)(scope);
-                        if(options.indexOf("no-padding") != -1)
+                        $compile(resultContainer)(scope.$parent);
+                        if(scope.model.resultNoPadding != undefined && scope.model.resultNoPadding )
                             resultContainer.addClass("custom-no-padding");
                     }
-                    $compile(tabContainer)(scope);
                 }
             }
         }
