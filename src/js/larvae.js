@@ -548,12 +548,8 @@ larvae.directive("modalLauncher", function(){
     return {
         restrict: "C",
         link: function(scope, element, attributes){
-            element.on("click", function(){
-                modal_id = element.attr("data-lrv-modal");
-                modal = document.getElementById(modal_id);
-                angular.element(modal).addClass("show");
-                angular.element(document.querySelector("body")).addClass("modal-open");
-            });
+            var modal = angular.element(document.getElementById(element.attr("data-lrv-modal"))).controller("modal");
+            element.on("click", modal.open);
         }
     }
 });
@@ -561,12 +557,20 @@ larvae.directive("modalLauncher", function(){
 larvae.directive("modal", function(){
     return {
         restrict: "C",
-        link: function(scope, element, attributes){
-            element.addClass("modal");
+        controller: ["$element", function(element){
+            this.open = function(){
+                element.addClass("show");
+                angular.element(document.querySelector("body")).addClass("modal-open");
+            }
+            this.close = function(){
+                element.removeClass("show");
+                angular.element(document.querySelector("body")).removeClass("modal-open");
+            }
+        }],
+        link: function(scope, element, attributes, modal){
             element.on("click", function(event){
                 if(event.target == element[0]){
-                    element.removeClass("show");
-                    angular.element(document.querySelector("body")).removeClass("modal-open");
+                    modal.close();
                 }
             });
         }
@@ -592,12 +596,8 @@ larvae.directive("modalCloser", function(){
     return {
         restrict: "C",
         link: function(scope, element, attributes){
-            element.on("click", function(event){
-                modal_id = element.attr("data-lrv-modal");
-                modal = document.getElementById(modal_id);
-                angular.element(modal).removeClass("show");
-                angular.element(document.querySelector("body")).removeClass("modal-open");
-            });
+            var modal = angular.element(document.getElementById(element.attr("data-lrv-modal"))).controller("modal");
+            element.on("click", modal.close);
         }
     }
 });
