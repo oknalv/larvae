@@ -4,8 +4,10 @@ larvae.factory("colorFactory", function(){
     var style = angular.element("<style></style>");
     angular.element(document.getElementsByTagName("head")[0]).append(style);
     var colors = {};
+    var isDefaultSet = false;
 
     var addColor = function(className, name, color){
+        isDefaultSet = true;
         var name = name[0] == "." ? name : "." + name;
         var className = className == "checkbox-btn" || className == "radio-btn" ? "checkbox-radio-btn" : className;
         className = className == "checkbox-left" || className == "radio-left" || className == "checkbox-right" || className == "radio-right"? "checkbox-radio" : className;
@@ -14,9 +16,19 @@ larvae.factory("colorFactory", function(){
             colors[className] = [];
         if(colors[className].indexOf(name) == -1){
             colors[className].push(name);
-            getColorClasses[className](name, color);
+            style.html(style.html() + getColorClasses[className](name, color));
         }
     };
+
+    var setDefaultColors = function(rules){
+        if(!isDefaultSet){
+            var keys = Object.keys(rules);
+            for(var i = 0; i < keys.length; i++){
+                style.html(style.html() + getColorClasses[keys[i]]("",rules[keys[i]]))
+            }
+        }
+        isDefaultSet = true;
+    }
 
     var getColorClasses = {
         "btn": function(name, color){
@@ -41,7 +53,7 @@ larvae.factory("colorFactory", function(){
                     "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
                 }
             });
-            style.html(style.html() + css);
+            return css;
         },
         "checkbox-radio-btn": function(name, color){
             var color1 = color[0];
@@ -86,7 +98,7 @@ larvae.factory("colorFactory", function(){
                     "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
                 }
             });
-            style.html(style.html() + css);
+            return css;
         },
         "checkbox-radio": function(name, color){
             var color1 = color[0];
@@ -144,7 +156,7 @@ larvae.factory("colorFactory", function(){
                     "box-shadow": "inset 0 0 0 3px " + color2
                 }
             });
-            style.html(style.html() + css);
+            return css;
         },
         "tabs": function(name, color){
             var color1 = color[0];
@@ -166,7 +178,7 @@ larvae.factory("colorFactory", function(){
                     "box-shadow": "inset 0 -3px " + color1
                 }
             });
-            style.html(style.html() + css);
+            return css;
         },
         "modal": function(name, color){
             var color1 = color[0];
@@ -217,7 +229,7 @@ larvae.factory("colorFactory", function(){
                     "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
                 }
             });
-            style.html(style.html() + css);
+            return css;
         },
         "select": function(name, color){
             var color1 = color[0];
@@ -281,7 +293,7 @@ larvae.factory("colorFactory", function(){
                     "background-color": color2
                 }
             });
-            style.html(style.html() + css);
+            return css;
         },
         "range": function(name, color){
             var color1 = color[0];
@@ -337,7 +349,7 @@ larvae.factory("colorFactory", function(){
                     "border-color": color1 + " transparent transparent transparent"
                 }
             });
-            style.html(style.html() + css);
+            return css;
         },
         "table": function(name, color){
             var color1 = color[0];
@@ -365,7 +377,7 @@ larvae.factory("colorFactory", function(){
                     "background-color": color3
                 }
             });
-            style.html(style.html() + css);
+            return css;
         }
     }
 
@@ -396,6 +408,7 @@ larvae.factory("colorFactory", function(){
     }
 
     return {
+        setDefaultColors: setDefaultColors,
         addColor: addColor
     }
 })

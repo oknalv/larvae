@@ -488,8 +488,6 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
         result: "HTML"
     };
 
-    //HEADING SECTION
-
     //TABLE SECTION
 
     var table = '<table>\n';
@@ -833,6 +831,26 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
 
     //COLOR SECTION
 
+    var defaultColors = 'colorFactory.setDefaultColors({\n';
+    defaultColors += '    "btn": ["#4444FF", "#44FFFF"],\n';
+    defaultColors += '    "checkbox-radio-btn": ["#4444FF", "#44FFFF"],\n';
+    defaultColors += '    "checkbox-radio": ["#4444FF", "#44FFFF"],\n';
+    defaultColors += '    "modal": ["#855555", "#FFFF77", "#FFFF77"],\n';
+    defaultColors += '    "select": ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"],\n';
+    defaultColors += '    "range": ["#003300", "#00AA00", "#AAFFAA"],\n';
+    defaultColors += '    "table": ["#5500AA", "#FAF0FA", "#FAD0FA"],\n';
+    defaultColors += '    "tabs": ["#FF4444", "#FFAAAA"]\n';
+    defaultColors += '});';
+    $scope.defaultColors = {
+        code: [
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: defaultColors
+            }
+        ]
+    };
+
     var coloredButtons = '<button class="btn blue">button</button>\n';
     coloredButtons += '<button class="btn icon round red"><i class="fa fa-question-circle-o"></i></button>';
     colorFactory.addColor("btn", "blue", ["#4444FF", "#44FFFF"]);
@@ -858,9 +876,9 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     var coloredCheckboxRadioButtons = '<input type="radio" name="color-radio1" class="radio-btn orange" id="color-radio1"/>\n<label for="color-radio1">radio</label>\n';
     coloredCheckboxRadioButtons += '<input type="checkbox" class="checkbox-btn purple" id="color-checkbox1"/>\n<label for="color-checkbox1">checkbox</label>';
     colorFactory.addColor("checkbox-btn", "orange", ["#775500", "#FF7755"]);
-    var coloredCheckboxRadioButtonsJs = 'colorFactory.addColor("checkbox-btn", "orange", ["#4444FF", "#44FFFF"]);\n';
+    var coloredCheckboxRadioButtonsJs = 'colorFactory.addColor("checkbox-btn", "orange", ["#775500", "#FF7755"]);\n';
     colorFactory.addColor("radio-btn", "purple", "#AA33FF");
-    coloredCheckboxRadioButtonsJs += 'colorFactory.addColor("radio-btn", "purple", "#FF4444");';
+    coloredCheckboxRadioButtonsJs += 'colorFactory.addColor("radio-btn", "purple",  "#AA33FF");';
     $scope.coloredCheckboxRadioButtons = {
         code: [
             {
@@ -880,9 +898,9 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     var coloredCheckboxRadioLeftRight = '<input type="checkbox" class="checkbox-left gray" id="color-checkbox2">\n<label for="color-checkbox2">checkbox</label>\n';
     coloredCheckboxRadioLeftRight += '<input type="radio" name="color-radio2" class="radio-right magenta" id="color-radio2"/>\n<label for="color-radio2">radio</label>\n';
     colorFactory.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);
-    var coloredCheckboxRadioLeftRightJs = 'colorFactory.addColor("checkbox-btn", "gray", ["#4444FF", "#44FFFF"]);\n';
+    var coloredCheckboxRadioLeftRightJs = 'colorFactory.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);\n';
     colorFactory.addColor("radio-right", "magenta", "#FF00FF");
-    coloredCheckboxRadioLeftRightJs += 'colorFactory.addColor("radio-btn", "magenta", "#FF4444");';
+    coloredCheckboxRadioLeftRightJs += 'colorFactory.addColor("radio-right", "magenta", "#FF00FF");';
     $scope.coloredCheckboxRadioLeftRight = {
         code: [
             {
@@ -913,7 +931,7 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
             {
                 name: "JavaScript",
                 language: "javascript",
-                content: 'colorFactory.addColor("checkbox-btn", "red", ["#FF4444", "#FFAAAA"]);'
+                content: 'colorFactory.addColor("tabs", "red", ["#FF4444", "#FFAAAA"]);'
             }
         ],
         result: "HTML"
