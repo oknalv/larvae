@@ -34,7 +34,8 @@ larvae.factory("colorFactory", function(){
         "btn": function(name, color){
             var color1 = color[0];
             var color2 = color.length > 1 ? color[1] : "white";
-            var rgb = hexToRgb(color1);
+            var rgb = color1 != "transparent" ? hexToRgb(color1) : null;
+            var rgba = rgb != null ? "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)" : "transparent";
             var css = getCss({
                 head: ".btn" + name,
                 rules: {
@@ -45,12 +46,12 @@ larvae.factory("colorFactory", function(){
             }) + getCss({
                 head: ".btn" + name + ":hover",
                 rules: {
-                    "box-shadow": "0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                    "box-shadow": "0 0 10px " + rgba
                 }
             }) + getCss({
                 head: ".btn" + name + ":active",
                 rules: {
-                    "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                    "box-shadow": "inset 0 0 10px " + rgba
                 }
             });
             return css;
@@ -58,7 +59,8 @@ larvae.factory("colorFactory", function(){
         "checkbox-radio-btn": function(name, color){
             var color1 = color[0];
             var color2 = color.length > 1 ? color[1] : "white";
-            var rgb = hexToRgb(color1);
+            var rgb = color1 != "transparent" ? hexToRgb(color1) : null;
+            var rgba = rgb != null ? "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)" : "transparent";
             var css = getCss({
                 head: [
                     ".checkbox-btn" + name + "+label",
@@ -75,7 +77,7 @@ larvae.factory("colorFactory", function(){
                     ".radio-btn" + name + "+label:hover"
                 ],
                 rules: {
-                    "box-shadow": "0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                    "box-shadow": "0 0 10px " + rgba
                 }
             }) + getCss({
                 head: [
@@ -83,7 +85,7 @@ larvae.factory("colorFactory", function(){
                     ".radio-btn" + name + ":checked+label:hover"
                 ],
                 rules: {
-                    "box-shadow": "inset 0 0 20px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                    "box-shadow": "inset 0 0 20px " + rgba
                 }
             }) + getCss({
                 head: [
@@ -95,7 +97,7 @@ larvae.factory("colorFactory", function(){
                     ".radio-btn" + name + ":checked+label:active"
                 ],
                 rules: {
-                    "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                    "box-shadow": "inset 0 0 10px " + rgba
                 }
             });
             return css;
@@ -103,7 +105,8 @@ larvae.factory("colorFactory", function(){
         "checkbox-radio": function(name, color){
             var color1 = color[0];
             var color2 = color.length > 1 ? color[1] : "white";
-            var rgb = hexToRgb(color1);
+            var rgb = color1 != "transparent" ? hexToRgb(color1) : null;
+            var rgba = rgb != null ? "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)" : "transparent";
             var css = getCss({
                 head: [
                     ".checkbox-left" + name + "+label:before",
@@ -124,7 +127,7 @@ larvae.factory("colorFactory", function(){
                     ".radio-right" + name + "+label:hover:after"
                 ],
                 rules: {
-                    "box-shadow": "inset 0 0 0 3px " + color2 + ", 0px 0px 5px rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", .75)"
+                    "box-shadow": "inset 0 0 0 3px " + color2 + ", 0px 0px 5px " + rgba
                 }
             }) + getCss({
                 head: [
@@ -138,7 +141,7 @@ larvae.factory("colorFactory", function(){
                     ".radio-right" + name + ":checked+label:hover:after"
                 ],
                 rules: {
-                    "box-shadow": "inset 0 0 1px 1px rgba(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ", .75), inset 0 0 0 3px " + color2
+                    "box-shadow": "inset 0 0 1px 1px " + rgba + ", inset 0 0 0 3px " + color2
                 }
             }) + getCss({
                 head: [
@@ -161,7 +164,6 @@ larvae.factory("colorFactory", function(){
         "tabs": function(name, color){
             var color1 = color[0];
             var color2 = color[1];
-            var rgb = hexToRgb(color1);
             var css = getCss({
                 head: [
                     ".tabs" + name + ">.tab:after"
@@ -185,7 +187,8 @@ larvae.factory("colorFactory", function(){
             var color2 = color[1];
             var color3 = color.length > 2 ? color[2] : "white";
             var color4 = color.length > 3 ? color[3] : color[0];
-            var rgb = hexToRgb(color2);
+            var rgb = color2 != "transparent" ? hexToRgb(color2) : null;
+            var rgba = rgb != null ? "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)" : "transparent";
             var css = getCss({
                 head: [
                     ".modal" + name + ">.modal-container>.modal-header"
@@ -219,14 +222,14 @@ larvae.factory("colorFactory", function(){
                     ".modal" + name + ">.modal-container .modal-x:hover"
                 ],
                 rules: {
-                    "box-shadow": "0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                    "box-shadow": "0 0 10px " + rgba
                 }
             }) + getCss({
                 head: [
                     ".modal" + name + ">.modal-container .modal-x:active"
                 ],
                 rules: {
-                    "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                    "box-shadow": "inset 0 0 10px " + rgba
                 }
             });
             return css;
