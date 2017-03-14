@@ -39,6 +39,8 @@
   "modals-body": "Los elementos con las clases <code>.modal-header</code> y <code>modal-footer</code> son opcionales, por lo que se puede omitir.",
   "launch-example": "Lanzar ejemplo",
   "modals-close": "La última direciva es <code>.modal-closer</code>. Utiliza el atributo <code>data-lrv-modal</code> con el id del modal también. Puedes poner un elemento con esta clase dentro de un modal para cerrarlo.",
+  "controller": "Controlador",
+  "modals-controller": "Si quieres abrir o cerrar un modal desde JavaScript, el controlador de esta directiva tiene dos métodos: <code>open()</code>, para abrirlo, y <code>close()</code>, para cerrarlo.",
   "selects": "Selects",
   "selects-introduction": "Los selects deben ser declarados con la directiva <code>.select</code>. La directiva oculta el select original y genera un elemento que hace de select. Esta directiva es más compleja que otras. El select debe tener el atributo <code>data-lrv-model</code> con el nombre de una variable dentro del scope del controlador de la aplicación. Esta variable contendrá un objeto con al menos la clave <code>options</code> con las opciones del select y opcionalmente la clave <code>value</code> con el valor de una de las opciones. La sintaxis básica del valor de la clave <code>options</code> es un array de strings, uno por cada opción:",
   "selects-objects": "Pero esta sintaxis no permite hacer muchas cosas. En lugar de usar un array de strings, puedes utilizar un array de objetos con la siguiente sintaxis:",

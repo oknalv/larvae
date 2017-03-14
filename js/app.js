@@ -292,6 +292,17 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
         resultNoPadding: true
     };
 
+    $scope.controllerModal = {
+        code: [
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: 'angular.element(document.getElementById("id")).controller("modal").open();\nangular.element(document.getElementById("id")).controller("modal").close();'
+            }
+        ]
+    };
+
+
     //SELECT SECTION
 
     $scope.opts1 = {options:["opt1", "opt2", "opt3"]};
