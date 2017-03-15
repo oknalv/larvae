@@ -685,18 +685,16 @@ code,
 
 .message > div {
     background-color: lightgray;
-    min-height: 30px;
     border-radius: 4px;
     width: 100%;
     padding: 5px;
     transition: opacity 1s linear;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
 }
 
 .message > div.fade {
     opacity: 0;
-}
-
-.message > div > span.close {
-    width: calc(100% - 30px);
-    display: inline-block;
 }
