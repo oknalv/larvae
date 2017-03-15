@@ -1063,7 +1063,8 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     $scope.addMessage = function(){
         var message = {
             text: "hello-world",
-            classes: "error"
+            classes: "error",
+            time: 1000
         };
         angular.element(document.getElementById("message1")).controller("message").message(message);
     }

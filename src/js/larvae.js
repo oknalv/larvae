@@ -839,7 +839,7 @@ larvae.directive("range", ["$compile", function($compile){
 larvae.directive("message", function(){
     return {
         restrict: "C",
-        controller: ["$scope", "$element", "$compile", function(scope, element, $compile){
+        controller: ["$scope", "$element", "$compile", "$timeout", function(scope, element, $compile, $timeout){
             this.message = function(message){
                 var messageDiv = angular.element("<div></div>");
                 if(message.translation != undefined){
@@ -852,6 +852,14 @@ larvae.directive("message", function(){
                     messageDiv.addClass(message.classes);
                 element.append(messageDiv);
                 $compile(messageDiv)(scope);
+                if(message.time != undefined){
+                    messageDiv.bind("transitionend", function(){
+                        messageDiv.remove();
+                    });
+                    $timeout(function(){
+                        messageDiv.addClass("fade");
+                    }, message.time);
+                }
             }
         }]
     }
