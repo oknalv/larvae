@@ -212,21 +212,21 @@ larvae.factory("colorFactory", function(){
                 }
             }) + getCss({
                 head: [
-                    ".modal" + name + ">.modal-container .modal-x"
+                    ".modal" + name + ">.modal-container>.modal-header>.close"
                 ],
                 rules: {
                     "color": color2,
                 }
             }) + getCss({
                 head: [
-                    ".modal" + name + ">.modal-container .modal-x:hover"
+                    ".modal" + name + ">.modal-container>.modal-header>.close:hover"
                 ],
                 rules: {
                     "box-shadow": "0 0 10px " + rgba
                 }
             }) + getCss({
                 head: [
-                    ".modal" + name + ">.modal-container .modal-x:active"
+                    ".modal" + name + ">.modal-container>.modal-header>.close:active"
                 ],
                 rules: {
                     "box-shadow": "inset 0 0 10px " + rgba
@@ -239,7 +239,8 @@ larvae.factory("colorFactory", function(){
             var color2 = color[1];
             var color3 = color[2];
             var color4 = color.length > 3 ? color[3] : "white";
-            var rgb = hexToRgb(color1);
+            var rgb = color1 != "transparent" ? hexToRgb(color1) : null;
+            var rgba = rgb != null ? "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)" : "transparent";
             var css = getCss({
                 head: [
                     ".select" + name + "+.span-select>.span-select-value"
@@ -254,21 +255,21 @@ larvae.factory("colorFactory", function(){
                     ".select" + name + "+.span-select>.span-select-value:hover"
                 ],
                 rules: {
-                    "box-shadow": "0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                    "box-shadow": "0 0 10px " + rgba
                 }
             }) + getCss({
                 head: [
                     ".select" + name + "+.span-select>.span-select-value:focus"
                 ],
                 rules: {
-                    "box-shadow": "inset 0 0 10px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                    "box-shadow": "inset 0 0 10px " + rgba
                 }
             }) + getCss({
                 head: [
                     ".select" + name + "+.span-select>.span-select-options"
                 ],
                 rules: {
-                    "box-shadow": "0 1px 3px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)",
+                    "box-shadow": "0 1px 3px " + rgba,
                     "color": color1,
                     "border-color": color1,
                     "background-color": color4
@@ -278,7 +279,7 @@ larvae.factory("colorFactory", function(){
                     ".select" + name + "+.span-select>.span-select-options.show.up"
                 ],
                 rules: {
-                    "box-shadow": "0 -1px 3px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                    "box-shadow": "0 -1px 3px " + rgba
                 }
             }) + getCss({
                 head: [
@@ -302,7 +303,8 @@ larvae.factory("colorFactory", function(){
             var color1 = color[0];
             var color2 = color[1];
             var color3 = color[2];
-            var rgb = hexToRgb(color1);
+            var rgb = color1 != "transparent" ? hexToRgb(color1) : null;
+            var rgba = rgb != null ? "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)" : "transparent";
             var css = getCss({
                 head: [
                     ".range" + name + "+.span-range-container>.span-range:before"
@@ -325,14 +327,14 @@ larvae.factory("colorFactory", function(){
                     ".range" + name + "+.span-range-container>.span-range>.span-range-bar:active+.span-range-dot"
                 ],
                 rules: {
-                    "box-shadow": "inset 0px 0px 4px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)"
+                    "box-shadow": "inset 0px 0px 4px " + rgba
                 }
             }) + getCss({
                 head: [
                     ".range" + name + "+.span-range-container>.span-range>.span-range-value"
                 ],
                 rules: {
-                    "box-shadow": "0px 1px 3px rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)",
+                    "box-shadow": "0px 1px 3px " + rgba,
                     "border-color": color1,
                     "color": color1,
                     "background-color": color3
@@ -385,6 +387,8 @@ larvae.factory("colorFactory", function(){
         "message": function(name, color){
             var color1 = color[0];
             var color2 = color[1];
+            var rgb = color2 != "transparent" ? hexToRgb(color2) : null;
+            var rgba = rgb != null ? "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)" : "transparent";
             var css = getCss({
                 head: [
                     ".message>div" + name
@@ -392,6 +396,27 @@ larvae.factory("colorFactory", function(){
                 rules: {
                     "background-color": color1,
                     "color": color2
+                }
+            }) + getCss({
+                head: [
+                    ".message>div" + name + ">.btn.icon.round.close"
+                ],
+                rules: {
+                    "color": color2
+                }
+            }) + getCss({
+                head: [
+                    ".message>div" + name + ">.btn.icon.round.close:hover"
+                ],
+                rules: {
+                    "box-shadow": "0 0 10px " + rgba
+                }
+            }) + getCss({
+                head: [
+                    ".message>div" + name + ">.btn.icon.round.close:active"
+                ],
+                rules: {
+                    "box-shadow": "inset 0 0 10px " + rgba
                 }
             });
             return css;
@@ -595,8 +620,8 @@ larvae.directive("modalHeader", ["$compile", function($compile){
     return {
         restrict: "C",
         link: function(scope, element, attributes){
-            button = angular.element(
-                '<button class="btn icon round modal-x modal-closer" data-lrv-modal="' +
+            var button = angular.element(
+                '<button class="btn icon round close modal-closer" data-lrv-modal="' +
                 element.parent().parent().attr("id") +
                 '"><i class="fa fa-close"></i></button>'
             );
@@ -842,12 +867,14 @@ larvae.directive("message", function(){
         controller: ["$scope", "$element", "$compile", "$timeout", function(scope, element, $compile, $timeout){
             this.message = function(message){
                 var messageDiv = angular.element("<div></div>");
+                var messageSpan = angular.element("<span></span>");
+                messageDiv.append(messageSpan);
                 if(message.translation != undefined){
-                    messageDiv.addClass("text");
-                    messageDiv.attr("data-lrv-text", message.translation);
+                    messageSpan.addClass("text");
+                    messageSpan.attr("data-lrv-text", message.translation);
                 }
                 else
-                    messageDiv.html(message.text);
+                    messageSpan.html(message.text);
                 if(message.classes != undefined)
                     messageDiv.addClass(message.classes);
                 element.append(messageDiv);
@@ -859,6 +886,14 @@ larvae.directive("message", function(){
                     $timeout(function(){
                         messageDiv.addClass("fade");
                     }, message.time);
+                }
+                else if(message.close != undefined && message.close){
+                    messageSpan.addClass("close");
+                    var button = angular.element("<button class='btn icon round close'><i class='fa fa-close'></i></button>")
+                    messageDiv.append(button);
+                    button.bind("click",function(){
+                        messageDiv.remove();
+                    });
                 }
             }
         }]

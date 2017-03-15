@@ -121,6 +121,15 @@ button::-moz-focus-inner {
     border: none;
 }
 
+.btn.icon.close {
+    float: right;
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    font-size: 1rem !important;
+    background-color: transparent;
+}
+
 /* helper section*/
 
 .icon {
@@ -356,15 +365,6 @@ body.modal-open{
 .modal > .modal-container > .modal-body:last-of-type {
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
-}
-
-.modal > .modal-container .modal-x {
-    float: right;
-    height: 30px;
-    width: 30px;
-    padding: 0;
-    font-size: 1rem !important;
-    background-color: transparent;
 }
 
 /* checkbox and radio section */
@@ -685,6 +685,7 @@ code,
 
 .message > div {
     background-color: lightgray;
+    min-height: 30px;
     border-radius: 4px;
     width: 100%;
     padding: 5px;
@@ -693,4 +694,9 @@ code,
 
 .message > div.fade {
     opacity: 0;
+}
+
+.message > div > span.close {
+    width: calc(100% - 30px);
+    display: inline-block;
 }
