@@ -37,6 +37,7 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     $scope.radioButtonsTab = "sections/radio-buttons.html";
     $scope.gridTab = "sections/grid.html";
     $scope.colorsTab = "sections/colors.html";
+    $scope.messagesTab = "sections/messages.html";
 
     //VARIABLES FOR SOME SECTIONS SECTION
     var loremFistrum = 'Lorem fistrum amatomaa no te digo trigo por no llamarte Rodrigor te voy a borrar el cerito ese pedazo de a peich quietooor quietooor a wan la caidita. Ese pedazo de pecador a peich caballo blanco caballo negroorl te voy a borrar el cerito. Hasta luego Lucas llevame al sircoo caballo blanco caballo negroorl fistro caballo blanco caballo negroorl diodeno diodenoo. Benemeritaar ese hombree qué dise usteer apetecan. Se calle ustée se calle ustée papaar papaar condemor. Diodeno me cago en tus muelas caballo blanco caballo negroorl te voy a borrar el cerito. Quietooor pecador ahorarr está la cosa muy malar se calle ustée no te digo trigo por no llamarte Rodrigor no puedor. No puedor no puedor benemeritaar la caidita no te digo trigo por no llamarte Rodrigor.';
@@ -1056,6 +1057,16 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
         ],
         result: "HTML"
     };
+
+    //MESSAGE SECTION
+    colorFactory.addColor("message", "error", ["#FF0000", "#FFFFFF"]);
+    $scope.addMessage = function(){
+        var message = {
+            text: "hello-world",
+            classes: "error"
+        };
+        angular.element(document.getElementById("message1")).controller("message").message(message);
+    }
 }]);
 
 app.directive("customCode", ["$compile", function($compile){

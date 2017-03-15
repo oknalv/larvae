@@ -381,6 +381,20 @@ larvae.factory("colorFactory", function(){
                 }
             });
             return css;
+        },
+        "message": function(name, color){
+            var color1 = color[0];
+            var color2 = color[1];
+            var css = getCss({
+                head: [
+                    ".message>div" + name
+                ],
+                rules: {
+                    "background-color": color1,
+                    "color": color2
+                }
+            });
+            return css;
         }
     }
 
@@ -575,7 +589,7 @@ larvae.directive("modal", function(){
             });
         }
     }
-})
+});
 
 larvae.directive("modalHeader", ["$compile", function($compile){
     return {
@@ -670,10 +684,10 @@ larvae.directive("select", ["$compile", function($compile){
                     }
                     optionValues.push(option.value);
                     var optionElement = angular.element("<option value='" + option.value + "'>" + option.text + "</option>");
-                    var spanOptionElement = angular.element("<span data-value='" + option.value + "' tabindex='0'>" + option.text + "</span>");
+                    var spanOptionElement = angular.element("<span data-lrv-value='" + option.value + "' tabindex='0'>" + option.text + "</span>");
                     if(option.translation != undefined){
                         optionElement = angular.element("<option value='" + option.value + "' data-lrv-text='" + option.translation + "'></option>")
-                        spanOptionElement = angular.element("<span data-value='" + option.value + "' class='text' tabindex='0' data-lrv-text='" + option.translation + "'></span>");
+                        spanOptionElement = angular.element("<span data-lrv-value='" + option.value + "' class='text' tabindex='0' data-lrv-text='" + option.translation + "'></span>");
                     }
                     element.append(optionElement);
                     spanSelectOptions.append(spanOptionElement);
@@ -681,7 +695,7 @@ larvae.directive("select", ["$compile", function($compile){
                     if(translate != null)
                         translate.translate(spanOptionElement);
                     spanOptionElement.bind("click", function(){
-                        scope.lrvModel.value = angular.element(this).attr("data-value");
+                        scope.lrvModel.value = angular.element(this).attr("data-lrv-value");
                         scope.$apply();
                         spanSelectOptions.removeClass("show");
                     });
@@ -821,3 +835,24 @@ larvae.directive("range", ["$compile", function($compile){
         }
     }
 }]);
+
+larvae.directive("message", function(){
+    return {
+        restrict: "C",
+        controller: ["$scope", "$element", "$compile", function(scope, element, $compile){
+            this.message = function(message){
+                var messageDiv = angular.element("<div></div>");
+                if(message.translation != undefined){
+                    messageDiv.addClass("text");
+                    messageDiv.attr("data-lrv-text", message.translation);
+                }
+                else
+                    messageDiv.html(message.text);
+                if(message.classes != undefined)
+                    messageDiv.addClass(message.classes);
+                element.append(messageDiv);
+                $compile(messageDiv)(scope);
+            }
+        }]
+    }
+})
