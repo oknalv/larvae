@@ -1,5 +1,5 @@
 var app = angular.module("larvaeApp", ["larvae", "hljs"]);
-app.controller("larvaeController", ["$scope", "$location", "colorFactory", function($scope, $location, colorFactory){
+app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvElement", function($scope, $location, lrvColor, lrvElement){
     //PAGE SECTION
 
     $scope.langs = {
@@ -298,7 +298,7 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
             {
                 name: "JavaScript",
                 language: "javascript",
-                content: 'angular.element(document.getElementById("id")).controller("modal").open();\nangular.element(document.getElementById("id")).controller("modal").close();'
+                content: 'lrvElement.modal("id").open();\nlrvElement.modal("id").close();'
             }
         ]
     };
@@ -843,7 +843,7 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
 
     //COLOR SECTION
 
-    var defaultColors = 'colorFactory.setDefaultColors({\n';
+    var defaultColors = 'lrvColor.setDefaultColors({\n';
     defaultColors += '    "btn": ["#4444FF", "#44FFFF"],\n';
     defaultColors += '    "checkbox-radio-btn": ["#4444FF", "#44FFFF"],\n';
     defaultColors += '    "checkbox-radio": ["#4444FF", "#44FFFF"],\n';
@@ -865,10 +865,10 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
 
     var coloredButtons = '<button class="btn blue">button</button>\n';
     coloredButtons += '<button class="btn icon round red"><i class="fa fa-question-circle-o"></i></button>';
-    colorFactory.addColor("btn", "blue", ["#4444FF", "#44FFFF"]);
-    var coloredButtonsJs = 'colorFactory.addColor("btn", "blue", ["#4444FF", "#44FFFF"]);\n';
-    colorFactory.addColor("btn", "red", "#FF4444");
-    coloredButtonsJs += 'colorFactory.addColor("btn", "red", "#FF4444");';
+    lrvColor.addColor("btn", "blue", ["#4444FF", "#44FFFF"]);
+    var coloredButtonsJs = 'lrvColor.addColor("btn", "blue", ["#4444FF", "#44FFFF"]);\n';
+    lrvColor.addColor("btn", "red", "#FF4444");
+    coloredButtonsJs += 'lrvColor.addColor("btn", "red", "#FF4444");';
     $scope.coloredButtons = {
         code: [
             {
@@ -887,10 +887,10 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
 
     var coloredCheckboxRadioButtons = '<input type="radio" name="color-radio1" class="radio-btn orange" id="color-radio1"/>\n<label for="color-radio1">radio</label>\n';
     coloredCheckboxRadioButtons += '<input type="checkbox" class="checkbox-btn purple" id="color-checkbox1"/>\n<label for="color-checkbox1">checkbox</label>';
-    colorFactory.addColor("checkbox-btn", "orange", ["#775500", "#FF7755"]);
-    var coloredCheckboxRadioButtonsJs = 'colorFactory.addColor("checkbox-btn", "orange", ["#775500", "#FF7755"]);\n';
-    colorFactory.addColor("radio-btn", "purple", "#AA33FF");
-    coloredCheckboxRadioButtonsJs += 'colorFactory.addColor("radio-btn", "purple",  "#AA33FF");';
+    lrvColor.addColor("checkbox-btn", "orange", ["#775500", "#FF7755"]);
+    var coloredCheckboxRadioButtonsJs = 'lrvColor.addColor("checkbox-btn", "orange", ["#775500", "#FF7755"]);\n';
+    lrvColor.addColor("radio-btn", "purple", "#AA33FF");
+    coloredCheckboxRadioButtonsJs += 'lrvColor.addColor("radio-btn", "purple",  "#AA33FF");';
     $scope.coloredCheckboxRadioButtons = {
         code: [
             {
@@ -909,10 +909,10 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
 
     var coloredCheckboxRadioLeftRight = '<input type="checkbox" class="checkbox-left gray" id="color-checkbox2">\n<label for="color-checkbox2">checkbox</label>\n';
     coloredCheckboxRadioLeftRight += '<input type="radio" name="color-radio2" class="radio-right magenta" id="color-radio2"/>\n<label for="color-radio2">radio</label>\n';
-    colorFactory.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);
-    var coloredCheckboxRadioLeftRightJs = 'colorFactory.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);\n';
-    colorFactory.addColor("radio-right", "magenta", "#FF00FF");
-    coloredCheckboxRadioLeftRightJs += 'colorFactory.addColor("radio-right", "magenta", "#FF00FF");';
+    lrvColor.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);
+    var coloredCheckboxRadioLeftRightJs = 'lrvColor.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);\n';
+    lrvColor.addColor("radio-right", "magenta", "#FF00FF");
+    coloredCheckboxRadioLeftRightJs += 'lrvColor.addColor("radio-right", "magenta", "#FF00FF");';
     $scope.coloredCheckboxRadioLeftRight = {
         code: [
             {
@@ -932,7 +932,7 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     var coloredTabs = '<div class="tabs red">\n';
     coloredTabs += '    <div class="selected" data-lrv-tab="null">tab</div>\n    <div data-lrv-tab="null">tab</div>\n    <div data-lrv-tab="null">tab</div>\n'
     coloredTabs += '</div>';
-    colorFactory.addColor("tabs", "red", ["#FF4444", "#FFAAAA"]);
+    lrvColor.addColor("tabs", "red", ["#FF4444", "#FFAAAA"]);
     $scope.coloredTabs = {
         code: [
             {
@@ -943,7 +943,7 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
             {
                 name: "JavaScript",
                 language: "javascript",
-                content: 'colorFactory.addColor("tabs", "red", ["#FF4444", "#FFAAAA"]);'
+                content: 'lrvColor.addColor("tabs", "red", ["#FF4444", "#FFAAAA"]);'
             }
         ],
         result: "HTML"
@@ -956,7 +956,7 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     coloredModal += '        <div class="modal-footer"></div>\n';
     coloredModal += '    </div>\n';
     coloredModal += '</div>';
-    colorFactory.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);
+    lrvColor.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);
     $scope.coloredModal = {
         code: [
             {
@@ -967,7 +967,7 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
             {
                 name: "JavaScript",
                 language: "javascript",
-                content: 'colorFactory.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);'
+                content: 'lrvColor.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);'
             }
         ],
         result: "HTML",
@@ -975,7 +975,7 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     };
 
     $scope.copts = {options:['opt1', 'opt2', 'opt3']};
-    colorFactory.addColor("select", "blue", ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"]);
+    lrvColor.addColor("select", "blue", ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"]);
     $scope.coloredSelect = {
         code: [
             {
@@ -986,13 +986,13 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
             {
                 name: "JavaScript",
                 language: "javascript",
-                content: 'colorFactory.addColor("select", "blue", ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"]);'
+                content: 'lrvColor.addColor("select", "blue", ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"]);'
             }
         ],
         result: "HTML"
     };
 
-    colorFactory.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);
+    lrvColor.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);
     $scope.colorRange = {value: 0};
     $scope.coloredRange = {
         code: [
@@ -1004,7 +1004,7 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
             {
                 name: "JavaScript",
                 language: "javascript",
-                content: 'colorFactory.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);'
+                content: 'lrvColor.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);'
             }
         ],
         result: "HTML"
@@ -1041,7 +1041,7 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
     coloredTable += '        </tr>\n';
     coloredTable += '    </tbody>\n';
     coloredTable += '</table>';
-    colorFactory.addColor("table", "pink", ["#5500AA", "#FAF0FA", "#FAD0FA"]);
+    lrvColor.addColor("table", "pink", ["#5500AA", "#FAF0FA", "#FAD0FA"]);
     $scope.coloredTable = {
         code: [
             {
@@ -1052,22 +1052,107 @@ app.controller("larvaeController", ["$scope", "$location", "colorFactory", funct
             {
                 name: "JavaScript",
                 language: "javascript",
-                content: 'colorFactory.addColor("table", "pink", ["#5500AA", "#FAF0FA", "#FAD0FA"]);'
+                content: 'lrvColor.addColor("table", "pink", ["#5500AA", "#FAF0FA", "#FAD0FA"]);'
             }
         ],
         result: "HTML"
     };
 
     //MESSAGE SECTION
-    colorFactory.addColor("message", "error", ["#FF0000", "#FFFFFF"]);
+
+    $scope.basicMessage = {
+        code: [
+            {
+                name: "JSON",
+                language: "json",
+                content: '{"text": "message"}'
+            }
+        ]
+    };
+
+    var addMessageJs = 'angular.module("app")\n.controller("controller",["$scope", "lrvElement", function($scope, lrvElement){\n';
+    addMessageJs += '    $scope.addMessage = function(){\n';
+    addMessageJs += '        var message = {\n';
+    addMessageJs += '            text: "message"\n';
+    addMessageJs += '        };\n';
+    addMessageJs += '        lrvElement.message("message1").add(message);\n';
+    addMessageJs += '    }';
+    addMessageJs += '}]);';
+    var addMessage = '<button class="btn" data-ng-click="addMessage()">button</button>\n';
+    addMessage += '<div class="message" id="message1"></div>';
+    $scope.addMessage2 = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: addMessage
+            },
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: addMessageJs
+            }
+        ],
+        result: "HTML"
+    };
     $scope.addMessage = function(){
         var message = {
-            translation: "hello-world",
-            classes: "error",
+            text: "message"
+        };
+        lrvElement.message("message1").add(message);
+    }
+
+    $scope.translatedMessage = {
+        code: [
+            {
+                name: "JSON",
+                language: "json",
+                content: '{"translation": "hello-world"}'
+            }
+        ]
+    };
+    $scope.addTranslatedMessage = function(){
+        var message = {
+            translation: "hello-world"
+        };
+        lrvElement.message("message2").add(message);
+    }
+
+    $scope.closeMessage = {
+        code: [
+            {
+                name: "JSON",
+                language: "json",
+                content: '{"text": "message", "close": true}'
+            }
+        ]
+    };
+    $scope.addCloseMessage = function(){
+        var message = {
+            text: "message",
             close: true
         };
-        angular.element(document.getElementById("message1")).controller("message").message(message);
+        lrvElement.message("message3").add(message);
     }
+
+    $scope.fadeMessage = {
+        code: [
+            {
+                name: "JSON",
+                language: "json",
+                content: '{"text": "message", "time": 5000}'
+            }
+        ]
+    };
+    $scope.addFadeMessage = function(){
+        var message = {
+            text: "message",
+            time: 5000
+        };
+        lrvElement.message("message4").add(message);
+    }
+
+    lrvColor.addColor("message", "error", ["#FF0000", "#FFFFFF"]);
 }]);
 
 app.directive("customCode", ["$compile", function($compile){

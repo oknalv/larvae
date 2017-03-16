@@ -1,6 +1,15 @@
 larvae = angular.module("larvae", []);
 
-larvae.factory("colorFactory", function(){
+larvae.service("lrvElement", function(){
+    this.modal = function(id){
+        return angular.element(document.getElementById(id)).controller("modal");
+    }
+    this.message = function(id){
+        return angular.element(document.getElementById(id)).controller("message");
+    }
+});
+
+larvae.factory("lrvColor", function(){
     var style = angular.element("<style></style>");
     angular.element(document.getElementsByTagName("head")[0]).append(style);
     var colors = {};
@@ -865,7 +874,7 @@ larvae.directive("message", function(){
     return {
         restrict: "C",
         controller: ["$scope", "$element", "$compile", "$timeout", function(scope, element, $compile, $timeout){
-            this.message = function(message){
+            this.add = function(message){
                 var messageDiv = angular.element("<div></div>");
                 var messageSpan = angular.element("<span></span>");
                 messageDiv.append(messageSpan);
