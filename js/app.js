@@ -1058,6 +1058,84 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
+
+
+    var coloredMessageJs = 'angular.module("app")\n.controller("controller",["$scope", "lrvElement", function($scope, lrvElement){\n';
+    coloredMessageJs += '    $scope.addWarning = function(){\n';
+    coloredMessageJs += '        var message = {\n';
+    coloredMessageJs += '            text: "warning",\n';
+    coloredMessageJs += '            time: 5000,\n';
+    coloredMessageJs += '            classes: "warning"\n';
+    coloredMessageJs += '        };\n';
+    coloredMessageJs += '        lrvElement.message("coloredMessage").add(message);\n';
+    coloredMessageJs += '    }\n';
+    coloredMessageJs += '    $scope.addError = function(){\n';
+    coloredMessageJs += '        var message = {\n';
+    coloredMessageJs += '            text: "error",\n';
+    coloredMessageJs += '            time: 5000,\n';
+    coloredMessageJs += '            classes: "error"\n';
+    coloredMessageJs += '        };\n';
+    coloredMessageJs += '        lrvElement.message("coloredMessage").add(message);\n';
+    coloredMessageJs += '    }\n';
+    coloredMessageJs += '    $scope.addSuccess = function(){\n';
+    coloredMessageJs += '        var message = {\n';
+    coloredMessageJs += '            text: "success",\n';
+    coloredMessageJs += '            time: 5000,\n';
+    coloredMessageJs += '            classes: "success"\n';
+    coloredMessageJs += '        };\n';
+    coloredMessageJs += '        lrvElement.message("coloredMessage").add(message);\n';
+    coloredMessageJs += '    }\n';
+    coloredMessageJs += '    lrvColor.addColor("message", "error", ["#FF3333", "#FFFFFF"]);\n';
+    coloredMessageJs += '    lrvColor.addColor("message", "warning", ["#FFAA33", "#FFFFFF"]);\n';
+    coloredMessageJs += '    lrvColor.addColor("message", "success", ["#44FF77", "#FFFFFF"]);\n';
+    coloredMessageJs += '}]);';
+    var coloredMessage = '<button class="btn" data-ng-click="addWarning()">warning</button>\n';
+    coloredMessage += '<button class="btn" data-ng-click="addError()">error</button>\n';
+    coloredMessage += '<button class="btn" data-ng-click="addSuccess()">success</button>\n';
+    coloredMessage += '<div class="message" id="coloredMessage"></div>';
+    $scope.coloredMessage2 = {
+        code: [
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: coloredMessageJs
+            },
+            {
+                name: "HTML",
+                language: "html",
+                content: coloredMessage
+            }
+        ],
+        result: "HTML"
+    };
+    $scope.addError = function(){
+        var message = {
+            text: "error",
+            classes: "error",
+            time: 5000
+        };
+        lrvElement.message("coloredMessage").add(message);
+    }
+    $scope.addWarning = function(){
+        var message = {
+            text: "warning",
+            classes: "warning",
+            time: 5000
+        };
+        lrvElement.message("coloredMessage").add(message);
+    }
+    $scope.addSuccess = function(){
+        var message = {
+            text: "success",
+            classes: "success",
+            time: 5000
+        };
+        lrvElement.message("coloredMessage").add(message);
+    }
+    lrvColor.addColor("message", "error", ["#FF3333", "#FFFFFF"]);
+    lrvColor.addColor("message", "warning", ["#FFAA33", "#FFFFFF"]);
+    lrvColor.addColor("message", "success", ["#44FF77", "#FFFFFF"]);
+
     //MESSAGE SECTION
 
     $scope.basicMessage = {
@@ -1076,7 +1154,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
     addMessageJs += '            text: "message"\n';
     addMessageJs += '        };\n';
     addMessageJs += '        lrvElement.message("message1").add(message);\n';
-    addMessageJs += '    }';
+    addMessageJs += '    }\n';
     addMessageJs += '}]);';
     var addMessage = '<button class="btn" data-ng-click="addMessage()">button</button>\n';
     addMessage += '<div class="message" id="message1"></div>';
@@ -1151,8 +1229,6 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         };
         lrvElement.message("message4").add(message);
     }
-
-    lrvColor.addColor("message", "error", ["#FF0000", "#FFFFFF"]);
 }]);
 
 app.directive("customCode", ["$compile", function($compile){
