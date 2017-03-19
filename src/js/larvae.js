@@ -611,15 +611,15 @@ larvae.directive("modal", function(){
             var onClose = function(){};
 
             this.open = function(){
-                onOpen();
                 element.addClass("show");
                 angular.element(document.querySelector("body")).addClass("modal-open");
+                onOpen();
             }
 
             this.close = function(){
-                onClose();
                 element.removeClass("show");
                 angular.element(document.querySelector("body")).removeClass("modal-open");
+                onClose();
             }
 
             this.onOpen = function(fnct){
@@ -905,11 +905,11 @@ larvae.directive("message", function(){
                 element.append(messageDiv);
                 $compile(messageDiv)(scope);
                 if(message.time != undefined){
-                    messageDiv.bind("transitionend", function(){
-                        messageDiv.remove();
-                    });
                     $timeout(function(){
                         messageDiv.addClass("fade");
+                        $timeout(function(){
+                            messageDiv.remove();
+                        }, 1000)
                     }, message.time);
                 }
                 else if(message.close != undefined && message.close){
@@ -920,6 +920,10 @@ larvae.directive("message", function(){
                         messageDiv.remove();
                     });
                 }
+            };
+
+            this.clear = function(){
+                element.html("");
             }
         }]
     }
