@@ -592,27 +592,42 @@ larvae.directive("tabs", ["$location", function($location){
     }
 }]);
 
-larvae.directive("modalLauncher", function(){
+larvae.directive("modalLauncher", ["lrvElement", function(lrvElement){
     return {
         restrict: "C",
         link: function(scope, element, attributes){
-            var modal = angular.element(document.getElementById(element.attr("data-lrv-modal"))).controller("modal");
-            element.on("click", modal.open);
+            element.on("click", function(){
+                lrvElement.modal(element.attr("data-lrv-modal")).open();
+            });
         }
     }
-});
+}]);
 
 larvae.directive("modal", function(){
     return {
         restrict: "C",
         controller: ["$element", function(element){
+            var onOpen = function(){};
+            var onClose = function(){};
+
             this.open = function(){
+                onOpen();
                 element.addClass("show");
                 angular.element(document.querySelector("body")).addClass("modal-open");
             }
+
             this.close = function(){
+                onClose();
                 element.removeClass("show");
                 angular.element(document.querySelector("body")).removeClass("modal-open");
+            }
+
+            this.onOpen = function(fnct){
+                onOpen = typeof fnct == "function" ? fnct : onOpen;
+            }
+
+            this.onClose = function(fnct){
+                onClose = typeof fnct == "function" ? fnct : onClose;
             }
         }],
         link: function(scope, element, attributes, modal){
@@ -640,15 +655,16 @@ larvae.directive("modalHeader", ["$compile", function($compile){
     }
 }]);
 
-larvae.directive("modalCloser", function(){
+larvae.directive("modalCloser", ["lrvElement", function(lrvElement){
     return {
         restrict: "C",
         link: function(scope, element, attributes){
-            var modal = angular.element(document.getElementById(element.attr("data-lrv-modal"))).controller("modal");
-            element.on("click", modal.close);
+            element.on("click", function(){
+                lrvElement.modal(element.attr("data-lrv-modal")).close();
+            });
         }
     }
-});
+}]);
 
 larvae.directive("select", ["$compile", function($compile){
     return {
