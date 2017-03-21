@@ -674,11 +674,9 @@ body.modal-open{
 
 code,
 .code {
-    background-color: #9F9F9F;
-    color: #FAFAFA;
+    color: #545454;
     font-family: monospace;
     font-weight: bold;
-    padding: 1px 1px;
 }
 
 /* message section */

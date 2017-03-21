@@ -257,13 +257,6 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
-    $scope.modalOpenFn = {
-        name: "open",
-        description: {
-            translation: "modals-open"
-        }
-    }
-
     var bodyModal = '<div class="modal" id="body-modal">\n';
     bodyModal += '    <div class="modal-container">\n';
     bodyModal += '        <div class="modal-body">' + loremFistrum + '</div>\n';
@@ -300,18 +293,51 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         resultNoPadding: true
     };
 
-    var controllerModal = 'lrvElement.modal("id").open();\nlrvElement.modal("id").close();\n';
-    controllerModal += 'lrvElement.modal("id").onOpen(function(){});\nlrvElement.modal("id").onClose(function(){});'
-    $scope.controllerModal = {
+    $scope.modalController = {
         code: [
             {
                 name: "JavaScript",
                 language: "javascript",
-                content: controllerModal
+                content: 'lrvElement.modal("id");'
             }
         ]
-    };
+    }
 
+    $scope.modalOpenFn = {
+        name: "open",
+        description: {translation: "modals-open"},
+        example: 'lrvElement.modal("id").open();'
+    }
+
+    $scope.modalCloseFn = {
+        name: "close",
+        description: {translation: "modals-close"},
+        example: 'lrvElement.modal("id").close();'
+    }
+
+    $scope.modalOnOpenFn = {
+        name: "onOpen",
+        description: {translation: "modals-onopen"},
+        parameters: [
+            {
+                name: "function",
+                description:{translation: "function-be-called"}
+            }
+        ],
+        example: 'lrvElement.modal("id").onOpen(function(){});'
+    }
+
+    $scope.modalOnCloseFn = {
+        name: "onClose",
+        description: {translation: "modals-onclose"},
+        parameters: [
+            {
+                name: "function",
+                description:{translation: "function-be-called"}
+            }
+        ],
+        example: 'lrvElement.modal("id").onClose(function(){});'
+    }
 
     //SELECT SECTION
 
@@ -1301,21 +1327,51 @@ app.directive("customFunction", ["$compile", function($compile){
         compile: function(tElement, tAttributes){
             return {
                 pre: function(scope, element, attributes){
-                    var fnName = scope.model.name + "(";
-                    var arguments = scope.model.arguments;
-                    if(arguments != undefined && arguments.length > 0)
-                        for(var i = 0; i < arguments.length; i++){
-                            var argument = arguments[i];
-                            fnName += argument.name;
-                            if(i < arguments.length - 1)
-                                fnName += ", ";
-                        }
-                    fnName += ")";
-                    var headDiv = angular.element("<div><div><code>" + fnName + "</code></div></div>");
+                    var headDiv = angular.element("<h5></h5>");
                     element.append(headDiv);
-                    var descriptionDiv = angular.element("<div class='text' data-lrv-text='" + scope.model.description.translation + "'></div>");
-                    headDiv.append(descriptionDiv);
+                    var descriptionDiv = null;
+                    if(scope.model.description.translation != undefined)
+                        descriptionDiv = angular.element("<div class='text' data-lrv-text='" + scope.model.description.translation + "'></div>");
+                    else
+                        descriptionDiv = angular.element("<div>" + scope.model.description.text + "</div>");
+                    element.append(descriptionDiv);
                     $compile(descriptionDiv)(scope.$parent);
+                    var fnName = scope.model.name + "(";
+                    var parameters = scope.model.parameters;
+                    if(parameters != undefined && parameters.length > 0){
+                        var parametersContainerDiv = angular.element("<div class='f-row'></div>");
+                        element.append(parametersContainerDiv);
+                        var parametersText = angular.element("<div class='text custom-title' data-lrv-text='parameters'></div>");
+                        parametersContainerDiv.append(parametersText);
+                        $compile(parametersText)(scope.$parent);
+                        parametersDiv = angular.element("<div></div>");
+                        parametersContainerDiv.append(parametersDiv);
+                        for(var i = 0; i < parameters.length; i++){
+                            var parameter = parameters[i];
+                            fnName += parameter.name;
+                            if(i < parameters.length - 1)
+                                fnName += ", ";
+                            var parameterDiv = angular.element("<div><code>" + parameter.name + "</code> </div>");
+                            parametersDiv.append(parameterDiv);
+                            var parameterDescription = null;
+                            if(parameter.description.translation != undefined)
+                                parameterDescription = angular.element("<span class='text' data-lrv-text='" + parameter.description.translation + "'></span>");
+                            else
+                                parameterDescription = angular.element("<span>" + parameter.description.text + "</span>");
+                            parameterDiv.append(parameterDescription);
+                            $compile(parameterDescription)(scope.$parent);
+                        }
+                    }
+                    fnName += ")";
+                    headDiv.append("<code>" + fnName + "</code>");
+                    if(scope.model.example != undefined){
+                        var usageExample = angular.element("<div class='text custom-title' data-lrv-text='usage'></div>");
+                        element.append(usageExample);
+                        $compile(usageExample)(scope.$parent);
+                        var hljsElement = angular.element("<div hljs hljs-source='" + element.attr("data-custom-model") + ".example' hljs-language='javascript'></div>");
+                        element.append(hljsElement);
+                        $compile(hljsElement)(scope.$parent);
+                    }
                 }
             }
         }
