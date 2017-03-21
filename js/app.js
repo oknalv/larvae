@@ -1256,9 +1256,10 @@ app.directive("customCode", ["$compile", function($compile){
                         var hl = angular.element("<div class='custom-entry-code' id='" + id + "-" + code.name + "' hljs></div>");
                         if(code.language != undefined)
                             hl.attr("hljs-language", code.language);
-                        hl.attr("hljs-source", "'" + code.content + "'");
+                        var content = element.attr("data-custom-model") + ".code[" + i + "].content";
+                        hl.attr("hljs-source", content);
                         container.append(hl);
-                        $compile(hl)(scope);
+                        $compile(hl)(scope.$parent);
                     }
                     if(scope.model.code.length == 1 && (scope.model.showTabs == undefined || !scope.model.showTabs))
                         tabContainer.remove();
