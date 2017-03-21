@@ -293,12 +293,14 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         resultNoPadding: true
     };
 
+    var controllerModal = 'lrvElement.modal("id").open();\nlrvElement.modal("id").close();\n';
+    controllerModal += 'lrvElement.modal("id").onOpen(function(){});\nlrvElement.modal("id").onClose(function(){});'
     $scope.controllerModal = {
         code: [
             {
                 name: "JavaScript",
                 language: "javascript",
-                content: 'lrvElement.modal("id").open();\nlrvElement.modal("id").close();'
+                content: controllerModal
             }
         ]
     };
