@@ -257,6 +257,13 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
+    $scope.modalOpenFn = {
+        name: "open",
+        description: {
+            translation: "modals-open"
+        }
+    }
+
     var bodyModal = '<div class="modal" id="body-modal">\n';
     bodyModal += '    <div class="modal-container">\n';
     bodyModal += '        <div class="modal-body">' + loremFistrum + '</div>\n';
@@ -1279,6 +1286,36 @@ app.directive("customCode", ["$compile", function($compile){
                         if(scope.model.resultNoPadding != undefined && scope.model.resultNoPadding )
                             resultContainer.addClass("custom-no-padding");
                     }
+                }
+            }
+        }
+    }
+}]);
+
+app.directive("customFunction", ["$compile", function($compile){
+    return {
+        restrict: "C",
+        scope: {
+            model: "=customModel"
+        },
+        compile: function(tElement, tAttributes){
+            return {
+                pre: function(scope, element, attributes){
+                    var fnName = scope.model.name + "(";
+                    var arguments = scope.model.arguments;
+                    if(arguments != undefined && arguments.length > 0)
+                        for(var i = 0; i < arguments.length; i++){
+                            var argument = arguments[i];
+                            fnName += argument.name;
+                            if(i < arguments.length - 1)
+                                fnName += ", ";
+                        }
+                    fnName += ")";
+                    var headDiv = angular.element("<div><div><code>" + fnName + "</code></div></div>");
+                    element.append(headDiv);
+                    var descriptionDiv = angular.element("<div class='text' data-lrv-text='" + scope.model.description.translation + "'></div>");
+                    headDiv.append(descriptionDiv);
+                    $compile(descriptionDiv)(scope.$parent);
                 }
             }
         }
