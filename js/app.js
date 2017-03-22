@@ -893,7 +893,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
     //COLOR SECTION
 
     var defaultColors = 'lrvColor.setDefaultColors({\n';
-    defaultColors += '    "btn": ["#4444FF", "#44FFFF"],\n';
+    defaultColors += '    "btn": ["#4444FF", "#44FFFF", "#44FFFF", "transparent"],\n';
     defaultColors += '    "checkbox-radio-btn": ["#4444FF", "#44FFFF"],\n';
     defaultColors += '    "checkbox-radio": ["#4444FF", "#44FFFF"],\n';
     defaultColors += '    "modal": ["#855555", "#FFFF77", "#FFFF77"],\n';
@@ -913,11 +913,13 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
     };
 
     var coloredButtons = '<button class="btn blue">button</button>\n';
+    coloredButtons += '<button class="btn blue" disabled>button</button>\n';
     coloredButtons += '<button class="btn icon round red"><i class="fa fa-question-circle-o"></i></button>';
-    lrvColor.addColor("btn", "blue", ["#4444FF", "#44FFFF"]);
-    var coloredButtonsJs = 'lrvColor.addColor("btn", "blue", ["#4444FF", "#44FFFF"]);\n';
-    lrvColor.addColor("btn", "red", "#FF4444");
-    coloredButtonsJs += 'lrvColor.addColor("btn", "red", "#FF4444");';
+    coloredButtons += '<button class="btn icon round red" disabled><i class="fa fa-question-circle-o"></i></button>';
+    lrvColor.addColor("btn", "blue", ["#4444FF", "#44FFFF", "#44FFFF", "transparent"]);
+    var coloredButtonsJs = 'lrvColor.addColor("btn", "blue", ["#4444FF", "#44FFFF", "#44FFFF", "transparent"]);\n';
+    lrvColor.addColor("btn", "red", ["#FF4444", "transparent", "#FF9999", "transparent"]);
+    coloredButtonsJs += 'lrvColor.addColor("btn", "red", ["#FF4444", "transparent", "#FF9999", "transparent"]);';
     $scope.coloredButtons = {
         code: [
             {

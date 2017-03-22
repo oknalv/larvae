@@ -42,9 +42,11 @@ larvae.factory("lrvColor", function(){
     var getColorClasses = {
         "btn": function(name, color){
             var color1 = color[0];
-            var color2 = color.length > 1 ? color[1] : "white";
-            var rgb = color1 != "transparent" ? hexToRgb(color1) : null;
-            var rgba = rgb != null ? "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)" : "transparent";
+            var color2 = color[1];
+            var color3 = color[2];
+            var color4 = color[3];
+            var rgb = hexToRgb(color1);
+            var rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)";
             var css = getCss({
                 head: ".btn" + name,
                 rules: {
@@ -61,6 +63,14 @@ larvae.factory("lrvColor", function(){
                 head: ".btn" + name + ":active",
                 rules: {
                     "box-shadow": "inset 0 0 10px " + rgba
+                }
+            }) + getCss({
+                head: ".btn" + name + ":disabled",
+                rules: {
+                    "border-color": color3,
+                    "color": color3,
+                    "background-color": color4,
+                    "box-shadow": "none"
                 }
             });
             return css;
