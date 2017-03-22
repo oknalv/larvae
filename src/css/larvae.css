@@ -130,6 +130,14 @@ button::-moz-focus-inner {
     background-color: transparent;
 }
 
+.btn:disabled {
+    cursor: not-allowed;
+    background-color: #F0F0F0;
+    color: #A0A0A0;
+    border-color: #A0A0A0;
+    box-shadow: none;
+}
+
 /* helper section*/
 
 .icon {

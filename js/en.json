@@ -14,6 +14,8 @@
   "button-modifiers-both": "You can use <code>.icon</code> and <code>.round</code> classes together.",
   "grouping": "Grouping",
   "button-grouping": "You can group buttons wrapping them in an element which has to have the <code>.grouped</code> class.",
+  "disabled": "Disabled",
+  "button-disabled": "This is how buttons with <code>.btn</code> class look when they have the <code>disabled</code> attribute:",
   "installation": "Installation",
   "include-it": "You only have to include the CSS and JavaScript sources from the <code>/src</code> folder of the project.",
   "checkboxes": "Checkboxes",

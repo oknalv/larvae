@@ -14,6 +14,8 @@
   "button-modifiers-both": "Puedes usar las clases <code>.icon</code> y <code>.round</code> juntas.",
   "grouping": "Agrupamiento",
   "button-grouping": "Puedes agrupar varios botones dentro en un elemento que tenga la clase <code>.grouped</code>.",
+  "disabled": "Desabilitado",
+  "button-disabled": "Así es como se ven los botones con la clase <code>.btn</code> cuando tienen el atributo <code>disabled</code>:",
   "installation": "Instalación",
   "include-it": "Solamente tienes que incluir los ficheros CSS y JavaScript de la carpeta <code>/src</code> del proyecto.",
   "checkboxes": "Checkboxes",

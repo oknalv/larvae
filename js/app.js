@@ -119,6 +119,20 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     }
 
+    var disabledButtons = '<button class="btn" disabled>button</button>\n';
+    disabledButtons += '<button class="btn icon" disabled>\n    <i class="fa fa-question-circle-o"></i>\n</button>\n';
+    disabledButtons += '<div class="grouped">';
+    $scope.disabledButtons = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: disabledButtons
+            }
+        ],
+        result: "HTML"
+    }
+
     //CHECKBOX SECTION
 
     $scope.leftCheckbox = {
