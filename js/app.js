@@ -1264,6 +1264,24 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         };
         lrvElement.message("message4").add(message);
     }
+
+    $scope.messageAddFn = {
+        name: "add",
+        description: {translation: "messages-add"},
+        parameters: [
+            {
+                name: "message",
+                description:{translation: "message-parameter"}
+            }
+        ],
+        example: 'lrvElement.message("id").add(message);'
+    }
+
+    $scope.messageClearFn = {
+        name: "clear",
+        description: {translation: "messages-clear"},
+        example: 'lrvElement.message("id").clear();'
+    }
 }]);
 
 app.directive("customCode", ["$compile", function($compile){
