@@ -1,3 +1,40 @@
+:root {
+    --link: #6A5CAE;
+    --thead-underline: black;
+    --row-even: #FAFAFA;
+    --row-hover: #F0F0F0;
+    --btn-color: black;
+    --btn-background: white;
+    --btn-shadow: rgba(0, 0, 0, .75);
+    --btn-disabled-color: #A0A0A0;
+    --btn-disabled-background: #F0F0F0;
+    --tab-underline: lightgray;
+    --tab-selected: black;
+    --modal-shadow: rgba(0, 0, 0, .25);
+    --modal-header: #FAFAFA;
+    --modal-footer: #FAFAFA;
+    --modal-background: white;
+    --radio-box-background: white;
+    --radio-box-color: black;
+    --radio-box-shadow: rgba(0, 0, 0, .75);
+    --radio-btn-color: black;
+    --radio-btn-background: white;
+    --radio-btn-shadow: rgba(0, 0, 0, .75);
+    --select-color: black;
+    --select-background: white;
+    --select-shadow: rgba(0, 0, 0, .75);
+    --select-option-hover: #F0F0F0;
+    --select-option-selected: #E0E0E0;
+    --range-bar-background: #FAFAFA;
+    --range-border: black;
+    --range-background: white;
+    --range-shadow: rgba(0, 0, 0, .75);
+    --range-value: black;
+    --code: #545454;
+    --message-background: lightgray;
+    --message-color: black;
+}
+
 html {
     font-size: 100%;
 
@@ -13,7 +50,7 @@ html {
 }
 
 a {
-    color: #6A5CAE;
+    color: var(--link);
 }
 
 a:hover {
@@ -59,16 +96,16 @@ table {
 }
 
 table thead th {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--thead-underline);
     font-weight: bold;
 }
 
 table tbody tr:nth-of-type(even){
-    background-color: #FAFAFA;
+    background-color: var(--row-even);
 }
 
 table tbody tr:hover{
-    background-color: #F0F0F0;
+    background-color: var(--row-hover);
 }
 
 table tbody tr td {
@@ -90,10 +127,10 @@ button::-moz-focus-inner {
 }
 
 .btn {
-    color: black;
-    background-color: white;
+    color: var(--btn-color);
+    background-color: var(--btn-background);
     border-radius: 4px;
-    border: 1px solid black;
+    border: 1px solid var(--btn-color);
     padding: 5px;
     text-align: center;
     transition: box-shadow .25s ease;
@@ -103,12 +140,12 @@ button::-moz-focus-inner {
 }
 
 .btn:hover {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, .75);
+    box-shadow: 0px 0px 10px var(--btn-shadow);
     position: relative;
 }
 
 .btn:active {
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, .75);
+    box-shadow: inset 0px 0px 10px var(--btn-shadow);
 }
 
 .btn.round {
@@ -132,9 +169,9 @@ button::-moz-focus-inner {
 
 .btn:disabled {
     cursor: not-allowed;
-    background-color: #F0F0F0;
-    color: #A0A0A0;
-    border-color: #A0A0A0;
+    background-color: var(--btn-disabled-background);
+    color: var(--btn-disabled-color);
+    border-color: var(--btn-disabled-color);
     box-shadow: none;
 }
 
@@ -261,7 +298,7 @@ button::-moz-focus-inner {
 
 .tabs > .tab:after {
     content: "";
-    box-shadow: inset 0px -3px lightgray;
+    box-shadow: inset 0px -3px var(--tab-underline);
     display: block;
     padding-top: 10px;
     transition: transform .25s ease;
@@ -275,7 +312,7 @@ button::-moz-focus-inner {
 .tabs > .tab.selected:after,
 .tabs > .tab.selected:hover:after {
     transform: scaleX(1);
-    box-shadow: inset 0px -3px black;
+    box-shadow: inset 0px -3px var(--tab-selected);
     cursor: inherit;
 }
 
@@ -318,7 +355,7 @@ body.modal-open{
     display: none;
     position: fixed;
     z-index: 1;
-    background-color: rgba(0, 0, 0, .25);
+    background-color: var(--modal-shadow);
     top: 0;
     bottom: 0;
     left: 0;
@@ -354,9 +391,11 @@ body.modal-open{
     font-size: 1.5rem;
 }
 
-.modal > .modal-container > .modal-header,
+.modal > .modal-container > .modal-header{
+    background-color: var(--modal-header);
+}
 .modal > .modal-container > .modal-footer {
-    background-color: #FAFAFA;
+    background-color: var(--modal-footer);
 }
 
 .modal > .modal-container > .modal-header,
@@ -366,7 +405,7 @@ body.modal-open{
 }
 
 .modal > .modal-container > .modal-body {
-    background-color: white;
+    background-color: var(--modal-background);
 }
 
 .modal > .modal-container > .modal-footer,
@@ -409,11 +448,11 @@ body.modal-open{
 .checkbox-right + label:after,
 .radio-left + label:before,
 .radio-right + label:after {
-    background-color: white;
+    background-color: var(--radio-box-background);
     display: inline-block;
     height: 15px;
     width: 15px;
-    border: 1px solid black;
+    border: 1px solid var(--radio-box-color);
     content: "";
     vertical-align: middle;
     transition: box-shadow .25s ease, background-color .25s ease;
@@ -433,7 +472,7 @@ body.modal-open{
 .checkbox-right + label:hover:after,
 .radio-left + label:hover:before,
 .radio-right + label:hover:after {
-    box-shadow: inset 0 0 0 3px white, 0px 0px 5px rgba(0, 0, 0, .75);
+    box-shadow: inset 0 0 0 3px var(--radio-box-background), 0px 0px 5px var(--radio-box-shadow);
 }
 
 .checkbox-left + label:active:before,
@@ -444,7 +483,7 @@ body.modal-open{
 .checkbox-right:checked + label:hover:after,
 .radio-left:checked + label:hover:before,
 .radio-right:checked + label:hover:after {
-    box-shadow: inset 0 0 1px 1px rgba(0, 0, 0, .75), inset 0 0 0 3px white;
+    box-shadow: inset 0 0 1px 1px var(--radio-box-shadow), inset 0 0 0 3px var(--radio-box-background);
 }
 
 .checkbox-left:checked + label:active:before,
@@ -455,29 +494,30 @@ body.modal-open{
 .checkbox-right:checked + label:after,
 .radio-left:checked + label:before,
 .radio-right:checked + label:after {
-    background-color: black;
-    box-shadow: inset 0 0 0 3px white;
+    background-color: var(--radio-box-color);
+    box-shadow: inset 0 0 0 3px var(--radio-box-background);
 }
 
 .checkbox-btn + label,
 .radio-btn + label {
+    color: var(--radio-btn-color);
     border-radius: 4px;
-    border: 1px solid black;
+    border: 1px solid var(--radio-btn-color);
     padding: 5px;
     text-align: center;
     transition: box-shadow .25s ease;
-    background-color: white;
+    background-color: var(--radio-btn-background);
 }
 
 .checkbox-btn + label:hover,
 .radio-btn + label:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, .75);
+    box-shadow: 0 0 10px var(--radio-btn-shadow);
     position: relative;
 }
 
 .checkbox-btn:checked + label:hover,
 .radio-btn:checked + label:hover {
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, .75);
+    box-shadow: inset 0 0 20px var(--radio-btn-shadow);
 }
 
 .checkbox-btn:checked + label,
@@ -486,14 +526,7 @@ body.modal-open{
 .radio-btn + label:active,
 .checkbox-btn:checked + label:active,
 .radio-btn:checked + label:active {
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, .75);
-}
-
-/* link section */
-
-.link:hover {
-    cursor: pointer;
-    color: gray;
+    box-shadow: inset 0 0 10px var(--radio-btn-shadow);
 }
 
 /* select section */
@@ -509,36 +542,38 @@ body.modal-open{
 }
 
 .span-select-value {
-    border: 1px solid black;
+    color: var(--select-color);
+    border: 1px solid var(--select-color);
     border-radius: 4px;
     padding: 5px 0;
     transition: box-shadow .25s ease;
     display: inline-block;
     text-align: center;
-    background-color: white;
+    background-color: var(--select-background);
 }
 
 .span-select-value:hover{
-    box-shadow: 0 0 10px rgba(0, 0, 0, .75);
+    box-shadow: 0 0 10px var(--select-shadow);
 }
 
 .span-select-value:focus{
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, .75);
+    box-shadow: inset 0 0 10px var(--select-shadow));
 }
 
 .span-select-options {
     position: absolute;
     display: block;
-    border: 1px solid black;
+    border: 1px solid var(--select-color);
+    color: var(--select-color);
     border-top: none;
-    background-color: white;
+    background-color: var(--select-background);
     max-height: 0;
     overflow-y: auto;
     z-index: 2;
     visibility: hidden;
     text-align: center;
     left: 2px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, .75);
+    box-shadow: 0 1px 3px var(--select-shadow);
 }
 
 .span-select-options.show {
@@ -547,8 +582,8 @@ body.modal-open{
 }
 
 .span-select-options.show.up {
-    box-shadow: 0 -1px 3px rgba(0, 0, 0, .75);
-    border: 1px solid black;
+    box-shadow: 0 -1px 3px var(--select-shadow);
+    border: 1px solid var(--select-color);
     border-bottom: none;
 }
 
@@ -558,12 +593,12 @@ body.modal-open{
 }
 
 .span-select-options > span:hover {
-    background-color: #F0F0F0;
+    background-color: var(--select-option-hover);
 }
 
 .span-select-options > span.selected,
 .span-select-options > span.selected:hover {
-    background-color: #E0E0E0;
+    background-color: var(--select-option-selected);
 }
 
 /* range section */
@@ -591,14 +626,14 @@ body.modal-open{
 
 .span-range:before {
     position: absolute;
-    background-color: #FAFAFA;
+    background-color: var(--range-bar-background);
     top: 7px;
     bottom: 7px;
     right: 0;
     left: 0;
     content: "";
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid var(--range-border);
 }
 
 .span-range-bar {
@@ -612,31 +647,32 @@ body.modal-open{
 
 .span-range-dot {
     position: absolute;
-    border: 1px solid black;
+    border: 1px solid var(--range-border);
     border-radius: 50px;
     height: 28px;
     width: 28px;
     transform: translateX(-50%);
-    background-color: white;
+    background-color: var(--range-background);
     transition: box-shadow .25s ease;
     margin-left: 50%;
 }
 
 .span-range-dot:active,
 .span-range-bar:active + .span-range-dot {
-    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, .75);
+    box-shadow: inset 0px 0px 4px var(--range-shadow);
 }
 
 .span-range-value {
+    color: var(--range-value);
     position: absolute;
     z-index: 1;
-    border: 1px solid black;
+    border: 1px solid var(--range-border);
     padding: 5px;
     top: -42px;
     transform: translateX(-50%);
-    background-color: white;
+    background-color: var(--range-background);
     display: none;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, .75);
+    box-shadow: 0px 1px 3px var(--range-shadow);
     border-radius: 4px;
 }
 
@@ -659,12 +695,12 @@ body.modal-open{
 
 .span-range-value:after {
     border-width: 5px;
-    border-color: white transparent transparent transparent;
+    border-color: var(--range-background) transparent transparent transparent;
 }
 
 .span-range-value:before {
     border-width: 6px;
-    border-color: black transparent transparent transparent;
+    border-color: var(--range-border) transparent transparent transparent;
 }
 
 /* text formatting section */
@@ -682,7 +718,7 @@ body.modal-open{
 
 code,
 .code {
-    color: #545454;
+    color: var(--code);
     font-family: monospace;
     font-weight: bold;
 }
@@ -690,7 +726,8 @@ code,
 /* message section */
 
 .message > div {
-    background-color: lightgray;
+    color: var(--message-color);
+    background-color: var(--message-background);
     border-radius: 4px;
     width: 100%;
     padding: 5px;

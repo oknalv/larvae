@@ -50,27 +50,11 @@ larvae.factory("lrvColor", function(){
             var css = getCss({
                 head: ".btn" + name,
                 rules: {
-                    "color": color1,
-                    "border-color": color1,
-                    "background-color": color2
-                }
-            }) + getCss({
-                head: ".btn" + name + ":hover",
-                rules: {
-                    "box-shadow": "0 0 10px " + rgba
-                }
-            }) + getCss({
-                head: ".btn" + name + ":active",
-                rules: {
-                    "box-shadow": "inset 0 0 10px " + rgba
-                }
-            }) + getCss({
-                head: ".btn" + name + ":disabled",
-                rules: {
-                    "border-color": color3,
-                    "color": color3,
-                    "background-color": color4,
-                    "box-shadow": "none"
+                    "--btn-color": color1,
+                    "--btn-background": color2,
+                    "--btn-shadow": rgba,
+                    "--btn-disabled-color": color3,
+                    "--btn-disabled-background": color4
                 }
             });
             return css;
@@ -86,37 +70,9 @@ larvae.factory("lrvColor", function(){
                     ".radio-btn" + name + "+label"
                 ],
                 rules: {
-                    "color": color1,
-                    "border-color": color1,
-                    "background-color": color2
-                }
-            }) + getCss({
-                head: [
-                    ".checkbox-btn" + name + "+label:hover",
-                    ".radio-btn" + name + "+label:hover"
-                ],
-                rules: {
-                    "box-shadow": "0 0 10px " + rgba
-                }
-            }) + getCss({
-                head: [
-                    ".checkbox-btn" + name + ":checked+label:hover",
-                    ".radio-btn" + name + ":checked+label:hover"
-                ],
-                rules: {
-                    "box-shadow": "inset 0 0 20px " + rgba
-                }
-            }) + getCss({
-                head: [
-                    ".checkbox-btn" + name + ":checked+label",
-                    ".radio-btn" + name + ":checked+label",
-                    ".checkbox-btn" + name + "+label:active",
-                    ".radio-btn" + name + "+label:active",
-                    ".checkbox-btn" + name + ":checked+label:active",
-                    ".radio-btn" + name + ":checked+label:active"
-                ],
-                rules: {
-                    "box-shadow": "inset 0 0 10px " + rgba
+                    "--radio-btn-background": color2,
+                    "--radio-btn-color": color1,
+                    "--radio-btn-shadow": rgba
                 }
             });
             return css;
@@ -134,48 +90,9 @@ larvae.factory("lrvColor", function(){
                     ".radio-right" + name + "+label:after"
                 ],
                 rules: {
-                    "color": color1,
-                    "border-color": color1,
-                    "background-color": color2
-                }
-            }) + getCss({
-                head: [
-                    ".checkbox-left" + name + "+label:hover:before",
-                    ".checkbox-right" + name + "+label:hover:after",
-                    ".radio-left" + name + "+label:hover:before",
-                    ".radio-right" + name + "+label:hover:after"
-                ],
-                rules: {
-                    "box-shadow": "inset 0 0 0 3px " + color2 + ", 0px 0px 5px " + rgba
-                }
-            }) + getCss({
-                head: [
-                    ".checkbox-left" + name + "+label:active:before",
-                    ".checkbox-right" + name + "+label:active:after",
-                    ".radio-left" + name + "+label:active:before",
-                    ".radio-right" + name + "+label:active:after",
-                    ".checkbox-left" + name + ":checked+label:hover:before",
-                    ".checkbox-right" + name + ":checked+label:hover:after",
-                    ".radio-left" + name + ":checked+label:hover:before",
-                    ".radio-right" + name + ":checked+label:hover:after"
-                ],
-                rules: {
-                    "box-shadow": "inset 0 0 1px 1px " + rgba + ", inset 0 0 0 3px " + color2
-                }
-            }) + getCss({
-                head: [
-                    ".checkbox-left" + name + ":checked+label:active:before",
-                    ".checkbox-right" + name + ":checked+label:active:after",
-                    ".radio-left" + name + ":checked+label:active::before",
-                    ".radio-right" + name + ":checked+label:active::after",
-                    ".checkbox-left" + name + ":checked+label:before",
-                    ".checkbox-right" + name + ":checked+label:after",
-                    ".radio-left" + name + ":checked+label:before",
-                    ".radio-right" + name + ":checked+label:after"
-                ],
-                rules: {
-                    "background-color": color1,
-                    "box-shadow": "inset 0 0 0 3px " + color2
+                    "--radio-box-background": color2,
+                    "--radio-box-color": color1,
+                    "--radio-box-shadow": rgba
                 }
             });
             return css;
@@ -188,15 +105,8 @@ larvae.factory("lrvColor", function(){
                     ".tabs" + name + ">.tab:after"
                 ],
                 rules: {
-                    "box-shadow": "inset 0 -3px " + color2
-                }
-            }) + getCss({
-                head: [
-                    ".tabs" + name + ">.tab.selected:after",
-                    ".tabs" + name + ">.tab.selected:hover:after"
-                ],
-                rules: {
-                    "box-shadow": "inset 0 -3px " + color1
+                    "--tab-underline": color2,
+                    "--tab-selected": color1
                 }
             });
             return css;
@@ -210,45 +120,20 @@ larvae.factory("lrvColor", function(){
             var rgba = rgb != null ? "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)" : "transparent";
             var css = getCss({
                 head: [
-                    ".modal" + name + ">.modal-container>.modal-header"
+                    ".modal" + name + " *"
                 ],
                 rules: {
-                    "background-color": color1
-                }
-            }) + getCss({
-                head: [
-                    ".modal" + name + ">.modal-container>.modal-footer"
-                ],
-                rules: {
-                    "background-color": color4
-                }
-            }) + getCss({
-                head: [
-                    ".modal" + name + ">.modal-container>.modal-body"
-                ],
-                rules: {
-                    "background-color": color3
+                    "--modal-header": color1,
+                    "--modal-footer": color4,
+                    "--modal-background": color3
                 }
             }) + getCss({
                 head: [
                     ".modal" + name + ">.modal-container>.modal-header>.close"
                 ],
                 rules: {
-                    "color": color2,
-                }
-            }) + getCss({
-                head: [
-                    ".modal" + name + ">.modal-container>.modal-header>.close:hover"
-                ],
-                rules: {
-                    "box-shadow": "0 0 10px " + rgba
-                }
-            }) + getCss({
-                head: [
-                    ".modal" + name + ">.modal-container>.modal-header>.close:active"
-                ],
-                rules: {
-                    "box-shadow": "inset 0 0 10px " + rgba
+                    "--btn-color": color2,
+                    "--btn-shadow": rgba
                 }
             });
             return css;
@@ -262,58 +147,14 @@ larvae.factory("lrvColor", function(){
             var rgba = rgb != null ? "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)" : "transparent";
             var css = getCss({
                 head: [
-                    ".select" + name + "+.span-select>.span-select-value"
+                    ".select" + name + "+.span-select *"
                 ],
                 rules: {
-                    "border-color": color1,
-                    "color": color1,
-                    "background-color": color4
-                }
-            }) + getCss({
-                head: [
-                    ".select" + name + "+.span-select>.span-select-value:hover"
-                ],
-                rules: {
-                    "box-shadow": "0 0 10px " + rgba
-                }
-            }) + getCss({
-                head: [
-                    ".select" + name + "+.span-select>.span-select-value:focus"
-                ],
-                rules: {
-                    "box-shadow": "inset 0 0 10px " + rgba
-                }
-            }) + getCss({
-                head: [
-                    ".select" + name + "+.span-select>.span-select-options"
-                ],
-                rules: {
-                    "box-shadow": "0 1px 3px " + rgba,
-                    "color": color1,
-                    "border-color": color1,
-                    "background-color": color4
-                }
-            }) + getCss({
-                head: [
-                    ".select" + name + "+.span-select>.span-select-options.show.up"
-                ],
-                rules: {
-                    "box-shadow": "0 -1px 3px " + rgba
-                }
-            }) + getCss({
-                head: [
-                    ".select" + name + "+.span-select>.span-select-options>span:hover"
-                ],
-                rules: {
-                    "background-color": color3
-                }
-            }) + getCss({
-                head: [
-                    ".select" + name + "+.span-select>.span-select-options>span.selected",
-                    ".select" + name + "+.span-select>.span-select-options>span.selected:hover"
-                ],
-                rules: {
-                    "background-color": color2
+                    "--select-color": color1,
+                    "--select-background": color4,
+                    "--select-shadow": rgba,
+                    "--select-option-hover": color3,
+                    "--select-option-selected": color2
                 }
             });
             return css;
@@ -326,51 +167,15 @@ larvae.factory("lrvColor", function(){
             var rgba = rgb != null ? "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)" : "transparent";
             var css = getCss({
                 head: [
-                    ".range" + name + "+.span-range-container>.span-range:before"
+                    ".range" + name + "+.span-range-container *"
                 ],
                 rules: {
-                    "border-color": color1,
-                    "background-color": color2
-                }
-            }) + getCss({
-                head: [
-                    ".range" + name + "+.span-range-container>.span-range>.span-range-dot"
-                ],
-                rules: {
-                    "border-color": color1,
-                    "background-color": color3
-                }
-            }) + getCss({
-                head: [
-                    ".range" + name + "+.span-range-container>.span-range>.span-range-dot:active",
-                    ".range" + name + "+.span-range-container>.span-range>.span-range-bar:active+.span-range-dot"
-                ],
-                rules: {
-                    "box-shadow": "inset 0px 0px 4px " + rgba
-                }
-            }) + getCss({
-                head: [
-                    ".range" + name + "+.span-range-container>.span-range>.span-range-value"
-                ],
-                rules: {
-                    "box-shadow": "0px 1px 3px " + rgba,
-                    "border-color": color1,
-                    "color": color1,
-                    "background-color": color3
-                }
-            }) + getCss({
-                head: [
-                    ".range" + name + "+.span-range-container>.span-range>.span-range-value:after"
-                ],
-                rules: {
-                    "border-color": color3 + " transparent transparent transparent"
-                }
-            }) + getCss({
-                head: [
-                    ".range" + name + "+.span-range-container>.span-range>.span-range-value:before"
-                ],
-                rules: {
-                    "border-color": color1 + " transparent transparent transparent"
+
+                    "--range-bar-background": color2,
+                    "--range-border": color1,
+                    "--range-background": color3,
+                    "--range-shadow": rgba,
+                    "--range-value": color1
                 }
             });
             return css;
@@ -381,24 +186,12 @@ larvae.factory("lrvColor", function(){
             var color3 = color[2];
             var css = getCss({
                 head: [
-                    "table" + name + " thead th"
+                    "table" + name + " *"
                 ],
                 rules: {
-                    "border-color": color1
-                }
-            }) + getCss({
-                head: [
-                    "table" + name + " tbody tr:nth-of-type(even)"
-                ],
-                rules: {
-                    "background-color": color2
-                }
-            }) + getCss({
-                head: [
-                    "table" + name + " tbody tr:hover"
-                ],
-                rules: {
-                    "background-color": color3
+                    "--thead-underline": color1,
+                    "--row-even": color2,
+                    "--row-hover": color3
                 }
             });
             return css;
@@ -413,29 +206,17 @@ larvae.factory("lrvColor", function(){
                     ".message>div" + name
                 ],
                 rules: {
-                    "background-color": color1,
-                    "color": color2
+
+                    "--message-background": color1,
+                    "--message-color": color2
                 }
             }) + getCss({
                 head: [
                     ".message>div" + name + ">.btn.icon.round.close"
                 ],
                 rules: {
-                    "color": color2
-                }
-            }) + getCss({
-                head: [
-                    ".message>div" + name + ">.btn.icon.round.close:hover"
-                ],
-                rules: {
-                    "box-shadow": "0 0 10px " + rgba
-                }
-            }) + getCss({
-                head: [
-                    ".message>div" + name + ">.btn.icon.round.close:active"
-                ],
-                rules: {
-                    "box-shadow": "inset 0 0 10px " + rgba
+                    "--btn-color": color2,
+                    "--btn-shadow": rgba
                 }
             });
             return css;
@@ -777,7 +558,7 @@ larvae.directive("select", ["$compile", function($compile){
                 spanOptionElements.removeClass("selected");
                 for(var i = 0; i < spanOptionElements.length; i++){
                     spanOptionElement = angular.element(spanOptionElements[i]);
-                    if(spanOptionElement.attr("data-value") == scope.lrvModel.value){
+                    if(spanOptionElement.attr("data-lrv-value") == scope.lrvModel.value){
                         spanOptionElement.addClass("selected");
                         break;
                     }
