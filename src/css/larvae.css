@@ -17,9 +17,13 @@
     --radio-box-background: white;
     --radio-box-color: black;
     --radio-box-shadow: rgba(0, 0, 0, .75);
+    --radio-box-disabled-color: #A0A0A0;
+    --radio-box-disabled-background: #F0F0F0;
     --radio-btn-color: black;
     --radio-btn-background: white;
     --radio-btn-shadow: rgba(0, 0, 0, .75);
+    --radio-btn-disabled-color: #A0A0A0;
+    --radio-btn-disabled-background: #F0F0F0;
     --select-color: black;
     --select-background: white;
     --select-shadow: rgba(0, 0, 0, .75);
@@ -498,6 +502,23 @@ body.modal-open{
     box-shadow: inset 0 0 0 3px var(--radio-box-background);
 }
 
+.checkbox-left:disabled + label:before,
+.checkbox-right:disabled + label:after,
+.radio-left:disabled + label:before,
+.radio-right:disabled + label:after {
+    background-color: var(--radio-box-disabled-background);
+    border-color: var(--radio-box-disabled-color);
+    box-shadow: none;
+}
+
+.checkbox-left:disabled + label,
+.checkbox-right:disabled + label,
+.radio-left:disabled + label,
+.radio-right:disabled + label {
+    cursor: not-allowed;
+    color: var(--radio-box-disabled-color);
+}
+
 .checkbox-btn + label,
 .radio-btn + label {
     color: var(--radio-btn-color);
@@ -527,6 +548,15 @@ body.modal-open{
 .checkbox-btn:checked + label:active,
 .radio-btn:checked + label:active {
     box-shadow: inset 0 0 10px var(--radio-btn-shadow);
+}
+
+.checkbox-btn:disabled + label,
+.radio-btn:disabled + label {
+    cursor: not-allowed;
+    background-color: var(--radio-btn-disabled-background);
+    color: var(--radio-btn-disabled-color);
+    border-color: var(--radio-btn-disabled-color);
+    box-shadow: none;
 }
 
 /* select section */

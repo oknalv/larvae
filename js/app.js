@@ -184,6 +184,19 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
+    var disabledCheckboxes = '<input type="checkbox" class="checkbox-btn" id="check7" disabled/>\n<label for="check7">checkbox</label>'
+    disabledCheckboxes += '<input type="checkbox" class="checkbox-left" id="check8" disabled/>\n<label for="check8">checkbox</label>'
+    $scope.disabledCheckboxes = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: disabledCheckboxes
+            }
+        ],
+        result: "HTML"
+    };
+
     //TAB SECTION
 
     var tabsHorizontal = '<div class="tabs">\n';
@@ -717,6 +730,19 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
+    var disabledRadioButtons = '<input type="radio" name="rad5" class="radio-btn" id="rad7" disabled/>\n<label for="rad7">radio</label>\n';
+    disabledRadioButtons += '<input type="radio" name="rad5" class="radio-left" id="rad8" disabled/>\n<label for="rad8">radio</label>\n';
+    $scope.disabledRadioButtons = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: disabledRadioButtons
+            }
+        ],
+        result: "HTML"
+    };
+
     //GRID SECTION
 
     var defaultGrid = '<div class="f-row" style="background-color: lightgray;">\n';
@@ -894,8 +920,8 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
 
     var defaultColors = 'lrvColor.setDefaultColors({\n';
     defaultColors += '    "btn": ["#4444FF", "#44FFFF", "#44FFFF", "transparent"],\n';
-    defaultColors += '    "checkbox-radio-btn": ["#4444FF", "#44FFFF"],\n';
-    defaultColors += '    "checkbox-radio": ["#4444FF", "#44FFFF"],\n';
+    defaultColors += '    "checkbox-radio-btn": ["#775500", "#FF7755", "#FF7755", "#FFFFFF"],\n';
+    defaultColors += '    "checkbox-radio": ["#AA33FF", "#FF88FF", "#FF88FF", "#FFFFFF"],\n';
     defaultColors += '    "modal": ["#855555", "#FFFF77", "#FFFF77", "#855555"],\n';
     defaultColors += '    "select": ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"],\n';
     defaultColors += '    "range": ["#003300", "#00AA00", "#AAFFAA"],\n';
@@ -937,11 +963,13 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
     };
 
     var coloredCheckboxRadioButtons = '<input type="radio" name="color-radio1" class="radio-btn orange" id="color-radio1"/>\n<label for="color-radio1">radio</label>\n';
-    coloredCheckboxRadioButtons += '<input type="checkbox" class="checkbox-btn purple" id="color-checkbox1"/>\n<label for="color-checkbox1">checkbox</label>';
-    lrvColor.addColor("checkbox-btn", "orange", ["#775500", "#FF7755"]);
-    var coloredCheckboxRadioButtonsJs = 'lrvColor.addColor("checkbox-btn", "orange", ["#775500", "#FF7755"]);\n';
-    lrvColor.addColor("radio-btn", "purple", "#AA33FF");
-    coloredCheckboxRadioButtonsJs += 'lrvColor.addColor("radio-btn", "purple",  "#AA33FF");';
+    coloredCheckboxRadioButtons += '<input type="radio" name="color-radio1" class="radio-btn orange" id="color-radio2" disabled/>\n<label for="color-radio2">radio</label>\n';
+    coloredCheckboxRadioButtons += '<input type="checkbox" class="checkbox-btn purple" id="color-checkbox1"/>\n<label for="color-checkbox1">checkbox</label>\n';
+    coloredCheckboxRadioButtons += '<input type="checkbox" class="checkbox-btn purple" id="color-checkbox2" disabled/>\n<label for="color-checkbox2">checkbox</label>';
+    lrvColor.addColor("checkbox-btn", "orange", ["#775500", "#FF7755", "#FF7755", "#FFFFFF"]);
+    var coloredCheckboxRadioButtonsJs = 'lrvColor.addColor("checkbox-btn", "orange", ["#775500", "#FF7755", "#FF7755", "#FFFFFF"]);\n';
+    lrvColor.addColor("radio-btn", "purple", ["#AA33FF", "#FF88FF", "#FF88FF", "#FFFFFF"]);
+    coloredCheckboxRadioButtonsJs += 'lrvColor.addColor("radio-btn", "purple",  ["#AA33FF", "#FF88FF", "#FF88FF", "#FFFFFF"]);';
     $scope.coloredCheckboxRadioButtons = {
         code: [
             {
@@ -958,12 +986,14 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
-    var coloredCheckboxRadioLeftRight = '<input type="checkbox" class="checkbox-left gray" id="color-checkbox2">\n<label for="color-checkbox2">checkbox</label>\n';
-    coloredCheckboxRadioLeftRight += '<input type="radio" name="color-radio2" class="radio-right magenta" id="color-radio2"/>\n<label for="color-radio2">radio</label>\n';
-    lrvColor.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);
-    var coloredCheckboxRadioLeftRightJs = 'lrvColor.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);\n';
-    lrvColor.addColor("radio-right", "magenta", ["#FF00FF", "#FFFFFF"]);
-    coloredCheckboxRadioLeftRightJs += 'lrvColor.addColor("radio-right", "magenta", ["#FF00FF", "#FFFFFF"]);';
+    var coloredCheckboxRadioLeftRight = '<input type="checkbox" class="checkbox-left gray" id="color-checkbox3">\n<label for="color-checkbox3">checkbox</label>\n';
+    coloredCheckboxRadioLeftRight += '<input type="checkbox" class="checkbox-right gray" id="color-checkbox4" disabled>\n<label for="color-checkbox4">checkbox</label>\n';
+    coloredCheckboxRadioLeftRight += '<input type="radio" name="color-radio3" class="radio-right magenta" id="color-radio3"/>\n<label for="color-radio3">radio</label>\n';
+    coloredCheckboxRadioLeftRight += '<input type="radio" name="color-radio3" class="radio-left magenta" id="color-radio4" disabled/>\n<label for="color-radio4">radio</label>';
+    lrvColor.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA", "#AAAAAA", "#FFFFFF"]);
+    var coloredCheckboxRadioLeftRightJs = 'lrvColor.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA", "#AAAAAA", "#FFFFFF"]);\n';
+    lrvColor.addColor("radio-right", "magenta", ["#FF00FF", "#FFFFFF", "#FF77FF", "#FFFFFF"]);
+    coloredCheckboxRadioLeftRightJs += 'lrvColor.addColor("radio-right", "magenta", ["#FF00FF", "#FFFFFF", "#FF77FF", "#FFFFFF"]);';
     $scope.coloredCheckboxRadioLeftRight = {
         code: [
             {
