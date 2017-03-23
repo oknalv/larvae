@@ -557,7 +557,7 @@ body.modal-open{
 }
 
 .span-select-value:focus{
-    box-shadow: inset 0 0 10px var(--select-shadow));
+    box-shadow: inset 0 0 10px var(--select-shadow);
 }
 
 .span-select-options {

@@ -896,7 +896,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
     defaultColors += '    "btn": ["#4444FF", "#44FFFF", "#44FFFF", "transparent"],\n';
     defaultColors += '    "checkbox-radio-btn": ["#4444FF", "#44FFFF"],\n';
     defaultColors += '    "checkbox-radio": ["#4444FF", "#44FFFF"],\n';
-    defaultColors += '    "modal": ["#855555", "#FFFF77", "#FFFF77"],\n';
+    defaultColors += '    "modal": ["#855555", "#FFFF77", "#FFFF77", "#855555"],\n';
     defaultColors += '    "select": ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"],\n';
     defaultColors += '    "range": ["#003300", "#00AA00", "#AAFFAA"],\n';
     defaultColors += '    "table": ["#5500AA", "#FAF0FA", "#FAD0FA"],\n';
@@ -962,8 +962,8 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
     coloredCheckboxRadioLeftRight += '<input type="radio" name="color-radio2" class="radio-right magenta" id="color-radio2"/>\n<label for="color-radio2">radio</label>\n';
     lrvColor.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);
     var coloredCheckboxRadioLeftRightJs = 'lrvColor.addColor("checkbox-left", "gray", ["#555555", "#AAAAAA"]);\n';
-    lrvColor.addColor("radio-right", "magenta", "#FF00FF");
-    coloredCheckboxRadioLeftRightJs += 'lrvColor.addColor("radio-right", "magenta", "#FF00FF");';
+    lrvColor.addColor("radio-right", "magenta", ["#FF00FF", "#FFFFFF"]);
+    coloredCheckboxRadioLeftRightJs += 'lrvColor.addColor("radio-right", "magenta", ["#FF00FF", "#FFFFFF"]);';
     $scope.coloredCheckboxRadioLeftRight = {
         code: [
             {
@@ -1007,7 +1007,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
     coloredModal += '        <div class="modal-footer"></div>\n';
     coloredModal += '    </div>\n';
     coloredModal += '</div>';
-    lrvColor.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);
+    lrvColor.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77", "#855555"]);
     $scope.coloredModal = {
         code: [
             {
@@ -1018,7 +1018,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
             {
                 name: "JavaScript",
                 language: "javascript",
-                content: 'lrvColor.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77"]);'
+                content: 'lrvColor.addColor("modal", "brown", ["#855555", "#FFFF77", "#FFFF77", "#855555"]);'
             }
         ],
         result: "HTML",
