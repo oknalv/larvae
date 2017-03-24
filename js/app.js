@@ -38,6 +38,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
     $scope.gridTab = "sections/grid.html";
     $scope.colorsTab = "sections/colors.html";
     $scope.messagesTab = "sections/messages.html";
+    $scope.inputsTab = "sections/inputs.html";
 
     //VARIABLES FOR SOME SECTIONS SECTION
     var loremFistrum = 'Lorem fistrum amatomaa no te digo trigo por no llamarte Rodrigor te voy a borrar el cerito ese pedazo de a peich quietooor quietooor a wan la caidita. Ese pedazo de pecador a peich caballo blanco caballo negroorl te voy a borrar el cerito. Hasta luego Lucas llevame al sircoo caballo blanco caballo negroorl fistro caballo blanco caballo negroorl diodeno diodenoo. Benemeritaar ese hombree qué dise usteer apetecan. Se calle ustée se calle ustée papaar papaar condemor. Diodeno me cago en tus muelas caballo blanco caballo negroorl te voy a borrar el cerito. Quietooor pecador ahorarr está la cosa muy malar se calle ustée no te digo trigo por no llamarte Rodrigor no puedor. No puedor no puedor benemeritaar la caidita no te digo trigo por no llamarte Rodrigor.';
@@ -1166,8 +1167,6 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
-
-
     var coloredMessageJs = 'angular.module("app")\n.controller("controller",["$scope", "lrvElement", function($scope, lrvElement){\n';
     coloredMessageJs += '    $scope.addWarning = function(){\n';
     coloredMessageJs += '        var message = {\n';
@@ -1243,6 +1242,25 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
     lrvColor.addColor("message", "error", ["#FF3333", "#FFFFFF"]);
     lrvColor.addColor("message", "warning", ["#FFAA33", "#FFFFFF"]);
     lrvColor.addColor("message", "success", ["#44FF77", "#FFFFFF"]);
+
+    var coloredInputs = '<input type="password" class="input brown" placeholder="password"/>\n';
+    coloredInputs += '<input type="text" class="input brown" placeholder="text" disabled/>';
+    $scope.coloredInputs = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: coloredInputs
+            },
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: 'lrvColor.addColor("input", "brown", ["#552200", "#D4956A", "#D4956A", "#FFFFFF"]);'
+            }
+        ],
+        result: "HTML"
+    };
+    lrvColor.addColor("input", "brown", ["#552200", "#D4956A", "#D4956A", "#FFFFFF"]);
 
     //MESSAGE SECTION
 
@@ -1355,6 +1373,36 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         description: {translation: "messages-clear"},
         example: 'lrvElement.message("id").clear();'
     }
+
+    //INPUT SECTION
+
+    var inputs = '<input type="text" class="input" placeholder="text"/>\n';
+    inputs += '<input type="password" class="input" placeholder="password"/>\n';
+    inputs += '<textarea class="input" placeholder="textarea"></textarea>';
+    $scope.inputs = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: inputs
+            }
+        ],
+        result: "HTML"
+    };
+
+    var disabledInputs = '<input type="text" class="input" placeholder="text" disabled/>\n';
+    disabledInputs += '<input type="password" class="input" placeholder="password" disabled/>\n';
+    disabledInputs += '<textarea class="input" placeholder="textarea" disabled></textarea>';
+    $scope.disabledInputs = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: disabledInputs
+            }
+        ],
+        result: "HTML"
+    };
 }]);
 
 app.directive("customCode", ["$compile", function($compile){
