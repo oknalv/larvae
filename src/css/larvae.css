@@ -34,6 +34,8 @@
     --range-background: white;
     --range-shadow: rgba(0, 0, 0, .75);
     --range-value: black;
+    --range-bar-disabled-background: #F0F0F0;
+    --range-disabled-border: #A0A0A0;
     --code: #545454;
     --message-background: lightgray;
     --message-color: black;
@@ -731,6 +733,20 @@ body.modal-open{
 .span-range-value:before {
     border-width: 6px;
     border-color: var(--range-border) transparent transparent transparent;
+}
+
+.range:disabled + .span-range-container > .span-range > .span-range-dot,
+.range:disabled + .span-range-container > .span-range > .span-range-value {
+    display: none;
+}
+
+.range:disabled + .span-range-container {
+    cursor: not-allowed;
+}
+
+.range:disabled + .span-range-container > .span-range:before {
+    background-color: var(--range-bar-disabled-background);
+    border-color: var(--range-disabled-border);
 }
 
 /* text formatting section */

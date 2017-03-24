@@ -171,6 +171,8 @@ larvae.factory("lrvColor", function(){
             var color1 = color[0];
             var color2 = color[1];
             var color3 = color[2];
+            var color4 = color[3];
+            var color5 = color[4];
             var rgb = color1 != "transparent" ? hexToRgb(color1) : null;
             var rgba = rgb != null ? "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",.75)" : "transparent";
             var css = getCss({
@@ -183,7 +185,9 @@ larvae.factory("lrvColor", function(){
                     "--range-border": color1,
                     "--range-background": color3,
                     "--range-shadow": rgba,
-                    "--range-value": color1
+                    "--range-value": color1,
+                    "--range-disabled-border": color4,
+                    "--range-bar-disabled-background": color5
                 }
             });
             return css;
@@ -639,19 +643,24 @@ larvae.directive("range", ["$compile", function($compile){
                 element.attr("max", scope.lrvModel.max);
             if(scope.lrvModel.value == undefined)
                 scope.lrvModel.value = scope.lrvModel.min;
+            if(scope.lrvModel.disabled == true)
+                element.attr("disabled", "");
+            else
+                element.removeAttr("disabled");
             var spanRangeValue = angular.element("<span class='span-range-value'>" + scope.lrvModel.value + "</span>");
             spanRange.append(spanRangeValue);
 
             var clicking = false;
 
             spanRangeBar.bind("mousemove", function(event){
-                if(event.buttons == 1 && clicking)
+                if(event.buttons == 1 && clicking && !scope.lrvModel.disabled)
                     moveDot(event);
             });
 
             spanRangeBar.bind("mousedown", function(event){
                 if(event.buttons == 1){
                     clicking = true;
+                    if(!scope.lrvModel.disabled)
                     moveDot(event);
                 }
             });
@@ -672,6 +681,13 @@ larvae.directive("range", ["$compile", function($compile){
                 spanRangeDot.css("margin-left", percentage + "%");
                 spanRangeValue.css("margin-left", percentage + "%");
                 spanRangeValue.html(element.val());
+            });
+
+            scope.$watch("lrvModel.disabled", function(){
+                if(scope.lrvModel.disabled)
+                    element.attr("disabled", "");
+                else
+                    element.removeAttr("disabled");
             });
 
             function moveDot(event){

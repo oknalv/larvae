@@ -884,14 +884,38 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         ],
         result: "HTML"
     };
-
     $scope.range1 = {
         value: 50
     };
+
     $scope.range2 = {
-        value: 0
+        value: 0,
     };
 
+    var disabledRange = '<input type="range" class="range" min="0" max="100" data-lrv-model="range3"/>';
+    var disabledRangeJs = '$scope.range3 = {\n';
+    disabledRangeJs += '    "value": 50\n';
+    disabledRangeJs += '    "disabled": true\n';
+    disabledRangeJs += '};';
+    $scope.disabledRange = {
+        code: [
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: disabledRangeJs
+            },
+            {
+                name: "HTML",
+                language: "html",
+                content: disabledRange
+            }
+        ],
+        result: "HTML"
+    }
+    $scope.range3 = {
+        value: 0,
+        disabled: true
+    };
     //HELPER SECTION
 
     $scope.icon = {
@@ -924,7 +948,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
     defaultColors += '    "checkbox-radio": ["#AA33FF", "#FF88FF", "#FF88FF", "#FFFFFF"],\n';
     defaultColors += '    "modal": ["#855555", "#FFFF77", "#FFFF77", "#855555"],\n';
     defaultColors += '    "select": ["#0000FF", "#AAAAFF", "#CCCCFF", "#CCFFFF"],\n';
-    defaultColors += '    "range": ["#003300", "#00AA00", "#AAFFAA"],\n';
+    defaultColors += '    "range": ["#003300", "#00AA00", "#AAFFAA", "#77AA77", "#FFFFFF"],\n';
     defaultColors += '    "table": ["#5500AA", "#FAF0FA", "#FAD0FA"],\n';
     defaultColors += '    "tabs": ["#FF4444", "#FFAAAA"]\n';
     defaultColors += '});';
@@ -1073,19 +1097,22 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
-    lrvColor.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);
-    $scope.colorRange = {value: 0};
+    var colorRange = '<input type="range" class="range green" min="0" max="100" data-lrv-model="colorRange1"/>\n';
+    colorRange += '<input type="range" class="range green" min="0" max="100" data-lrv-model="colorRange2"/>\n';
+    lrvColor.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA", "#77AA77", "#FFFFFF"]);
+    $scope.colorRange1 = {value: 0};
+    $scope.colorRange2 = {value: 0, disabled: true};
     $scope.coloredRange = {
         code: [
             {
                 name: "HTML",
                 language: "html",
-                content: '<input type="range" class="range green" min="0" max="100" data-lrv-model="colorRange"/>'
+                content: colorRange
             },
             {
                 name: "JavaScript",
                 language: "javascript",
-                content: 'lrvColor.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA"]);'
+                content: 'lrvColor.addColor("range", "green", ["#003300", "#00AA00", "#AAFFAA", "#77AA77", "#FFFFFF"]);'
             }
         ],
         result: "HTML"
