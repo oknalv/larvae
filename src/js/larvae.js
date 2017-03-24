@@ -713,7 +713,7 @@ larvae.directive("range", ["$compile", function($compile){
                 var percentage = 100 * event.layerX / spanRangeBar[0].offsetWidth;
                 var onePercent = (scope.lrvModel.max - scope.lrvModel.min) / 100;
                 var value = percentage * (scope.lrvModel.max - scope.lrvModel.min + onePercent) / 100 + scope.lrvModel.min;
-                element.val(value);
+                element.val(parseInt(value));
                 element.triggerHandler("change");
             }
         }
