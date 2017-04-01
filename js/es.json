@@ -99,7 +99,7 @@
   "radio-button-disabled": "Así es como se ven los radio buttons con alguna de sus clases cuando tienen el atributo <code>disabled</code>:",
   "hidden-radio-button": "Radio button oculto",
   "grid": "Rejilla",
-  "grid-introduction": "El sistema de rejilla depende de las cajas flexibles de CSS. La clase principal es <code>.f-row</code>. Es una clase contenedora donde tienes que meter los elementos flexibles. Por defecto, los elementos mantienen su ancho dentro del contenedor. Veamos un ejemplo:",
+  "grid-introduction": "El sistema de rejilla depende de las cajas flexibles de CSS. La clase principal es <code>.grid</code>. Es una clase contenedora donde tienes que meter los elementos flexibles. Por defecto, los elementos mantienen su ancho dentro del contenedor. Veamos un ejemplo:",
   "grid-elements": "Pero esto no se parece a una rejilla; tienes que añadir las clases para los elementos. Hay unas cuantas, empiezan con el prefijo <code>f-</code> y una fracción, pero en lugar de utilizar el carácter <code>/</code> para separar el numerador del denominador, estas clases utilizan el carácter <code>-</code>. Las fracciones deben estar simplificadas. ¿Por qué hacerlo así? Porque me parece más divertido. Entonces, <code>.f-1-4</code> es una clase válida, pero <code>.f-2-4</code> no. Por ahora, los únicos denomiadores disponibles son 1, 2, 4 y 8, y los numeradores no pueden ser mayores o iguales que los denominadores, a excepción del 1. Este es un ejemplo del sistema de rejillas:",
   "alignment": "Alineamiento",
   "grid-alignment": "Si quieres alinear los elementos vertical u horizontalmente, hay algunas clases modificadoras que puedes añadir a tu elemento contenedor. Estas clases son:",

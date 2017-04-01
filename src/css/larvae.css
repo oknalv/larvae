@@ -230,28 +230,28 @@ button::-moz-focus-inner {
 
 /* flex grid section */
 
-.f-row {
+.grid {
     display: flex;
     flex-wrap: wrap;
 }
 
-.f-row.h-end {
+.grid.h-end {
     justify-content: flex-end;
 }
 
-.f-row.v-end {
+.grid.v-end {
     align-items: flex-end;
 }
 
-.f-row.h-center {
+.grid.h-center {
     justify-content: center;
 }
 
-.f-row.v-center {
+.grid.v-center {
     align-items: center;
 }
 
-.f-row.h-around {
+.grid.h-around {
     justify-content: space-around;
 }
 

@@ -746,7 +746,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
 
     //GRID SECTION
 
-    var defaultGrid = '<div class="f-row" style="background-color: lightgray;">\n';
+    var defaultGrid = '<div class="grid" style="background-color: lightgray;">\n';
     defaultGrid += '    <div style="background-color: cyan;">div</div>\n';
     defaultGrid += '    <div style="background-color: yellow;">div</div>\n';
     defaultGrid += '    <div style="background-color: magenta;">div</div>\n';
@@ -762,7 +762,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
-    var hEndGrid = '<div class="f-row h-end" style="background-color: lightgray;">\n';
+    var hEndGrid = '<div class="grid h-end" style="background-color: lightgray;">\n';
     hEndGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
     hEndGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
     hEndGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
@@ -778,7 +778,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
-    var hCenterGrid = '<div class="f-row h-center" style="background-color: lightgray;">\n';
+    var hCenterGrid = '<div class="grid h-center" style="background-color: lightgray;">\n';
     hCenterGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
     hCenterGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
     hCenterGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
@@ -794,7 +794,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
-    var hAroundGrid = '<div class="f-row h-around" style="background-color: lightgray;">\n';
+    var hAroundGrid = '<div class="grid h-around" style="background-color: lightgray;">\n';
     hAroundGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
     hAroundGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
     hAroundGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
@@ -810,7 +810,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
-    var vEndGrid = '<div class="f-row v-end" style="background-color: lightgray;">\n';
+    var vEndGrid = '<div class="grid v-end" style="background-color: lightgray;">\n';
     vEndGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
     vEndGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
     vEndGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
@@ -826,7 +826,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
-    var vCenterGrid = '<div class="f-row v-center" style="background-color: lightgray;">\n';
+    var vCenterGrid = '<div class="grid v-center" style="background-color: lightgray;">\n';
     vCenterGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
     vCenterGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
     vCenterGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
@@ -842,7 +842,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
-    var fullGrid = '<div class="f-row">\n';
+    var fullGrid = '<div class="grid">\n';
     fullGrid += '    <div class="f-1-1" style="background-color: cyan;">.f-1-1</div>\n';
     fullGrid += '    <div class="f-1-2" style="background-color: yellow;">.f-1-2</div>\n';
     fullGrid += '    <div class="f-1-2" style="background-color: magenta;">.f-1-2</div>\n';
@@ -1478,7 +1478,7 @@ app.directive("customFunction", ["$compile", function($compile){
                     var fnName = scope.model.name + "(";
                     var parameters = scope.model.parameters;
                     if(parameters != undefined && parameters.length > 0){
-                        var parametersContainerDiv = angular.element("<div class='f-row'></div>");
+                        var parametersContainerDiv = angular.element("<div class='grid'></div>");
                         element.append(parametersContainerDiv);
                         var parametersText = angular.element("<div class='text custom-title' data-lrv-text='parameters'></div>");
                         parametersContainerDiv.append(parametersText);
