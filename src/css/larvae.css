@@ -199,6 +199,7 @@ button::-moz-focus-inner {
 .one-line {
     display: flex;
     align-items: center;
+    width: 100%;
 }
 
 .one-line > * {
