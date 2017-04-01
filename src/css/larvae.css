@@ -196,6 +196,19 @@ button::-moz-focus-inner {
     display: none !important;
 }
 
+.one-line {
+    display: flex;
+    align-items: center;
+}
+
+.one-line > * {
+    margin-right: 5px;
+}
+
+.one-line > *:last-child {
+    margin-right: 0px;
+}
+
 /* grouped section*/
 
 .grouped {

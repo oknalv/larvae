@@ -85,6 +85,7 @@
   "helpers-introduction": "Hay algunas clases que puedes utilizar con ciertos elementos para cambiar su apariencia.",
   "icon-introduction": "Esta clase hace que la fuente del icono sea algo más grande que el resto del texto.",
   "hidden-introduction": "Esta clase oculta un elemento. Es utilizada por varias directivas.",
+  "one-line-introduction": "Esta clase viene de una necesidad que tuve que tener elementos <code>input</code> con elementos <code>label</code> en la misma línea. Funciona también con otros tipos de elementos. Se utiliza envolviendo los elementos dentro de un elemento con esta clase.",
   "text-style": "Estilo del texto",
   "text-style-introduction": "Esta sección contiene información acerca de estilos por defecto para etiquetas HTML y clases que cambian el estilo de los textos",
   "paragraph-introduction": "Esta clase hace que el texto esté justificado y añade márgenes encima y debajo del texto. Esta es una comparación entre elementos con y sin la clase <code>.paragraph</code> (en este ejemplo, tienen un color de fondo y un elemento padre con borde cada uno para que se entienda mejor):",

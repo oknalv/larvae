@@ -85,6 +85,7 @@
   "helpers-introduction": "There are some classes that you can use with certain elements to change their appearance.",
   "icon-introduction": "This class makes a font icon to be a little bit bigger than the rest of the text.",
   "hidden-introduction": "This class hides an element. It's used by some directives.",
+  "one-line-introduction": "This class comes from a need I had to have <code>input</code> elements with <code>label</code> in the same line. It works with other kind of elements too. You have to use it wrapping the elements inside an element with this class.",
   "text-style": "Text style",
   "text-style-introduction": "This section contains information about HTML text tag's default style and also classes which change texts' style.",
   "paragraph-introduction": "This class makes the text to be justified and adds some top and bottom margin to the text. This is a comparison between elements with and without <code>.paragraph</code> class (in this example, they have a background color and a parent element with border each one for better understanding):",

@@ -941,6 +941,32 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
+    var oneLine = '<div class="one-line">\n';
+    oneLine += '    <label for="one-line-input1">lorem</label>\n';
+    oneLine += '    <input type="text" id="one-line-input1" class="input"/>\n';
+    oneLine += '</div>\n';
+    oneLine += '<div class="one-line">\n';
+    oneLine += '    <label for="one-line-textarea">lorem</label>\n';
+    oneLine += '    <textarea class="input"></textarea>\n';
+    oneLine += '</div>\n';
+    oneLine += '<div class="one-line">\n';
+    oneLine += '    <label for="one-line-range">lorem</label>\n';
+    oneLine += '    <input type="range" class="range" data-lrv-model="oneLineRange"/>\n';
+    oneLine += '</div>';
+    $scope.oneLineRange = {
+        value: 0
+    };
+    $scope.oneLine = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: oneLine
+            }
+        ],
+        result: "HTML"
+    };
+
     //COLOR SECTION
 
     var defaultColors = 'lrvColor.setDefaultColors({\n';
