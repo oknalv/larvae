@@ -107,6 +107,7 @@
   "grid-h-end": "<code>.h-end</code> - It makes the elements to be horizontally aligned to the right. It uses the <code>justify-content: flex-end;</code> CSS rule.",
   "grid-h-center": "<code>.h-center</code> - It makes the elements to be horizontally aligned to the center. It uses the <code>justify-content: center;</code> CSS rule.",
   "grid-h-around": "<code>.h-around</code> - It makes the elements to be horizontally equally distributed. It uses the <code>justify-content: space-around;</code> CSS rule.",
+  "grid-h-between": "<code>.h-between</code> - It makes the elements to be horizontally separated by the maximum available space. It uses the <code>justify-content: space-between;</code> CSS rule.",
   "grid-v-end": "<code>.v-end</code> - It makes the elements to be vertically aligned to the bottom. It uses the <code>align-items: flex-end;</code> CSS rule.",
   "grid-v-center": "<code>.v-center</code> - It makes the elements to be vertically aligned to the center. It uses the <code>align-items: center;</code> CSS rule.",
   "messages": "Messages",

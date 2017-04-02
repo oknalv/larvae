@@ -810,6 +810,22 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
+    var hBetweenGrid = '<div class="grid h-between" style="background-color: lightgray;">\n';
+    hBetweenGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
+    hBetweenGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
+    hBetweenGrid += '    <div class="f-1-8" style="background-color: magenta; height: 80px;">.f-1-8</div>\n';
+    hBetweenGrid += '</div>';
+    $scope.hBetweenGrid  = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: hBetweenGrid
+            }
+        ],
+        result: "HTML"
+    };
+
     var vEndGrid = '<div class="grid v-end" style="background-color: lightgray;">\n';
     vEndGrid += '    <div class="f-1-8" style="background-color: cyan; height: 20px;">.f-1-8</div>\n';
     vEndGrid += '    <div class="f-1-8" style="background-color: yellow; height: 40px;">.f-1-8</div>\n';
