@@ -653,15 +653,17 @@ larvae.directive("range", ["$compile", function($compile){
             var spanRangeDot = angular.element("<span class='span-range-dot'></span>");
             spanRange.append(spanRangeDot);
             if(scope.lrvModel.min == undefined)
-                scope.lrvModel.min = parseInt(element.attr("min")) || 0;
+                scope.lrvModel.min = parseFloat(element.attr("min")) || 0;
             else
                 element.attr("min", scope.lrvModel.min);
             if(scope.lrvModel.max == undefined)
-                scope.lrvModel.max = parseInt(element.attr("max")) || 100;
+                scope.lrvModel.max = parseFloat(element.attr("max")) || 100;
             else
                 element.attr("max", scope.lrvModel.max);
             if(scope.lrvModel.value == undefined)
                 scope.lrvModel.value = scope.lrvModel.min;
+            if(scope.lrvModel.step != undefined)
+                element.attr("step", scope.lrvModel.step);
             if(scope.lrvModel.disabled == true)
                 element.attr("disabled", "");
             else
@@ -690,12 +692,12 @@ larvae.directive("range", ["$compile", function($compile){
             });
 
             element.bind("change", function(){
-                scope.lrvModel.value = parseInt(element.val());
+                scope.lrvModel.value = parseFloat(element.val());
                 scope.$apply();
             });
 
             scope.$watch("lrvModel.value", function(){
-                element.val(parseInt(scope.lrvModel.value));
+                element.val(parseFloat(scope.lrvModel.value));
                 var percentage = 100 * (element.val() - scope.lrvModel.min) / (scope.lrvModel.max - scope.lrvModel.min);
                 spanRangeDot.css("margin-left", percentage + "%");
                 spanRangeValue.css("margin-left", percentage + "%");
@@ -713,7 +715,7 @@ larvae.directive("range", ["$compile", function($compile){
                 var percentage = 100 * event.layerX / spanRangeBar[0].offsetWidth;
                 var onePercent = (scope.lrvModel.max - scope.lrvModel.min) / 100;
                 var value = percentage * (scope.lrvModel.max - scope.lrvModel.min + onePercent) / 100 + scope.lrvModel.min;
-                element.val(parseInt(value));
+                element.val(parseFloat(value));
                 element.triggerHandler("change");
             }
         }
