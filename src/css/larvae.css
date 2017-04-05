@@ -44,6 +44,7 @@
     --input-background: white;
     --input-disabled-color: #A0A0A0;
     --input-disabled-background: #F0F0F0;
+    --gallery-shadow: rgba(0, 0, 0, .25);
 }
 
 html {
@@ -58,6 +59,11 @@ html {
     text-decoration: none;
     font-weight: normal;
     outline: 0;
+}
+
+body.modal-open,
+body.gallery-open {
+    overflow: hidden;
 }
 
 a {
@@ -375,10 +381,6 @@ button::-moz-focus-inner {
 }
 
 /* modal section */
-
-body.modal-open{
-    overflow: hidden;
-}
 
 .modal {
     display: none;
@@ -835,4 +837,26 @@ code,
     border-color: var(--input-disabled-color);
     background-color: var(--input-disabled-background);
     cursor: not-allowed;
+}
+
+.gallery {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    background-color: var(--gallery-shadow);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.gallery.show {
+    display: flex;
+}
+
+.gallery > img {
+    max-height: 100%;
+    max-width: 100%;
 }

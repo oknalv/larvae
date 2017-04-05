@@ -7,6 +7,9 @@ larvae.service("lrvElement", function(){
     this.message = function(id){
         return angular.element(document.getElementById(id)).controller("message");
     }
+    this.gallery = function(id){
+        return angular.element(document.getElementById(id)).controller("gallery");
+    }
 });
 
 larvae.factory("lrvColor", function(){
@@ -637,7 +640,7 @@ larvae.directive("select", ["$compile", function($compile){
     }
 }]);
 
-larvae.directive("range", ["$compile", function($compile){
+larvae.directive("range", function(){
     return {
         restrict: "C",
         scope: {
@@ -720,7 +723,7 @@ larvae.directive("range", ["$compile", function($compile){
             }
         }
     }
-}]);
+});
 
 larvae.directive("message", function(){
     return {
@@ -763,4 +766,63 @@ larvae.directive("message", function(){
             }
         }]
     }
-})
+});
+
+larvae.directive("galleryLauncher", ["lrvElement", function(lrvElement){
+    return {
+        restrict: "C",
+        link: function(scope, element, attributes){
+            element.on("click", function(){
+                lrvElement.gallery(element.attr("data-lrv-gallery")).open();
+            });
+        }
+    }
+}]);
+
+larvae.directive("gallery", ["$compile", function($compile){
+    return {
+        restrict: "C",
+        scope: {
+            lrvModel: "="
+        },
+        controller: ["$element", function(element){
+            var onOpen = function(){};
+            var onClose = function(){};
+            this.model = null;
+
+            this.open = function(){
+                element.addClass("show");
+                angular.element(document.querySelector("body")).addClass("gallery-open");
+                onOpen();
+            }
+
+            this.close = function(){
+                element.removeClass("show");
+                angular.element(document.querySelector("body")).removeClass("gallery-open");
+                onClose();
+            }
+
+            this.onOpen = function(fnct){
+                onOpen = typeof fnct == "function" ? fnct : onOpen;
+            }
+
+            this.onClose = function(fnct){
+                onClose = typeof fnct == "function" ? fnct : onClose;
+            }
+        }],
+        link: function(scope, element, attributes, gallery){
+            gallery.model = scope.lrvModel;
+            if(gallery.model.value == undefined)
+                scope.lrvModel.value = 0;
+            var image = angular.element('<img data-ng-src="{{lrvModel.images[lrvModel.value].path}}"/>')
+            element.append(image);
+            $compile(image)(scope);
+
+            element.on("click", function(event){
+                if(event.target == element[0]){
+                    gallery.close();
+                }
+            });
+        }
+    }
+}]);

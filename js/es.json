@@ -124,6 +124,7 @@
   "inputs": "Inputs",
   "inputs-introduction": "La mayoría de los inputs basados en teclado tienen que ser declarados con la clase <code>.input</code>.",
   "inputs-disabled": "Así es como se ven los inputs basados en teclado con la clase <code>.btn</code> cuando tienen el atributo <code>disabled</code>:",
+  "galleries": "Galerías de imágenes",
   "colors-tab": "Colores",
   "colors-introduction": "La paleta de colores por defecto de este framework probablemente no se adapte al diseño de tu página. Para solucionar esto, tienes la factoría <code>lrvColor</code>, que ayuda a cambiar el color de los elementos para evitar escribir CSS manualmente. Esta factoría tiene dos funciones:",
   "colors-default": "La primera es la función <code>setDefaultColors</code>, que cambia la paleta de colores por defecto. Tiene solamente un parámetro, y debe ser un objeto con los nombres de las clases como clave y un string o un array de strings si la clase acepta más de un color como valor (Nota: si quieres especificar colores para los checkboxes/radio buttons, usa <code>checkbox-radio-btn</code> y <code>chekcbox-radio</code> como clave en lugar de los nombres de las clases). Los strings de los colores deben estar en el formato hexadecimal de CSS (por ejemplo, <code>#123456</code>) o <code>\"transparent\"</code> si quieres que sea transparente. Cada clase acepta un número diferente de colores, los cuales serán explicados en las siguientes secciones. Usa esta función antes que las otras o si no no funcionará. Este es un ejemplo del uso de esta función:",

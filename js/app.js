@@ -39,6 +39,7 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
     $scope.colorsTab = "sections/colors.html";
     $scope.messagesTab = "sections/messages.html";
     $scope.inputsTab = "sections/inputs.html";
+    $scope.galleriesTab = "sections/galleries.html";
 
     //VARIABLES FOR SOME SECTIONS SECTION
     var loremFistrum = 'Lorem fistrum amatomaa no te digo trigo por no llamarte Rodrigor te voy a borrar el cerito ese pedazo de a peich quietooor quietooor a wan la caidita. Ese pedazo de pecador a peich caballo blanco caballo negroorl te voy a borrar el cerito. Hasta luego Lucas llevame al sircoo caballo blanco caballo negroorl fistro caballo blanco caballo negroorl diodeno diodenoo. Benemeritaar ese hombree qué dise usteer apetecan. Se calle ustée se calle ustée papaar papaar condemor. Diodeno me cago en tus muelas caballo blanco caballo negroorl te voy a borrar el cerito. Quietooor pecador ahorarr está la cosa muy malar se calle ustée no te digo trigo por no llamarte Rodrigor no puedor. No puedor no puedor benemeritaar la caidita no te digo trigo por no llamarte Rodrigor.';
@@ -1444,6 +1445,28 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
             }
         ],
         result: "HTML"
+    };
+
+    //GALLERY SECTION
+
+    $scope.gallery1 = {
+        images: [
+            {value: "img1", path: "img/img1.png"},
+            {value: "img2", path: "img/img2.png"},
+            {value: "img3", path: "img/img3.png"}
+        ]
+    }
+    var gallery = '<div class="gallery" id="gallery1" data-lrv-model="gallery1"/></div>';
+    $scope.gallery = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: gallery
+            }
+        ],
+        result: "HTML",
+        resultNoPadding: true
     };
 }]);
 

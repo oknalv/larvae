@@ -124,6 +124,7 @@
   "inputs": "Inputs",
   "inputs-introduction": "The keyboard-based inputs have to be declared with the <code>.input</code> class.",
   "inputs-disabled": "This is how keyboard-based inputs with <code>.input</code> class look when they have the <code>disabled</code> attribute:",
+  "galleries": "Image galleries",
   "colors-tab": "Colors",
   "colors-introduction": "The default color palette of this framework is probably not adapted to your page design. To fix this, you have the <code>lrvColor</code> factory, which helps changing the elements' colors to avoid writing CSS manually. This factory has two functions:",
   "colors-default": "The fist one is the <code>setDefaultColors</code> function, which changes the default color palette. It only has one parameter, which must be an object with the name of the classes as keys and a string or an array of strings if the class accepts more than one color as value (Note: if you want to specify colors for checkboxes/radio buttons, use <code>checkbox-radio-btn</code> and <code>checkbox-radio</code> as key instead of the class names). The color strings must be in the CSS hexadecimal format (for example, <code>#123456</code>) or <code>\"transparent\"</code> if you want it to be transparent. Each class accepts a different number of colors and they will be explained in the following sections. Use this function before the others or it won't work. This is an example of the use of this function:",
