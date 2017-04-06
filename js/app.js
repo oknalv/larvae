@@ -1449,24 +1449,54 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
 
     //GALLERY SECTION
 
+    var galleryJson = '{\n';
+    galleryJson += '    "value": 0,\n';
+    galleryJson += '    "images": [\n';
+    galleryJson += '        {"value": "img", "path": "img.png"},\n';
+    galleryJson += '        ...\n';
+    galleryJson += '    ]\n';
+    galleryJson += '}';
+    $scope.galleryJson = {
+        code: [
+            {
+                name: "JSON",
+                language: "json",
+                content: galleryJson
+            }
+        ]
+    };
+
     $scope.gallery1 = {
         images: [
             {value: "img1", path: "img/img1.png"},
             {value: "img2", path: "img/img2.png"},
-            {value: "img3", path: "img/img3.png"}
+            {path: "img/img3.png"}
         ]
     }
-    var gallery = '<div class="gallery" id="gallery1" data-lrv-model="gallery1"/></div>';
+    var gallery = '<div class="gallery" id="gallery1" data-lrv-model="gallery1"/></div>\n';
+    gallery += '<button class="gallery-launcher btn" data-lrv-gallery="gallery1">button</button>';
+    var galleryJs = '$scope.gallery1 = {\n';
+    galleryJs += '    "value": 0,\n';
+    galleryJs += '    "images": [\n';
+    galleryJs += '        {"value": "img1", "path:" "img/img1.png"},\n';
+    galleryJs += '        {"value": "img2", "path": "img/img2.png"},\n';
+    galleryJs += '        {"path": "img/img3.png"}\n';
+    galleryJs += '    ]\n';
+    galleryJs += '}';
     $scope.gallery = {
         code: [
             {
                 name: "HTML",
                 language: "html",
                 content: gallery
+            },
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: galleryJs
             }
         ],
-        result: "HTML",
-        resultNoPadding: true
+        result: "HTML"
     };
 }]);
 

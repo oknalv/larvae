@@ -785,7 +785,7 @@ larvae.directive("gallery", ["$compile", function($compile){
         scope: {
             lrvModel: "="
         },
-        controller: ["$element", function(element){
+        controller: ["$element", "$scope", function(element, scope){
             var onOpen = function(){};
             var onClose = function(){};
             this.model = null;
@@ -793,12 +793,14 @@ larvae.directive("gallery", ["$compile", function($compile){
             this.open = function(){
                 element.addClass("show");
                 angular.element(document.querySelector("body")).addClass("gallery-open");
+                element[0].focus();
                 onOpen();
             }
 
             this.close = function(){
                 element.removeClass("show");
                 angular.element(document.querySelector("body")).removeClass("gallery-open");
+                element[0].blur();
                 onClose();
             }
 
@@ -809,19 +811,72 @@ larvae.directive("gallery", ["$compile", function($compile){
             this.onClose = function(fnct){
                 onClose = typeof fnct == "function" ? fnct : onClose;
             }
+
+            this.next = function(){
+                this.model.value++;
+                if(this.model.value >= this.model.images.length)
+                    this.model.value = 0;
+                scope.$apply();
+            }
+
+            this.prev = function(){
+                this.model.value--;
+                if(this.model.value <= -1)
+                    this.model.value = this.model.images.length - 1;
+                scope.$apply();
+            }
         }],
         link: function(scope, element, attributes, gallery){
+            element.attr("tabindex", 1);
             gallery.model = scope.lrvModel;
+            var imageButtonsContainer = angular.element("<div></div>");
+            element.append(imageButtonsContainer);
+            var prevButton = angular.element('<button class="btn round icon"><i class="fa fa-chevron-left"></i></button>');
+            imageButtonsContainer.append(prevButton);
             if(gallery.model.value == undefined)
                 scope.lrvModel.value = 0;
             var image = angular.element('<img data-ng-src="{{lrvModel.images[lrvModel.value].path}}"/>')
-            element.append(image);
+            imageButtonsContainer.append(image);
             $compile(image)(scope);
+            var nextButton = angular.element('<button class="btn round icon"><i class="fa fa-chevron-right"></i></button>');
+            imageButtonsContainer.append(nextButton);
+            var value = angular.element('<div><span>{{lrvModel.images[lrvModel.value].value || lrvModel.images[lrvModel.value].path}}</span></div>');
+            element.append(value);
+            $compile(value)(scope);
 
-            element.on("click", function(event){
-                if(event.target == element[0]){
+            image.on("click", function(){
+                gallery.next();
+            });
+
+            nextButton.on("click", function(){
+                gallery.next();
+            });
+
+            prevButton.on("click", function(){
+                gallery.prev();
+            });
+
+            imageButtonsContainer.on("click", function(event){
+                if(event.target == imageButtonsContainer[0]){
                     gallery.close();
                 }
+            });
+
+            value.on("click", function(event){
+                if(event.target == value[0]){
+                    gallery.close();
+                }
+            });
+
+            element.on("keypress", function(event){
+                if(event.keyCode == 27)
+                    gallery.close();
+                else if(event.keyCode == 39 || event.keyCode == 40)
+                    gallery.next();
+                else if(event.keyCode == 37 || event.keyCode == 38)
+                    gallery.prev();
+                if(event.keyCode == 37 || event.keyCode == 38 || event.keyCode == 39 || event.keyCode == 40)
+                    event.preventDefault();
             });
         }
     }
