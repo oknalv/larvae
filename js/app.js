@@ -1498,6 +1498,64 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         ],
         result: "HTML"
     };
+
+    $scope.galleryController = {
+        code: [
+            {
+                name: "JavaScript",
+                language: "javascript",
+                content: 'lrvElement.gallery("id");'
+            }
+        ]
+    }
+
+    $scope.galleryOpenFn = {
+        name: "open",
+        description: {translation: "galleries-open"},
+        example: 'lrvElement.gallery("id").open();'
+    }
+
+    $scope.galleryCloseFn = {
+        name: "close",
+        description: {translation: "galleries-close"},
+        example: 'lrvElement.gallery("id").close();'
+    }
+
+    $scope.galleryOnOpenFn = {
+        name: "onOpen",
+        description: {translation: "galleries-onopen"},
+        parameters: [
+            {
+                name: "function",
+                description:{translation: "function-be-called"}
+            }
+        ],
+        example: 'lrvElement.gallery("id").onOpen(function(){});'
+    }
+
+    $scope.galleryOnCloseFn = {
+        name: "onClose",
+        description: {translation: "galleries-onclose"},
+        parameters: [
+            {
+                name: "function",
+                description:{translation: "function-be-called"}
+            }
+        ],
+        example: 'lrvElement.gallery("id").onClose(function(){});'
+    }
+
+    $scope.galleryNextFn = {
+        name: "next",
+        description: {translation: "galleries-next"},
+        example: 'lrvElement.gallery("id").next();'
+    }
+
+    $scope.galleryPrevFn = {
+        name: "prev",
+        description: {translation: "galleries-prev"},
+        example: 'lrvElement.gallery("id").prev();'
+    }
 }]);
 
 app.directive("customCode", ["$compile", function($compile){
