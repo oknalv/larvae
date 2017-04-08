@@ -773,7 +773,12 @@ larvae.directive("galleryLauncher", ["lrvElement", function(lrvElement){
         restrict: "C",
         link: function(scope, element, attributes){
             element.on("click", function(){
-                lrvElement.gallery(element.attr("data-lrv-gallery")).open();
+                var gallery = lrvElement.gallery(element.attr("data-lrv-gallery"));
+                if(element.attr("data-lrv-image")){
+                    gallery.set(parseInt(element.attr("data-lrv-image")));
+                    scope.$apply();
+                }
+                gallery.open();
             });
         }
     }
@@ -825,6 +830,11 @@ larvae.directive("gallery", ["$compile", function($compile){
                     this.model.value = this.model.images.length - 1;
                 scope.$apply();
             }
+
+            this.set = function(index){
+                if(index >= 0 && index < this.model.images.length)
+                    this.model.value = index;
+            }
         }],
         link: function(scope, element, attributes, gallery){
             element.attr("tabindex", 1);
@@ -835,7 +845,7 @@ larvae.directive("gallery", ["$compile", function($compile){
             imageButtonsContainer.append(prevButton);
             if(gallery.model.value == undefined)
                 scope.lrvModel.value = 0;
-            var image = angular.element('<img data-ng-src="{{lrvModel.images[lrvModel.value].path}}"/>')
+            var image = angular.element('<img data-ng-src="{{lrvModel.images[lrvModel.value].path}}"/>');
             imageButtonsContainer.append(image);
             $compile(image)(scope);
             var nextButton = angular.element('<button class="btn round icon"><i class="fa fa-chevron-right"></i></button>');

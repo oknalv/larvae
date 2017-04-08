@@ -1499,6 +1499,17 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         result: "HTML"
     };
 
+    $scope.galleryLaunchParam = {
+        code: [
+            {
+                name: "HTML",
+                language: "html",
+                content: '<button class="btn gallery-launcher" data-lrv-gallery="gallery1" data-lrv-image="1">button</button>'
+            }
+        ],
+        result: "HTML"
+    };
+
     $scope.galleryController = {
         code: [
             {
@@ -1555,6 +1566,18 @@ app.controller("larvaeController", ["$scope", "$location", "lrvColor", "lrvEleme
         name: "prev",
         description: {translation: "galleries-prev"},
         example: 'lrvElement.gallery("id").prev();'
+    }
+
+    $scope.gallerySetFn = {
+        name: "set",
+        description: {translation: "galleries-set"},
+        parameters: [
+            {
+                name: "index",
+                description:{translation: "image-index"}
+            }
+        ],
+        example: 'lrvElement.gallery("id").set(1);'
     }
 }]);
 
