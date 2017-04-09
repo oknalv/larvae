@@ -369,7 +369,7 @@ larvae.directive("tabs", ["$location", function($location){
                         angular.element(document.getElementById(ids[j])).addClass("hidden");
                 }
             }
-            children.bind("click", function(){
+            children.on("click", function(){
                 children.removeClass("selected");
                 var self = angular.element(this);
                 self.addClass("selected");
@@ -509,7 +509,7 @@ larvae.directive("select", ["$compile", function($compile){
             var spanSelectOptions = angular.element("<span class='span-select-options'></span>")
             spanSelect.append(spanSelectOptions);
             var overSpanSelect = false;
-            spanSelectValue.bind("click", function(){
+            spanSelectValue.on("click", function(){
                 if(spanSelectOptions.hasClass("show")){
                     spanSelectValue[0].blur();
                     spanSelectOptions.removeClass("show");
@@ -526,17 +526,17 @@ larvae.directive("select", ["$compile", function($compile){
                     }
                 }
             });
-            spanSelectValue.bind("blur", function(event){
+            spanSelectValue.on("blur", function(event){
                 if(!overSpanSelect){
                     spanSelectOptions.removeClass("show");
                     spanSelectOptions.removeClass("up");
                     spanSelectOptions.css({transform: "none"});
                 }
             });
-            spanSelect.bind("mouseenter", function(){
+            spanSelect.on("mouseenter", function(){
                 overSpanSelect = true;
             });
-            spanSelect.bind("mouseleave", function(){
+            spanSelect.on("mouseleave", function(){
                 overSpanSelect = false;
             });
 
@@ -566,10 +566,10 @@ larvae.directive("select", ["$compile", function($compile){
                     }
                     element.append(optionElement);
                     spanSelectOptions.append(spanOptionElement);
-                    spanOptionElement.bind("DOMSubtreeModified", updateWidth);
+                    spanOptionElement.on("DOMSubtreeModified", updateWidth);
                     if(translate != null)
                         translate.translate(spanOptionElement);
-                    spanOptionElement.bind("click", function(){
+                    spanOptionElement.on("click", function(){
                         scope.lrvModel.value = angular.element(this).attr("data-lrv-value");
                         scope.$apply();
                         spanSelectOptions.removeClass("show");
@@ -623,7 +623,7 @@ larvae.directive("select", ["$compile", function($compile){
                 }
             });
 
-            element.bind("change", function(){
+            element.on("change", function(){
                 scope.lrvModel.value = element.val();
                 scope.$apply();
             });
@@ -676,12 +676,12 @@ larvae.directive("range", function(){
 
             var clicking = false;
 
-            spanRangeBar.bind("mousemove", function(event){
+            spanRangeBar.on("mousemove", function(event){
                 if(event.buttons == 1 && clicking && !scope.lrvModel.disabled)
                     moveDot(event);
             });
 
-            spanRangeBar.bind("mousedown", function(event){
+            spanRangeBar.on("mousedown", function(event){
                 if(event.buttons == 1){
                     clicking = true;
                     if(!scope.lrvModel.disabled)
@@ -689,12 +689,12 @@ larvae.directive("range", function(){
                 }
             });
 
-            spanRangeBar.bind("mouseup", function(event){
+            spanRangeBar.on("mouseup", function(event){
                 if(event.buttons == 1)
                     clicking = false;
             });
 
-            element.bind("change", function(){
+            element.on("change", function(){
                 scope.lrvModel.value = parseFloat(element.val());
                 scope.$apply();
             });
@@ -718,7 +718,11 @@ larvae.directive("range", function(){
                 var percentage = 100 * event.layerX / spanRangeBar[0].offsetWidth;
                 var onePercent = (scope.lrvModel.max - scope.lrvModel.min) / 100;
                 var value = percentage * (scope.lrvModel.max - scope.lrvModel.min + onePercent) / 100 + scope.lrvModel.min;
-                element.val(parseFloat(value));
+                var step = element.attr("step");
+                // FIREFOX ISSUE WITH FLOATS
+                // When you provide a float between 1 and -1 to the input type range, when it has not the step any or step float value, it stores it in exponential notation, instead of picking the nearest possible value, for example 0
+                value = (step == undefined || step != "any" && Number.isInteger(parseFloat(step))) && value < 1 && value > -1 ? 0 : value;
+                element.val(value);
                 element.triggerHandler("change");
             }
         }
@@ -755,7 +759,7 @@ larvae.directive("message", function(){
                     messageSpan.addClass("close");
                     var button = angular.element("<button class='btn icon round close'><i class='fa fa-close'></i></button>")
                     messageDiv.append(button);
-                    button.bind("click",function(){
+                    button.on("click",function(){
                         messageDiv.remove();
                     });
                 }
